@@ -1,0 +1,178 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "clients": "Clients",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "home": {
+    "sectionWhoWeAre": "// WHO WE ARE",
+    "wordmark": "SKRIPTURA",
+    "tagline": "Digitalization of your processes — fewer errors, less friction, more clarity.",
+    "mission": "We build custom software that replaces manual processes with reliable digital systems. Technology used exactly as it was intended: to make your life easier.",
+    "ctaWork": "Our Work",
+    "ctaContact": "Get in Touch",
+    "sectionNumbers": "// BY THE NUMBERS",
+    "statFounded": "Founded",
+    "statFoundedValue": "2023",
+    "statClients": "Clients",
+    "statClientsValue": "7+",
+    "statOwners": "Owners",
+    "statOwnersValue": "2",
+    "statCity": "Based in",
+    "statCityValue": "Prishtinë",
+    "sectionWhatWeDo": "// WHAT WE DO",
+    "sectionWhatWeDoSub": "From websites to full enterprise software — we build it all.",
+    "viewAllServices": "View all services →",
+    "sectionClients": "// CLIENTS",
+    "sectionClientsSub": "Businesses we've built software for.",
+    "viewAllClients": "View all clients →",
+    "sectionProjects": "// PROJECTS",
+    "sectionProjectsSub": "Side projects and experiments we ship for fun.",
+    "viewAllProjects": "View all projects →",
+    "sectionContact": "// GET IN TOUCH",
+    "contactLine1": "We're based in Prishtinë, Kosovo.",
+    "contactLine2": "Drop us a message and we'll get back to you."
+  },
+  "about": {
+    "title": "// ABOUT",
+    "sectionStory": "// OUR STORY",
+    "story1": "Skriptura SH.P.K. was founded in December 2023 by Rigon Paçarizi and Argjenta Gashi — two people who believe that most businesses are still running on processes that technology could have solved years ago.",
+    "story2": "Our philosophy is simple: digitalize your current processes, minimize human errors, and make your work life easier. We don't build software for the sake of building software. We build it because the problem is real and the solution should be solid.",
+    "story3": "We are registered in Kosovo and primarily serve local and regional clients, though our work has reached clients in the US and beyond. We cover the full stack — design, development, hosting, and ongoing support.",
+    "sectionTeam": "// THE TEAM",
+    "team": {
+      "rigon": {
+        "name": "Rigon Paçarizi",
+        "role": "Authorized Representative",
+        "bio": "Full-stack developer and co-founder. Leads technical architecture, software development, and client delivery.",
+        "location": "Prizren, Kosovo"
+      },
+      "argjenta": {
+        "name": "Argjenta Gashi",
+        "role": "Managing Director",
+        "bio": "Co-founder and Managing Director. Leads business operations, client relationships, and project management.",
+        "location": "Prishtinë, Kosovo"
+      }
+    },
+    "sectionBusiness": "// BUSINESS REGISTRATION",
+    "labelName": "Business Name",
+    "labelTradeName": "Trade Name",
+    "labelType": "Business Type",
+    "labelNUI": "Unique ID (NUI)",
+    "labelEmployees": "Employees",
+    "labelRegistered": "Registered",
+    "labelMunicipality": "Municipality",
+    "labelAddress": "Address",
+    "labelStatus": "ARBK Status",
+    "labelCapital": "Capital",
+    "valueType": "Limited Liability Company (LLC)",
+    "valueStatus": "Registered",
+    "sectionActivities": "// BUSINESS ACTIVITIES",
+    "primaryActivity": "Primary",
+    "secondaryActivity": "Secondary"
+  },
+  "services": {
+    "title": "// SERVICES",
+    "subtitle": "We cover the full lifecycle of a software product — from idea to deployment to long-term support.",
+    "viewService": "View service →",
+    "sectionIncludes": "// WHAT'S INCLUDED",
+    "sectionClients": "// CLIENTS WHO USED THIS",
+    "noClients": "Ask us about this service."
+  },
+  "clients": {
+    "title": "// CLIENTS",
+    "subtitle": "Every client came to us with a problem. We built the software that solved it.",
+    "visitSite": "Visit site →",
+    "viewDetails": "Details →",
+    "noUrl": "Internal system — no public URL",
+    "sectionServices": "// SERVICES DELIVERED",
+    "sectionTech": "// TECH USED",
+    "sectionTestimonial": "// TESTIMONIAL",
+    "noTestimonial": "Testimonial coming soon."
+  },
+  "projects": {
+    "title": "// PROJECTS",
+    "subtitle": "Software we build for fun, community, and exploration.",
+    "sectionLive": "// LIVE",
+    "sectionComingSoon": "// COMING SOON",
+    "playNow": "Play now →",
+    "plannedTools": "Planned tools",
+    "statusLive": "LIVE",
+    "statusComingSoon": "COMING SOON"
+  },
+  "contact": {
+    "title": "// CONTACT",
+    "subtitle": "Have a project in mind? We'd love to hear about it.",
+    "sectionInfo": "// CONTACT INFO",
+    "address": "Rruga Dr. Shpëtim Robaj, B. C, Nr. 12",
+    "city": "Prishtinë, Kosovo",
+    "labelPhone": "Phone",
+    "labelEmail": "Email",
+    "labelBizEmail": "Business Email",
+    "sectionForm": "// SEND A MESSAGE",
+    "formName": "Your Name",
+    "formEmail": "Your Email",
+    "formMessage": "Message",
+    "formSubmit": "Send Message",
+    "formNote": "This will open your email client.",
+    "sectionRegistration": "// REGISTRATION",
+    "nuiLabel": "NUI",
+    "arbkLabel": "ARBK Status",
+    "arbkValue": "Registered"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Page not found.",
+    "message": "The page you're looking for doesn't exist or has been moved.",
+    "back": "← Back to Home"
+  },
+  "secret": {
+    "title": "ACCESS DENIED",
+    "line1": "> Unauthorized access attempt detected.",
+    "line2": "> Logging your IP address...",
+    "line3": "> Just kidding. But how did you find this?",
+    "line4": "> We might be hiring. Or might not.",
+    "line5": "> Check back never.",
+    "back": "← Retreat"
+  },
+  "common": {
+    "year": "Year",
+    "learnMore": "Learn more →",
+    "backToClients": "← Back to Clients",
+    "backToServices": "← Back to Services",
+    "backToProjects": "← Back to Projects"
+  },
+  "seo": {
+    "default": {
+      "title": "Skriptura — Custom Software & Web Development",
+      "description": "Skriptura SH.P.K. builds custom software, websites, and e-commerce platforms. Based in Prishtinë, Kosovo."
+    },
+    "home": {
+      "title": "Custom Software & Web Development in Kosovo",
+      "description": "Skriptura SH.P.K. builds custom software, websites, e-commerce platforms, and management systems. Based in Prishtinë, Kosovo."
+    },
+    "about": {
+      "title": "About",
+      "description": "Skriptura SH.P.K. — founded 2023 by Rigon Paçarizi and Argjenta Gashi. Custom software and web development from Prishtinë, Kosovo."
+    },
+    "services": {
+      "title": "Services",
+      "description": "Custom web development, custom software, hosting, IT consulting, maintenance, UI/UX design, and photography — full lifecycle from Skriptura."
+    },
+    "clients": {
+      "title": "Clients",
+      "description": "Businesses we've built custom software for — Paparapara, Furra Lumi, Eagle Capital, Starhill Hotel & SPA, Ultra Medical Clinic, King Rent Auto, and more."
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Spyfall multiplayer game and Skriptura Tools — software built by Skriptura for fun and the community."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch with Skriptura SH.P.K. — info@skriptura.net · +383 44 564 565 · Prishtinë, Kosovo."
+    }
+  }
+}

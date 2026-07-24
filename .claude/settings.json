@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -m 5 \"http://localhost:3100/sq\")",
+      "Bash(curl -s -m 5 \"http://localhost:3100/en\")",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(pkill -f \"next start\")",
+      "Bash(echo \"=== exit: $? ===\")",
+      "Bash(grep -nE \"^#{1,3} \" node_modules/next/dist/docs/01-app/02-guides/self-hosting.md)",
+      "Bash(node -e \"require\\('./ecosystem.config.cjs'\\); console.log\\('ecosystem.config.cjs parses OK'\\)\")",
+      "Bash(PORT=8080 node -e \"const c=require\\('./ecosystem.config.cjs'\\); console.log\\('parses OK · port ->', c.apps[0].env.PORT\\)\")"
+    ]
+  }
+}

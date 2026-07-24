@@ -1,0 +1,178 @@
+{
+  "nav": {
+    "home": "Ballina",
+    "about": "Rreth nesh",
+    "services": "Shërbimet",
+    "clients": "Klientët",
+    "projects": "Projektet",
+    "contact": "Kontakt"
+  },
+  "home": {
+    "sectionWhoWeAre": "// KU JEMI",
+    "wordmark": "SKRIPTURA",
+    "tagline": "E digjitalizojmë punën tuaj — më pak gabime, më pak humbje kohe, më shumë qetësi mendore.",
+    "mission": "Ndërtojmë software të personalizuar që i zëvendëson proceset manuale me sisteme dixhitale të besueshme. Teknologjinë e përdorim ashtu siç duhet: me të lehtësu jetën tuaj të punës — jo me ta komplikue.",
+    "ctaWork": "Shiko punën tonë",
+    "ctaContact": "Na kontakto",
+    "sectionNumbers": "// ME NUMRA",
+    "statFounded": "Themeluar",
+    "statFoundedValue": "2023",
+    "statClients": "Klientë",
+    "statClientsValue": "7+",
+    "statOwners": "Pronarë",
+    "statOwnersValue": "2",
+    "statCity": "Kemi selinë",
+    "statCityValue": "Prishtinë",
+    "sectionWhatWeDo": "// ÇKA BËJMË",
+    "sectionWhatWeDoSub": "Nga faqet interneti deri te softueri ndërmarrës — i ndërtojmë me kode, jo me template.",
+    "viewAllServices": "Shiko të gjitha shërbimet →",
+    "sectionClients": "// KLIENTËT",
+    "sectionClientsSub": "Biznese të ndryshme, të gjitha me nga një problem. Ne e ndërtuam zgjidhjen.",
+    "viewAllClients": "Shiko të gjithë klientët →",
+    "sectionProjects": "// PROJEKTET",
+    "sectionProjectsSub": "Projekte anësore dhe eksperimente — diçka që e ndërtojmë për kënaqësi dhe komunitet.",
+    "viewAllProjects": "Shiko të gjitha projektet →",
+    "sectionContact": "// NA GJENI",
+    "contactLine1": "Jemi në Prishtinë, Kosovë.",
+    "contactLine2": "Dërgoni mesazh dhe kthehemi shpejt."
+  },
+  "about": {
+    "title": "// RRETH NESH",
+    "sectionStory": "// HISTORIA JONË",
+    "story1": "Skriptura SH.P.K. u themelua në dhjetor 2023 nga Rigon Paçarizi dhe Argjenta Gashi. Ideja erdhi nga një vëzhgim i thjeshtë: shumica e bizneseve në rajon ende punojnë me procese manuale që harxhojnë kohë, gjenerojnë gabime dhe vardin njerëzit nga puna e vërtetë. Teknologjia ekziston — thjesht ende nuk po përdoret siç duhet.",
+    "story2": "Filozofia jonë nuk ka të bëjë me teknologjinë vetvetiu. Ka të bëjë me rezultatin: një biznes që punon më mirë, me më pak stres dhe me më pak gabime. Çdo software që ndërtojmë fillon me të kuptuarin e procesit tuaj — e pastaj e digjitalizojmë atë, pa e komplikuar.",
+    "story3": "Jemi të regjistruar në Kosovë dhe punojmë kryesisht me klientë lokalë e rajonalë, edhe pse kemi arritur edhe në SHBA. Mbulojmë çdo fazë: dizajn, zhvillim, hosting dhe mbështetje të vazhdueshme — me njerëz të vërtetë, jo me tiketa automatike.",
+    "sectionTeam": "// EKIPI",
+    "team": {
+      "rigon": {
+        "name": "Rigon Paçarizi",
+        "role": "Përfaqësues i Autorizuar",
+        "bio": "Zhvillues full-stack dhe bashkëthemelues. Merret me arkitekturën teknike, zhvillimin e softuerit dhe dorëzimin final te klienti. Ka tendencë me shkruar kod deri vonë natën.",
+        "location": "Prizren, Kosovë"
+      },
+      "argjenta": {
+        "name": "Argjenta Gashi",
+        "role": "Drejtoreshë Menaxhuese",
+        "bio": "Bashkëthemeluese dhe Drejtoreshë Menaxhuese. Siguron që projektet ecin sipas planit, klientët janë të kënaqur dhe kompania gjendet gjithmonë në vendin e duhur në kohën e duhur.",
+        "location": "Prishtinë, Kosovë"
+      }
+    },
+    "sectionBusiness": "// TË DHËNAT E BIZNESIT",
+    "labelName": "Emri i Biznesit",
+    "labelTradeName": "Emri Tregtar",
+    "labelType": "Lloji i Biznesit",
+    "labelNUI": "Numri Unik Identifikues",
+    "labelEmployees": "Numri i Punëtorëve",
+    "labelRegistered": "Data e Regjistrimit",
+    "labelMunicipality": "Komuna",
+    "labelAddress": "Adresa",
+    "labelStatus": "Statusi në ARBK",
+    "labelCapital": "Kapitali",
+    "valueType": "Shoqëri me Përgjegjësi të Kufizuara (SH.P.K.)",
+    "valueStatus": "Aktiv",
+    "sectionActivities": "// FUSHAT E VEPRIMTARISË",
+    "primaryActivity": "Kryesor",
+    "secondaryActivity": "Sekondar"
+  },
+  "services": {
+    "title": "// SHËRBIMET",
+    "subtitle": "E mbulojmë gjithë ciklin jetësor të një produkti dixhital — nga ideja e parë deri te mirëmbajtja afatgjatë pas lansimit.",
+    "viewService": "Shiko shërbimin →",
+    "sectionIncludes": "// ÇKA PËRFSHIN",
+    "sectionClients": "// KLIENTË QË E KANË PËRDORUR",
+    "noClients": "Na kontakto për këtë shërbim."
+  },
+  "clients": {
+    "title": "// KLIENTËT",
+    "subtitle": "Secili klient erdhi me nga një sfidë specifike. Ne e ndërtuam softuerin që e zgjidhi — pa template, pa kompromis.",
+    "visitSite": "Vizito faqen →",
+    "viewDetails": "Shiko detajet →",
+    "noUrl": "Sistem i brendshëm — nuk ka URL publik",
+    "sectionServices": "// SHËRBIME TË OFRUARA",
+    "sectionTech": "// TEKNOLOGJIA E PËRDORUR",
+    "sectionTestimonial": "// DËSHMI",
+    "noTestimonial": "Dëshmi nga klienti vjen së shpejti."
+  },
+  "projects": {
+    "title": "// PROJEKTET",
+    "subtitle": "Software që e ndërtojmë jashtë orarit të punës — për argëtim, për komunitetin dhe sepse na duket interesante.",
+    "sectionLive": "// AKTIV",
+    "sectionComingSoon": "// SË SHPEJTI",
+    "playNow": "Luaj tani →",
+    "plannedTools": "Mjete të planifikuara",
+    "statusLive": "AKTIV",
+    "statusComingSoon": "SË SHPEJTI"
+  },
+  "contact": {
+    "title": "// KONTAKTO",
+    "subtitle": "Keni diçka në mendje? Tregona — nuk kafshojmë dhe nuk dërgojmë oferta automatike.",
+    "sectionInfo": "// TË DHËNAT E KONTAKTIT",
+    "address": "Rruga Dr. Shpëtim Robaj, B. C, Nr. 12",
+    "city": "Prishtinë, Kosovë",
+    "labelPhone": "Telefon",
+    "labelEmail": "Email",
+    "labelBizEmail": "Email Biznesi",
+    "sectionForm": "// DËRGO MESAZH",
+    "formName": "Emri juaj",
+    "formEmail": "Email-i juaj",
+    "formMessage": "Mesazhi",
+    "formSubmit": "Dërgo Mesazhin",
+    "formNote": "Hap klientin tuaj të email-it.",
+    "sectionRegistration": "// REGJISTRIM",
+    "nuiLabel": "NUI",
+    "arbkLabel": "Statusi ARBK",
+    "arbkValue": "Aktiv"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Faqja nuk u gjet.",
+    "message": "Faqja që po e kërkoni nuk ekziston ose është zhvendosur diku tjetër.",
+    "back": "← Kthehu në Ballina"
+  },
+  "secret": {
+    "title": "QASJA REFUZOHET",
+    "line1": "> U zbulua tentativë aksesi të paautorizuar.",
+    "line2": "> Duke regjistruar IP-në tuaj...",
+    "line3": "> Po shaka ishte. Por si e gjete këtë faqe?",
+    "line4": "> Ndoshta po pranojmë aplikime. Ndoshta jo.",
+    "line5": "> Kontrollo prapë... kurrë.",
+    "back": "← Tërhiqu"
+  },
+  "common": {
+    "year": "Viti",
+    "learnMore": "Mëso më shumë →",
+    "backToClients": "← Kthehu te Klientët",
+    "backToServices": "← Kthehu te Shërbimet",
+    "backToProjects": "← Kthehu te Projektet"
+  },
+  "seo": {
+    "default": {
+      "title": "Skriptura — Zhvillim Softueri & Web",
+      "description": "Skriptura SH.P.K. ndërton software të personalizuar, faqe interneti dhe platforma e-commerce. Me seli në Prishtinë, Kosovë."
+    },
+    "home": {
+      "title": "Zhvillim Softueri & Web në Kosovë",
+      "description": "Skriptura SH.P.K. ndërton software të personalizuar, faqe interneti, platforma e-commerce dhe sisteme menaxhimi. Me seli në Prishtinë, Kosovë."
+    },
+    "about": {
+      "title": "Rreth nesh",
+      "description": "Skriptura SH.P.K. — themeluar në 2023 nga Rigon Paçarizi dhe Argjenta Gashi. Softuer i personalizuar dhe zhvillim web nga Prishtina, Kosovë."
+    },
+    "services": {
+      "title": "Shërbimet",
+      "description": "Zhvillim web, softuer i personalizuar, hosting, konsulencë IT, mirëmbajtje, dizajn UI/UX dhe fotografi — cikli i plotë nga Skriptura."
+    },
+    "clients": {
+      "title": "Klientët",
+      "description": "Bizneset për të cilat kemi ndërtuar softuer — Paparapara, Furra Lumi, Eagle Capital, Starhill Hotel & SPA, Ultra Medical Clinic, King Rent Auto dhe të tjerë."
+    },
+    "projects": {
+      "title": "Projektet",
+      "description": "Spyfall — lojë multiplayer dhe Skriptura Tools — software i ndërtuar nga Skriptura për argëtim dhe komunitet."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "description": "Na kontaktoni te Skriptura SH.P.K. — info@skriptura.net · +383 44 564 565 · Prishtinë, Kosovë."
+    }
+  }
+}
