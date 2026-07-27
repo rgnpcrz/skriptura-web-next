@@ -1,7 +1,14 @@
 {
   "name": "skriptura-web-next",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "description": "Bilingual (EN/SQ) marketing site for Skriptura SH.P.K. — custom software and web development from Prishtinë, Kosovo.",
+  "homepage": "https://skriptura.net",
+  "author": "Skriptura SH.P.K. <info@skriptura.net>",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

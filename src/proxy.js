@@ -32,5 +32,5 @@ export function proxy(request) {
 export const config = {
   // Run on everything except Next internals, API routes, metadata files,
   // and any path containing a dot (static assets like images/fonts).
-  matcher: ['/((?!_next|api|favicon.ico|sitemap.xml|robots.txt|opengraph-image|.*\\..*).*)'],
+  matcher: ['/((?!_next|api|icon|apple-icon|sitemap.xml|robots.txt|opengraph-image|.*\\..*).*)'],
 }
