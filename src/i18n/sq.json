@@ -5,13 +5,13 @@
     "services": "Shërbimet",
     "clients": "Klientët",
     "projects": "Projektet",
-    "contact": "Kontakt"
+    "contact": "Kontakti"
   },
   "home": {
-    "sectionWhoWeAre": "// KU JEMI",
+    "sectionWhoWeAre": "// KUSH JEMI",
     "wordmark": "SKRIPTURA",
-    "tagline": "E digjitalizojmë punën tuaj — më pak gabime, më pak humbje kohe, më shumë qetësi mendore.",
-    "mission": "Ndërtojmë software të personalizuar që i zëvendëson proceset manuale me sisteme dixhitale të besueshme. Teknologjinë e përdorim ashtu siç duhet: me të lehtësu jetën tuaj të punës — jo me ta komplikue.",
+    "tagline": "Ta dixhitalizojmë punën — më pak gabime, më pak kohë e humbur, më shumë qetësi.",
+    "mission": "Ndërtojmë softuer të personalizuar që i zëvendëson proceset manuale me sisteme dixhitale të besueshme. Teknologjinë e përdorim qysh duhet: me ta lehtësu punën — jo me ta kompliku.",
     "ctaWork": "Shiko punën tonë",
     "ctaContact": "Na kontakto",
     "sectionNumbers": "// ME NUMRA",
@@ -21,39 +21,39 @@
     "statClientsValue": "7+",
     "statOwners": "Pronarë",
     "statOwnersValue": "2",
-    "statCity": "Kemi selinë",
+    "statCity": "Selia",
     "statCityValue": "Prishtinë",
     "sectionWhatWeDo": "// ÇKA BËJMË",
-    "sectionWhatWeDoSub": "Nga faqet interneti deri te softueri ndërmarrës — i ndërtojmë me kode, jo me template.",
+    "sectionWhatWeDoSub": "Prej faqeve të internetit e deri te softueri i ndërmarrjeve — i ndërtojmë me kod, jo me template.",
     "viewAllServices": "Shiko të gjitha shërbimet →",
     "sectionClients": "// KLIENTËT",
-    "sectionClientsSub": "Biznese të ndryshme, të gjitha me nga një problem. Ne e ndërtuam zgjidhjen.",
+    "sectionClientsSub": "Biznese të ndryshme, secili me problemin e vet. Ne e ndërtuam zgjidhjen.",
     "viewAllClients": "Shiko të gjithë klientët →",
     "sectionProjects": "// PROJEKTET",
-    "sectionProjectsSub": "Projekte anësore dhe eksperimente — diçka që e ndërtojmë për kënaqësi dhe komunitet.",
+    "sectionProjectsSub": "Projekte anësore e eksperimente — gjëra që i ndërtojmë për qejf dhe për komunitetin.",
     "viewAllProjects": "Shiko të gjitha projektet →",
-    "sectionContact": "// NA GJENI",
+    "sectionContact": "// KU NA GJEN",
     "contactLine1": "Jemi në Prishtinë, Kosovë.",
-    "contactLine2": "Dërgoni mesazh dhe kthehemi shpejt."
+    "contactLine2": "Na shkruaj dhe të kthehemi shpejt."
   },
   "about": {
     "title": "// RRETH NESH",
     "sectionStory": "// HISTORIA JONË",
-    "story1": "Skriptura SH.P.K. u themelua në dhjetor 2023 nga Rigon Paçarizi dhe Argjenta Gashi. Ideja erdhi nga një vëzhgim i thjeshtë: shumica e bizneseve në rajon ende punojnë me procese manuale që harxhojnë kohë, gjenerojnë gabime dhe vardin njerëzit nga puna e vërtetë. Teknologjia ekziston — thjesht ende nuk po përdoret siç duhet.",
-    "story2": "Filozofia jonë nuk ka të bëjë me teknologjinë vetvetiu. Ka të bëjë me rezultatin: një biznes që punon më mirë, me më pak stres dhe me më pak gabime. Çdo software që ndërtojmë fillon me të kuptuarin e procesit tuaj — e pastaj e digjitalizojmë atë, pa e komplikuar.",
-    "story3": "Jemi të regjistruar në Kosovë dhe punojmë kryesisht me klientë lokalë e rajonalë, edhe pse kemi arritur edhe në SHBA. Mbulojmë çdo fazë: dizajn, zhvillim, hosting dhe mbështetje të vazhdueshme — me njerëz të vërtetë, jo me tiketa automatike.",
+    "story1": "Skriptura SH.P.K. u themelua në dhjetor 2023 prej Rigon Paçarizit dhe Argjenta Gashit. Ideja lindi prej një vëzhgimi të thjeshtë: shumica e bizneseve në rajon ende punojnë me procese manuale që harxhojnë kohë, sjellin gabime dhe i largojnë njerëzit prej punës së vërtetë. Teknologjia ekziston — veç ende nuk po përdoret qysh duhet.",
+    "story2": "Filozofia jonë nuk ka të bëjë me teknologjinë në vetvete. Ka të bëjë me rezultatin: një biznes që punon më mirë, me më pak stres e me më pak gabime. Çdo softuer që ndërtojmë fillon me të kuptuarit e procesit tënd — e pastaj e dixhitalizojmë, pa e ndërlikuar.",
+    "story3": "Jemi të regjistruar në Kosovë dhe punojmë kryesisht me klientë vendorë e rajonalë, edhe pse puna jonë ka arritur deri në SHBA. I mbulojmë të gjitha fazat: dizajn, zhvillim, hosting dhe mbështetje të vazhdueshme — me njerëz të vërtetë, jo me tiketa automatike.",
     "sectionTeam": "// EKIPI",
     "team": {
       "rigon": {
         "name": "Rigon Paçarizi",
         "role": "Përfaqësues i Autorizuar",
-        "bio": "Zhvillues full-stack dhe bashkëthemelues. Merret me arkitekturën teknike, zhvillimin e softuerit dhe dorëzimin final te klienti. Ka tendencë me shkruar kod deri vonë natën.",
+        "bio": "Zhvillues full-stack dhe bashkëthemelues. Merret me arkitekturën teknike, zhvillimin e softuerit dhe dorëzimin e projekteve te klienti. Ka zakon me shkru kod deri vonë natën.",
         "location": "Prizren, Kosovë"
       },
       "argjenta": {
         "name": "Argjenta Gashi",
         "role": "Drejtoreshë Menaxhuese",
-        "bio": "Bashkëthemeluese dhe Drejtoreshë Menaxhuese. Siguron që projektet ecin sipas planit, klientët janë të kënaqur dhe kompania gjendet gjithmonë në vendin e duhur në kohën e duhur.",
+        "bio": "Bashkëthemeluese dhe Drejtoreshë Menaxhuese. Kujdeset që projektet të ecin sipas planit, klientët të jenë të kënaqur dhe kompania të jetë gjithmonë në vendin e duhur në kohën e duhur.",
         "location": "Prishtinë, Kosovë"
       }
     },
@@ -68,7 +68,7 @@
     "labelAddress": "Adresa",
     "labelStatus": "Statusi në ARBK",
     "labelCapital": "Kapitali",
-    "valueType": "Shoqëri me Përgjegjësi të Kufizuara (SH.P.K.)",
+    "valueType": "Shoqëri me Përgjegjësi të Kufizuar (SH.P.K.)",
     "valueStatus": "Aktiv",
     "sectionActivities": "// FUSHAT E VEPRIMTARISË",
     "primaryActivity": "Kryesor",
@@ -76,7 +76,7 @@
   },
   "services": {
     "title": "// SHËRBIMET",
-    "subtitle": "E mbulojmë gjithë ciklin jetësor të një produkti dixhital — nga ideja e parë deri te mirëmbajtja afatgjatë pas lansimit.",
+    "subtitle": "E mbulojmë tërë ciklin jetësor të një produkti dixhital — prej idesë së parë e deri te mirëmbajtja pas lansimit.",
     "viewService": "Shiko shërbimin →",
     "sectionIncludes": "// ÇKA PËRFSHIN",
     "sectionClients": "// KLIENTË QË E KANË PËRDORUR",
@@ -84,18 +84,18 @@
   },
   "clients": {
     "title": "// KLIENTËT",
-    "subtitle": "Secili klient erdhi me nga një sfidë specifike. Ne e ndërtuam softuerin që e zgjidhi — pa template, pa kompromis.",
+    "subtitle": "Secili klient na erdhi me një sfidë të vetën. Ne e ndërtuam softuerin që e zgjidhi — pa template, pa kompromis.",
     "visitSite": "Vizito faqen →",
     "viewDetails": "Shiko detajet →",
-    "noUrl": "Sistem i brendshëm — nuk ka URL publik",
-    "sectionServices": "// SHËRBIME TË OFRUARA",
+    "noUrl": "Sistem i brendshëm — s'ka URL publike",
+    "sectionServices": "// SHËRBIMET E OFRUARA",
     "sectionTech": "// TEKNOLOGJIA E PËRDORUR",
     "sectionTestimonial": "// DËSHMI",
-    "noTestimonial": "Dëshmi nga klienti vjen së shpejti."
+    "noTestimonial": "Dëshmia e klientit vjen së shpejti."
   },
   "projects": {
     "title": "// PROJEKTET",
-    "subtitle": "Software që e ndërtojmë jashtë orarit të punës — për argëtim, për komunitetin dhe sepse na duket interesante.",
+    "subtitle": "Softuer që e ndërtojmë jashtë orarit — për qejf, për komunitetin dhe sepse na duket interesant.",
     "sectionLive": "// AKTIV",
     "sectionComingSoon": "// SË SHPEJTI",
     "playNow": "Luaj tani →",
@@ -105,7 +105,7 @@
   },
   "contact": {
     "title": "// KONTAKTO",
-    "subtitle": "Keni diçka në mendje? Tregona — nuk kafshojmë dhe nuk dërgojmë oferta automatike.",
+    "subtitle": "Ke diçka në mendje? Na trego — nuk kafshojmë dhe s'dërgojmë oferta automatike.",
     "sectionInfo": "// TË DHËNAT E KONTAKTIT",
     "address": "Rruga Dr. Shpëtim Robaj, B. C, Nr. 12",
     "city": "Prishtinë, Kosovë",
@@ -113,11 +113,11 @@
     "labelEmail": "Email",
     "labelBizEmail": "Email Biznesi",
     "sectionForm": "// DËRGO MESAZH",
-    "formName": "Emri juaj",
-    "formEmail": "Email-i juaj",
+    "formName": "Emri yt",
+    "formEmail": "Email-i yt",
     "formMessage": "Mesazhi",
     "formSubmit": "Dërgo Mesazhin",
-    "formNote": "Hap klientin tuaj të email-it.",
+    "formNote": "Ta hap aplikacionin e email-it.",
     "sectionRegistration": "// REGJISTRIM",
     "nuiLabel": "NUI",
     "arbkLabel": "Statusi ARBK",
@@ -126,16 +126,16 @@
   "notFound": {
     "code": "404",
     "title": "Faqja nuk u gjet.",
-    "message": "Faqja që po e kërkoni nuk ekziston ose është zhvendosur diku tjetër.",
-    "back": "← Kthehu në Ballina"
+    "message": "Faqja që po kërkon nuk ekziston ose është zhvendosur diku tjetër.",
+    "back": "← Kthehu te Ballina"
   },
   "secret": {
-    "title": "QASJA REFUZOHET",
-    "line1": "> U zbulua tentativë aksesi të paautorizuar.",
-    "line2": "> Duke regjistruar IP-në tuaj...",
-    "line3": "> Po shaka ishte. Por si e gjete këtë faqe?",
+    "title": "QASJA E REFUZUAR",
+    "line1": "> U zbulua tentativë e paautorizuar për qasje.",
+    "line2": "> Po ta regjistrojmë IP-në...",
+    "line3": "> Po tallem. Po qysh e gjete ti këtë faqe?",
     "line4": "> Ndoshta po pranojmë aplikime. Ndoshta jo.",
-    "line5": "> Kontrollo prapë... kurrë.",
+    "line5": "> Kthehu prapë... kurrë.",
     "back": "← Tërhiqu"
   },
   "common": {
@@ -143,20 +143,22 @@
     "learnMore": "Mëso më shumë →",
     "backToClients": "← Kthehu te Klientët",
     "backToServices": "← Kthehu te Shërbimet",
-    "backToProjects": "← Kthehu te Projektet"
+    "backToProjects": "← Kthehu te Projektet",
+    "quickLinks": "Lidhje të shpejta",
+    "rights": "Të gjitha të drejtat e rezervuara."
   },
   "seo": {
     "default": {
       "title": "Skriptura — Zhvillim Softueri & Web",
-      "description": "Skriptura SH.P.K. ndërton software të personalizuar, faqe interneti dhe platforma e-commerce. Me seli në Prishtinë, Kosovë."
+      "description": "Skriptura SH.P.K. ndërton softuer të personalizuar, faqe interneti dhe platforma e-commerce. Me seli në Prishtinë, Kosovë."
     },
     "home": {
       "title": "Zhvillim Softueri & Web në Kosovë",
-      "description": "Skriptura SH.P.K. ndërton software të personalizuar, faqe interneti, platforma e-commerce dhe sisteme menaxhimi. Me seli në Prishtinë, Kosovë."
+      "description": "Skriptura SH.P.K. ndërton softuer të personalizuar, faqe interneti, platforma e-commerce dhe sisteme menaxhimi. Me seli në Prishtinë, Kosovë."
     },
     "about": {
       "title": "Rreth nesh",
-      "description": "Skriptura SH.P.K. — themeluar në 2023 nga Rigon Paçarizi dhe Argjenta Gashi. Softuer i personalizuar dhe zhvillim web nga Prishtina, Kosovë."
+      "description": "Skriptura SH.P.K. — e themeluar në 2023 nga Rigon Paçarizi dhe Argjenta Gashi. Softuer i personalizuar dhe zhvillim web nga Prishtina, Kosovë."
     },
     "services": {
       "title": "Shërbimet",
@@ -168,11 +170,11 @@
     },
     "projects": {
       "title": "Projektet",
-      "description": "Spyfall — lojë multiplayer dhe Skriptura Tools — software i ndërtuar nga Skriptura për argëtim dhe komunitet."
+      "description": "Spyfall — lojë multiplayer dhe Skriptura Tools — softuer i ndërtuar nga Skriptura për argëtim dhe komunitet."
     },
     "contact": {
       "title": "Kontakt",
-      "description": "Na kontaktoni te Skriptura SH.P.K. — info@skriptura.net · +383 44 564 565 · Prishtinë, Kosovë."
+      "description": "Kontakto Skriptura SH.P.K. — info@skriptura.net · +383 44 564 565 · Prishtinë, Kosovë."
     }
   }
 }

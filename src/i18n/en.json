@@ -143,7 +143,9 @@
     "learnMore": "Learn more →",
     "backToClients": "← Back to Clients",
     "backToServices": "← Back to Services",
-    "backToProjects": "← Back to Projects"
+    "backToProjects": "← Back to Projects",
+    "quickLinks": "Quick links",
+    "rights": "All rights reserved."
   },
   "seo": {
     "default": {

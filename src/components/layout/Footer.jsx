@@ -43,12 +43,12 @@ export default function Footer() {
             <ul className="space-y-2">
               <li><a href="mailto:info@skriptura.net" className="font-mono text-xs text-black/70 hover:text-black hover:underline underline-offset-2">info@skriptura.net</a></li>
               <li><a href="tel:+38344564565" className="font-mono text-xs text-black/70 hover:text-black hover:underline underline-offset-2">+383 44 564 565</a></li>
-              <li className="font-mono text-xs text-black/60">Prishtinë, Kosovo</li>
+              <li className="font-mono text-xs text-black/60">{t('contact.city')}</li>
             </ul>
           </div>
         </div>
         <div className="border-t border-black mt-8 pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-          <p className="font-mono text-xs text-black/50">© {year} Skriptura SH.P.K. All rights reserved.</p>
+          <p className="font-mono text-xs text-black/50">© {year} Skriptura SH.P.K. {t('common.rights')}</p>
           <p className="font-mono text-xs text-black/30 select-none">{'// built with purpose'}</p>
         </div>
       </div>

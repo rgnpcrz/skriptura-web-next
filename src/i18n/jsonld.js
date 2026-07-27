@@ -5,7 +5,7 @@ const BASE = 'https://skriptura.net'
 export function organizationJsonLd(locale) {
   const description =
     locale === 'sq'
-      ? 'Skriptura SH.P.K. ndërton software të personalizuar, faqe interneti dhe platforma e-commerce. Me seli në Prishtinë, Kosovë.'
+      ? 'Skriptura SH.P.K. ndërton softuer të personalizuar, faqe interneti dhe platforma e-commerce. Me seli në Prishtinë, Kosovë.'
       : 'Skriptura SH.P.K. builds custom software, websites, and e-commerce platforms. Based in Prishtinë, Kosovo.'
 
   return {

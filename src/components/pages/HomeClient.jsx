@@ -189,11 +189,11 @@ export default function HomeClient() {
             <Button to="/contact" variant="solid">{t('home.ctaContact')}</Button>
           </Card>
           <Card yellow>
-            <p className="font-mono font-bold text-xs uppercase tracking-widest mb-3">Quick links</p>
+            <p className="font-mono font-bold text-xs uppercase tracking-widest mb-3">{t('common.quickLinks')}</p>
             <ul className="space-y-2">
               <li><a href="tel:+38344564565" className="font-mono text-sm font-bold hover:underline underline-offset-2">+383 44 564 565</a></li>
               <li><a href="mailto:info@skriptura.net" className="font-mono text-sm hover:underline underline-offset-2">info@skriptura.net</a></li>
-              <li className="font-mono text-sm text-black/70">Prishtinë, Kosovo</li>
+              <li className="font-mono text-sm text-black/70">{t('contact.city')}</li>
             </ul>
           </Card>
         </div>
