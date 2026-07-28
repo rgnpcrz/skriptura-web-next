@@ -4,29 +4,42 @@ All notable changes to this project are documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2026-07-27
+## [Unreleased]
 
-First release of the Next.js site. Replaces the Vite/React version at `skriptura-web`.
+## [1.2.0] - 2026-07-27
+
+Brand identity applied and the last `create-next-app` defaults removed.
 
 ### Added
 
-- `src/app/icon.svg` — the Skriptura `S` mark (yellow `#FFE600` on black), carried over from the previous site. Applies to every route.
-- `src/app/apple-icon.js` — 180x180 touch icon for iOS home screens, generated from the same mark with `next/og`.
-- `common.quickLinks` and `common.rights` translation keys, replacing hardcoded English in the footer and homepage.
+- `src/app/icon.svg` — the Skriptura `S` mark (yellow `#FFE600` on black), carried over from the previous Vite/React site. Applies to every route.
+- `src/app/apple-icon.js` — 180x180 touch icon for iOS home screens, generated from the same mark with `next/og`, since Apple touch icons can't be SVG.
 - This changelog.
 
 ### Changed
 
-- Albanian copy (`src/i18n/sq.json`) rewritten for the Kosovo dialect and normalized to the informal `ti` register throughout, which had been mixed with formal `ju`. Gheg infinitives (`me shkru`, `me ta lehtësu`), `prej`/`qysh`/`veç`/`qasje`/`për qejf` over their standard-Albanian equivalents, and consistent `dixhital` and `softuer` spellings.
-- `README.md` rewritten — was still the `create-next-app` boilerplate, including a reference to the Geist font this project doesn't use.
-- `package.json`: version `0.1.0` → `1.0.0`, plus description, homepage, author, license, and a `>=20.9.0` Node engine constraint.
-- Locale proxy matcher now excludes `icon` and `apple-icon` so the root-level icon routes aren't redirected into a locale segment. The stale `favicon.ico` exclusion was dropped.
-- JSON-LD organization description now says `softuer` rather than `software`, matching `sq.json`.
+- `README.md` rewritten — was still the `create-next-app` boilerplate, down to a reference to the Geist font this project doesn't use.
+- `package.json`: added description, homepage, author, license, and a `>=20.9.0` Node engine constraint (Next 16.2.7's own floor).
+- Locale proxy matcher now excludes `icon` and `apple-icon`. Both are root-level routes without a dot in the path, so the matcher would otherwise have redirected `/apple-icon` into `/en/apple-icon` and broken the touch icon. The stale `favicon.ico` exclusion was dropped.
 
 ### Removed
 
 - `src/app/favicon.ico` — the default Vercel triangle from `create-next-app`.
-- `public/file.svg`, `globe.svg`, `next.svg`, `vercel.svg`, `window.svg` — unused `create-next-app` sample assets.
+- `public/file.svg`, `globe.svg`, `next.svg`, `vercel.svg`, `window.svg` — unused `create-next-app` sample assets. `public/` is now empty.
+
+## [1.1.0] - 2026-07-27
+
+Albanian copy rewritten for the Kosovo dialect.
+
+### Added
+
+- `common.quickLinks` and `common.rights` translation keys, replacing hardcoded English in the footer and homepage.
+
+### Changed
+
+- Albanian copy (`src/i18n/sq.json`) normalized to the informal `ti` register throughout, which had been mixed with formal `ju`. Gheg infinitives (`me shkru`, `me ta lehtësu`), `prej`/`qysh`/`veç`/`qasje`/`për qejf` over their standard-Albanian equivalents, and consistent `dixhital` and `softuer` spellings.
+- Homepage contact heading `// NA GJENI` → `// KU NA GJEN`, to play off `// KUSH JEMI`.
+- JSON-LD organization description now says `softuer` rather than `software`, matching `sq.json`.
 
 ### Fixed
 
@@ -39,3 +52,23 @@ First release of the Next.js site. Replaces the Vite/React version at `skriptura
 - Mismatched clitic and possessive in the homepage mission line (`me të lehtësu jetën tuaj`).
 - `Na kontaktoni te Skriptura` → `Kontakto Skriptura` in the Albanian contact metadata description.
 - Footer and homepage no longer render `Prishtinë, Kosovo`, `Quick links`, and `All rights reserved.` in English on Albanian pages.
+
+## [1.0.0] - 2026-07-24
+
+Initial release. Rebuild of the Vite/React site at `skriptura-web` on Next.js.
+
+### Added
+
+- Next.js 16 App Router with React 19, Tailwind CSS 3, and Space Mono via `next/font/google`.
+- Bilingual routing: every page lives under `src/app/[lang]/`, with `en` (default) and `sq` statically generated as separate, independently indexable trees.
+- Locale detection in `src/proxy.js` — `NEXT_LOCALE` cookie, then `Accept-Language`, then the default — redirecting unprefixed paths.
+- Translation layer in `src/i18n/`: bundled JSON dictionaries, server-side `getDictionary()`, and a `useTranslation()` hook for client components.
+- Per-page metadata with hreflang alternates (`seo.js`), Organization and WebSite structured data (`jsonld.js`), `sitemap.xml`, `robots.txt`, and generated Open Graph images per locale.
+- Pages: home, about, services, clients, projects, contact, a hidden `/secret` route, and a custom 404.
+- Content in `src/data/` for clients, projects, and services.
+- `DEPLOYMENT.md` and a PM2 `ecosystem.config.cjs` for Node hosting.
+
+[unreleased]: https://github.com/rgnpcrz/skriptura-web-next/compare/3474369...HEAD
+[1.2.0]: https://github.com/rgnpcrz/skriptura-web-next/compare/dd77633...3474369
+[1.1.0]: https://github.com/rgnpcrz/skriptura-web-next/compare/28b0e4f...dd77633
+[1.0.0]: https://github.com/rgnpcrz/skriptura-web-next/commit/28b0e4f

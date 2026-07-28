@@ -13,7 +13,8 @@
       "Bash(node -p \"require\\('./node_modules/next/package.json'\\).version\")",
       "Bash(node -e \"console.log\\('next engines:', JSON.stringify\\(require\\('/c/Users/rgnpcrz/Desktop/Programming/github/skriptura-web-nextt/node_modules/next/package.json'\\).engines\\)\\)\")",
       "Bash(node -p \"JSON.stringify\\(require\\('C:/Users/rgnpcrz/Desktop/Programming/github/skriptura-web-nextt/node_modules/next/package.json'\\).engines\\)\")",
-      "Bash(npx next *)"
+      "Bash(npx next *)",
+      "Bash(npm pkg *)"
     ]
   }
 }
