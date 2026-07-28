@@ -106,6 +106,68 @@ git pull && npm ci && npm run build && pm2 reload skriptura-web
 
 ---
 
+## Contact form email (Postfix)
+
+`POST /api/contact` sends the visitor a confirmation from `hello@skriptura.net`
+and blind-copies `skriptura.net@gmail.com` and `rgnpcrz@gmail.com` — one send, so
+the BCC is the inbound-inquiry notification. Config lives in `.env` (copy
+[`.env.example`](./.env.example)):
+
+```bash
+MAIL_TYPE=LOCAL                  # hand off to Postfix on 127.0.0.1:25
+MAIL_FROM=hello@skriptura.net
+MAIL_FROM_NAME=Skriptura
+CONTACT_BCC=skriptura.net@gmail.com, rgnpcrz@gmail.com
+```
+
+`MAIL_TYPE=SMTP` switches to an authenticated external host instead
+(`MAIL_HOST` / `MAIL_PORT` / `MAIL_SECURE` / `MAIL_USER` / `MAIL_PASS`) — the same
+scheme `skriptura-hotel-api` uses. Any other value disables sending and logs a
+warning, so a typo fails loudly rather than silently dropping mail.
+
+`.env` is read at boot: **`pm2 restart skriptura-web --update-env` after editing it.**
+
+### Server checklist
+
+1. Postfix listens on loopback and accepts mail from the app:
+
+   ```bash
+   postconf inet_interfaces          # expect: loopback-only (or all)
+   postconf mydestination
+   systemctl status postfix
+   ```
+
+2. Postfix may send as `hello@skriptura.net`, and DNS backs that up — without
+   SPF/DKIM/DMARC on `skriptura.net`, Gmail junks or rejects the confirmation
+   *and* both BCCs:
+
+   ```bash
+   dig +short TXT skriptura.net       # v=spf1 ... a mx ~all, including this server's IP
+   dig +short TXT default._domainkey.skriptura.net   # DKIM, if opendkim is set up
+   ```
+
+3. Smoke-test the whole path once the site is live:
+
+   ```bash
+   curl -X POST https://skriptura.net/api/contact \
+     -H 'Content-Type: application/json' \
+     -d '{"name":"Test","email":"you@example.com","message":"hello","lang":"en"}'
+   # → {"ok":true}
+   tail -f /var/log/mail.log     # Postfix's own view of the handoff
+   pm2 logs skriptura-web        # "[Mailer] Sent ... Message ID: ..."
+   ```
+
+### Abuse protection
+
+The endpoint is public, so it carries a honeypot field, length caps, and an
+in-memory rate limit of **3 sends per IP per 10 minutes**. The limiter reads
+`X-Forwarded-For` — the reverse proxy must set it (Apache's `mod_proxy` does by
+default), otherwise every visitor shares one bucket and the fourth message of any
+ten-minute window site-wide gets a 429. The counter lives in the process, which
+is why the app runs as a single PM2 fork; it resets on restart.
+
+---
+
 ## Option B — Docker (standalone output)
 
 For a container/Kubernetes/PaaS flow, add `output: 'standalone'` to

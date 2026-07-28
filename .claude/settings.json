@@ -14,7 +14,23 @@
       "Bash(node -e \"console.log\\('next engines:', JSON.stringify\\(require\\('/c/Users/rgnpcrz/Desktop/Programming/github/skriptura-web-nextt/node_modules/next/package.json'\\).engines\\)\\)\")",
       "Bash(node -p \"JSON.stringify\\(require\\('C:/Users/rgnpcrz/Desktop/Programming/github/skriptura-web-nextt/node_modules/next/package.json'\\).engines\\)\")",
       "Bash(npx next *)",
-      "Bash(npm pkg *)"
+      "Bash(npm pkg *)",
+      "Bash(python -c ' *)",
+      "Bash(node -e \"const p=require\\('./node_modules/nodemailer/package.json'\\); console.log\\(p.version, JSON.stringify\\(p.exports\\), p.main, p.type\\)\")",
+      "Bash(node -e \"const n=require\\('nodemailer'\\); console.log\\(Object.keys\\(n\\)\\); console.log\\(typeof n.createTransport\\)\")",
+      "Bash(node smtp-sink.js captured.txt)",
+      "Bash(MAIL_TYPE=SMTP MAIL_HOST=127.0.0.1 MAIL_PORT=2525 MAIL_SECURE=false MAIL_FROM=hello@skriptura.net PORT=3111 npx next start -p 3111)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:3111/en/contact)",
+      "Bash(break)",
+      "Bash(curl -s -X POST http://127.0.0.1:3111/api/contact -H \"Content-Type: application/json\" -d '{\"name\":\"Arta Krasniqi\",\"email\":\"arta@example.com\",\"message\":\"Përshëndetje!\\\\nDua nje website per biznesin tim.\\\\n<script>alert\\(1\\)</script>\",\"lang\":\"sq\"}' -w \"\\\\nHTTP %{http_code}\\\\n\")",
+      "Bash(grep -o 'Mesazhi:.\\\\{0,220\\\\}')",
+      "Bash(rm -f captured.txt)",
+      "Bash(curl -s -X POST http://127.0.0.1:3111/api/contact -H \"Content-Type: application/json\" -d '{\"name\":\"Bot\",\"email\":\"bot@spam.io\",\"message\":\"buy pills\",\"company\":\"AcmeBot\"}' -w \" [%{http_code}]\\\\n\")",
+      "Bash(curl -s -X POST http://127.0.0.1:3111/api/contact -H \"Content-Type: application/json\" -d '{\"name\":\"X\",\"email\":\"not-an-email\",\"message\":\"hi\"}' -w \" [%{http_code}]\\\\n\")",
+      "Bash(curl -s -X POST http://127.0.0.1:3111/api/contact -H \"Content-Type: application/json\" -d '{\"name\":\"X\",\"email\":\"a@b.co\",\"message\":\"   \"}' -w \" [%{http_code}]\\\\n\")",
+      "Bash(curl -s -X POST http://127.0.0.1:3111/api/contact -H \"Content-Type: application/json\" -d 'nope' -w \" [%{http_code}]\\\\n\")",
+      "Bash(npx --no-install kill-port 3111)",
+      "Bash(taskkill //F //FI \"WINDOWTITLE eq *\" //IM node.exe)"
     ]
   }
 }

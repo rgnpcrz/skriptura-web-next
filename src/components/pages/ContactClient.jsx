@@ -1,21 +1,51 @@
 ﻿'use client'
 
 import { useState } from 'react'
-import { useTranslation } from '@/i18n/client'
+import { useTranslation, useLocale } from '@/i18n/client'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import Button from '@/components/ui/Button'
 import SectionHeader from '@/components/ui/SectionHeader'
 
+const EMPTY = { name: '', email: '', message: '', company: '' }
+
+// Error codes from /api/contact → translation keys.
+const ERROR_KEYS = {
+  invalid_fields: 'contact.formErrorInvalid',
+  rate_limited: 'contact.formErrorRate',
+}
+
 export default function ContactClient() {
   const { t } = useTranslation()
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const locale = useLocale()
+  const [form, setForm] = useState(EMPTY)
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [errorKey, setErrorKey] = useState('contact.formError')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`Inquiry from ${form.name}`)
-    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
-    window.location.href = `mailto:info@skriptura.net?subject=${subject}&body=${body}`
+    if (status === 'sending') return
+    setStatus('sending')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, lang: locale }),
+      })
+      const data = await res.json().catch(() => ({}))
+
+      if (!res.ok || !data.ok) {
+        setErrorKey(ERROR_KEYS[data.error] || 'contact.formError')
+        setStatus('error')
+        return
+      }
+      setForm(EMPTY)
+      setStatus('sent')
+    } catch {
+      setErrorKey('contact.formError')
+      setStatus('error')
+    }
   }
 
   return (
@@ -63,17 +93,19 @@ export default function ContactClient() {
           <Card>
             <form onSubmit={handleSubmit} className="space-y-4">
               {[
-                { key: 'name', label: t('contact.formName'), type: 'text' },
-                { key: 'email', label: t('contact.formEmail'), type: 'email' },
-              ].map(({ key, label, type }) => (
+                { key: 'name', label: t('contact.formName'), type: 'text', autoComplete: 'name' },
+                { key: 'email', label: t('contact.formEmail'), type: 'email', autoComplete: 'email' },
+              ].map(({ key, label, type, autoComplete }) => (
                 <div key={key}>
                   <label className="font-mono text-xs uppercase tracking-wide font-bold block mb-1">{label}</label>
                   <input
                     type={type}
                     required
+                    autoComplete={autoComplete}
+                    disabled={status === 'sending'}
                     value={form[key]}
                     onChange={(e) => setForm({ ...form, [key]: e.target.value })}
-                    className="w-full border-2 border-black px-3 py-2 font-mono text-sm focus:outline-none focus:border-accent transition-colors bg-white"
+                    className="w-full border-2 border-black px-3 py-2 font-mono text-sm focus:outline-none focus:border-accent transition-colors bg-white disabled:opacity-50"
                   />
                 </div>
               ))}
@@ -82,14 +114,53 @@ export default function ContactClient() {
                 <textarea
                   required
                   rows={5}
+                  disabled={status === 'sending'}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full border-2 border-black px-3 py-2 font-mono text-sm focus:outline-none focus:border-accent transition-colors resize-none bg-white"
+                  className="w-full border-2 border-black px-3 py-2 font-mono text-sm focus:outline-none focus:border-accent transition-colors resize-none bg-white disabled:opacity-50"
+                />
+              </div>
+              {/* Honeypot: hidden from people, irresistible to bots. */}
+              <div
+                aria-hidden="true"
+                style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}
+              >
+                <label htmlFor="contact-company">Company</label>
+                <input
+                  id="contact-company"
+                  type="text"
+                  name="company"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={form.company}
+                  onChange={(e) => setForm({ ...form, company: e.target.value })}
                 />
               </div>
               <div className="flex items-center gap-4">
-                <Button type="submit" variant="solid">{t('contact.formSubmit')}</Button>
+                <Button
+                  type="submit"
+                  variant="solid"
+                  disabled={status === 'sending'}
+                  className={status === 'sending' ? 'opacity-60 cursor-wait' : ''}
+                >
+                  {status === 'sending' ? t('contact.formSending') : t('contact.formSubmit')}
+                </Button>
                 <p className="font-mono text-xs text-black/50">{t('contact.formNote')}</p>
+              </div>
+              <div aria-live="polite">
+                {status === 'sent' && (
+                  <p className="font-mono text-sm border-2 border-black bg-accent px-3 py-2">
+                    {t('contact.formSuccess')}
+                  </p>
+                )}
+                {status === 'error' && (
+                  <p className="font-mono text-sm border-2 border-black bg-white px-3 py-2">
+                    {t(errorKey)}{' '}
+                    <a href="mailto:info@skriptura.net" className="font-bold underline underline-offset-2">
+                      info@skriptura.net
+                    </a>
+                  </p>
+                )}
               </div>
             </form>
           </Card>

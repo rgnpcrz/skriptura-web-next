@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+
+- `POST /api/contact` — the contact form now sends mail server-side instead of handing off to `mailto:`. One message goes to the visitor as a confirmation from `hello@skriptura.net`, blind-copied to `skriptura.net@gmail.com` and `rgnpcrz@gmail.com`, so the BCC doubles as the inbound-inquiry notification. Recipients of the old `mailto:` flow were whoever had a mail client configured; now nobody has to.
+- `src/lib/mail/mailer.js` — nodemailer transport, `MAIL_TYPE=LOCAL` (Postfix on `127.0.0.1:25`) or `SMTP`, mirroring `skriptura-hotel-api`.
+- `src/lib/mail/contactTemplate.js` — HTML + plain-text confirmation in the visitor's language, quoting their submission so the BCC carries the full inquiry.
+- `.env.example` and a Postfix section in `DEPLOYMENT.md` (SPF/DKIM, smoke test, `--update-env` after editing `.env`).
+- Abuse protection on the public endpoint: honeypot field, field length caps, header-injection guard on `name`/`email`, and an in-memory limit of 3 sends per IP per 10 minutes.
+- Contact translation keys `formSending`, `formSuccess`, `formError`, `formErrorInvalid`, `formErrorRate` (en + sq).
+
+### Changed
+
+- `contact.formNote` no longer says the form opens your email client — it now sets a reply expectation ("We reply within one business day.").
+- `next.config.mjs`: `serverExternalPackages: ['nodemailer']`, so the SMTP client isn't bundled into the route.
+
 ## [1.2.0] - 2026-07-27
 
 Brand identity applied and the last `create-next-app` defaults removed.

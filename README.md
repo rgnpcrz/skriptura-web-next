@@ -34,6 +34,7 @@ src/
     robots.js         /robots.txt
     sitemap.js        /sitemap.xml
     globals.css       Tailwind entry + base styles
+    api/contact/      POST endpoint behind the contact form
     [lang]/           All routes, one segment per locale
       layout.js       Root layout (fonts, JSON-LD, translation provider)
       opengraph-image.js
@@ -41,6 +42,7 @@ src/
   components/
     layout/ pages/ ui/
   data/               Client, project, and service content
+  lib/mail/           Nodemailer transport + contact email template
   i18n/
     config.js         Locale list and default
     dictionaries.js   Server-side dictionary lookup
@@ -58,6 +60,17 @@ Locales are `en` (default) and `sq`, defined in [`src/i18n/config.js`](src/i18n/
 Translations are plain JSON bundled at build time — no async loading, no translation backend. Server components read them via `getDictionary(locale)`; client components use the `useTranslation()` hook. **Both `en.json` and `sq.json` must carry the same key set.**
 
 Albanian copy targets the Kosovo dialect in the informal register, not standard Tosk.
+
+## Contact form
+
+The form posts to `/api/contact`, which emails the visitor a confirmation from
+`hello@skriptura.net` and blind-copies the notification inboxes — no `mailto:`
+handoff, so nothing depends on the visitor having a mail client configured. The
+confirmation is written in whichever language they were browsing in.
+
+Sending needs a mail transport (Postfix on the server, or an SMTP host in
+development) plus the env vars in [`.env.example`](.env.example) — see
+[DEPLOYMENT.md](DEPLOYMENT.md#contact-form-email-postfix).
 
 ## Branding
 
