@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added — email verification (SQLite)
+
+- Submissions are now persisted in SQLite (`data/skriptura.db`, gitignored) and the visitor is emailed a 6-digit code. Entering it sends the confirmation, BCC'd to the notification inboxes — the BCC arriving is the "this address is real" signal.
+- **The verification is not a gate.** An inquiry alert reaches the notification inboxes the moment the form is submitted, marked unverified, so an ignored code never costs a lead. A contact form is the highest-value conversion on the site; gating it behind a step the visitor might not finish would trade real leads for inbox tidiness.
+- `src/lib/contact/inquiries.js` — 10-minute single-use codes, 5 attempts before the code is destroyed, 3 codes per address per hour, 60s resend cooldown. Ported from `skriptura-hotel-api`'s `otpService.js`, with the code hash upgraded from a bare SHA-256 to an HMAC keyed by `CONTACT_CODE_SECRET`: a 6-digit digest is otherwise recoverable by sweeping a million inputs if the database file ever leaks.
+- `src/lib/db/` — lazy `better-sqlite3` connection (WAL, `busy_timeout`), schema versioned via `PRAGMA user_version`. Unverified inquiries are purged after 30 days; verified ones are kept as a lead log.
+- `POST /api/contact/verify` and `POST /api/contact/resend`.
+- `src/lib/mail/layout.js` — one shell shared by all three emails, plus the standards items: `Auto-Submitted: auto-generated` (RFC 3834), `format-detection` so iOS Mail stops turning the 6-digit code into a `tel:` link, `color-scheme` and explicit per-cell colours so dark mode can't invert black-on-yellow, and the code as selectable text. Deliberately no `List-Unsubscribe` — these are transactional.
+- A retention note under the form: storing names, emails and messages makes this a data-controller relationship under Kosovo's LMBPD.
+
+### Changed — email verification
+
+- The IP rate limit moved from an in-memory `Map` into SQLite, so it survives `pm2 reload`.
+- `ContactClient.jsx` is now composition only; the `form → code → done` state machine lives in `ContactFormFlow.jsx` with an expiry countdown, resend cooldown, and a start-over escape hatch.
+- The confirmation email's copy acknowledges the confirmation step.
+
 ### Added
 
 - `POST /api/contact` — the contact form now sends mail server-side instead of handing off to `mailto:`. One message goes to the visitor as a confirmation from `hello@skriptura.net`, blind-copied to `skriptura.net@gmail.com` and `rgnpcrz@gmail.com`, so the BCC doubles as the inbound-inquiry notification. Recipients of the old `mailto:` flow were whoever had a mail client configured; now nobody has to.

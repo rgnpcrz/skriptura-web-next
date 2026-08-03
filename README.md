@@ -34,7 +34,7 @@ src/
     robots.js         /robots.txt
     sitemap.js        /sitemap.xml
     globals.css       Tailwind entry + base styles
-    api/contact/      POST endpoint behind the contact form
+    api/contact/      Submit, verify, and resend endpoints
     [lang]/           All routes, one segment per locale
       layout.js       Root layout (fonts, JSON-LD, translation provider)
       opengraph-image.js
@@ -42,7 +42,10 @@ src/
   components/
     layout/ pages/ ui/
   data/               Client, project, and service content
-  lib/mail/           Nodemailer transport + contact email template
+  lib/
+    contact/          Inquiry + verification-code rules, shared route helpers
+    db/               SQLite connection and schema
+    mail/             Nodemailer transport + the three email templates
   i18n/
     config.js         Locale list and default
     dictionaries.js   Server-side dictionary lookup
@@ -63,10 +66,19 @@ Albanian copy targets the Kosovo dialect in the informal register, not standard 
 
 ## Contact form
 
-The form posts to `/api/contact`, which emails the visitor a confirmation from
-`hello@skriptura.net` and blind-copies the notification inboxes — no `mailto:`
-handoff, so nothing depends on the visitor having a mail client configured. The
-confirmation is written in whichever language they were browsing in.
+No `mailto:` handoff — the form posts to `/api/contact` and the server sends the
+mail from `hello@skriptura.net`, in whichever language the visitor was browsing.
+
+Submitting stores the inquiry in SQLite, alerts the notification inboxes
+immediately (marked unverified), and emails the visitor a 6-digit code. Entering
+that code sends them the confirmation, BCC'd to the same inboxes — so the BCC
+landing is the signal that the address is real.
+
+The verification is deliberately **not** a gate: the inquiry reaches the inboxes
+before a code is entered, so an ignored code never costs a lead. Rules
+(10-minute single-use codes, 5 attempts, 3 codes/hour, HMAC-hashed at rest) live
+in [`src/lib/contact/inquiries.js`](src/lib/contact/inquiries.js), ported from
+`skriptura-hotel-api`'s OTP service.
 
 Sending needs a mail transport (Postfix on the server, or an SMTP host in
 development) plus the env vars in [`.env.example`](.env.example) — see

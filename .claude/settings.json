@@ -30,7 +30,9 @@
       "Bash(curl -s -X POST http://127.0.0.1:3111/api/contact -H \"Content-Type: application/json\" -d '{\"name\":\"X\",\"email\":\"a@b.co\",\"message\":\"   \"}' -w \" [%{http_code}]\\\\n\")",
       "Bash(curl -s -X POST http://127.0.0.1:3111/api/contact -H \"Content-Type: application/json\" -d 'nope' -w \" [%{http_code}]\\\\n\")",
       "Bash(npx --no-install kill-port 3111)",
-      "Bash(taskkill //F //FI \"WINDOWTITLE eq *\" //IM node.exe)"
+      "Bash(taskkill //F //FI \"WINDOWTITLE eq *\" //IM node.exe)",
+      "Bash(git checkout *)",
+      "Bash(node -e \"const D=require\\('better-sqlite3'\\); const db=new D\\(':memory:'\\); db.exec\\('CREATE TABLE t\\(a\\)'\\); console.log\\('better-sqlite3 OK', require\\('better-sqlite3/package.json'\\).version\\)\")"
     ]
   }
 }

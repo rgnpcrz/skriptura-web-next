@@ -67,9 +67,12 @@ export const MAIL_FROM_NAME = process.env.MAIL_FROM_NAME || 'Skriptura'
  * @param {string} options.subject
  * @param {string} options.html
  * @param {string} [options.text]    Plain-text alternative
+ * @param {boolean} [options.automated] Adds `Auto-Submitted: auto-generated`
+ *   (RFC 3834) so out-of-office replies and other autoresponders don't answer
+ *   a machine. Set it on anything the visitor didn't directly ask a human for.
  * @returns {Promise<Object>} nodemailer's sendMail() info
  */
-export async function sendEmail({ to, bcc, replyTo, subject, html, text }) {
+export async function sendEmail({ to, bcc, replyTo, subject, html, text, automated = false }) {
   const mailer = getTransporter()
   if (!mailer) throw new Error('Mail transport unavailable (check MAIL_TYPE)')
 
@@ -81,6 +84,9 @@ export async function sendEmail({ to, bcc, replyTo, subject, html, text }) {
     subject,
     html,
     text,
+    // Deliberately no List-Unsubscribe: these are transactional, and offering
+    // one invites Gmail to classify the stream as bulk.
+    headers: automated ? { 'Auto-Submitted': 'auto-generated' } : undefined,
   })
 
   console.log(`[Mailer] Sent "${subject}" to ${to}. Message ID: ${info.messageId}`)
