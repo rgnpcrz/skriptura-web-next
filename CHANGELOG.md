@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-08-25
+
+Light/dark/auto theming, and the contact form moved onto server-side mail.
+
 ### Added
 
 - Light / dark / auto theme switching. The toggle sits beside the language switcher on desktop and inside the mobile menu; "auto" follows the OS and keeps following it live, an explicit choice is remembered in `localStorage` and stays put. The dark palette is a straight inversion of the light one — ink and paper swap, and the hard brutalist card shadow flips from black to near-white so cards keep lifting off the page. Yellow `#FFE600` is unchanged in both.
