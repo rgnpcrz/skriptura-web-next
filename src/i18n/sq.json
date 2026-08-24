@@ -152,6 +152,19 @@
     "quickLinks": "Lidhje të shpejta",
     "rights": "Të gjitha të drejtat e rezervuara."
   },
+  "theme": {
+    "label": "Tema",
+    "light": "E çelët",
+    "dark": "E errët",
+    "system": "Auto"
+  },
+  "a11y": {
+    "skipToContent": "Kalo te përmbajtja",
+    "mainNav": "Navigimi kryesor",
+    "language": "Gjuha",
+    "openMenu": "Hape menynë",
+    "closeMenu": "Mbylle menynë"
+  },
   "seo": {
     "default": {
       "title": "Skriptura — Zhvillim Softueri & Web",

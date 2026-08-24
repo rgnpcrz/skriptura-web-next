@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useTranslation } from '@/i18n/client'
 import Card from '@/components/ui/Card'
@@ -30,8 +30,8 @@ export default function AboutClient() {
         <Card>
           <div className="space-y-4 max-w-3xl">
             <p className="font-mono text-sm sm:text-base leading-relaxed">{t('about.story1')}</p>
-            <p className="font-mono text-sm sm:text-base leading-relaxed text-black/70">{t('about.story2')}</p>
-            <p className="font-mono text-sm sm:text-base leading-relaxed text-black/70">{t('about.story3')}</p>
+            <p className="font-mono text-sm sm:text-base leading-relaxed text-ink/70">{t('about.story2')}</p>
+            <p className="font-mono text-sm sm:text-base leading-relaxed text-ink/70">{t('about.story3')}</p>
           </div>
         </Card>
       </section>
@@ -41,12 +41,12 @@ export default function AboutClient() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {['argjenta', 'rigon'].map((key) => (
             <Card key={key}>
-              <div className="border-b-2 border-black pb-3 mb-4">
+              <div className="border-b-2 border-ink pb-3 mb-4">
                 <h3 className="font-mono font-bold text-base sm:text-lg">{t(`about.team.${key}.name`)}</h3>
                 <Badge yellow className="mt-1">{t(`about.team.${key}.role`)}</Badge>
               </div>
-              <p className="font-mono text-sm text-black/70 leading-relaxed mb-4">{t(`about.team.${key}.bio`)}</p>
-              <p className="font-mono text-xs text-black/50">{t(`about.team.${key}.location`)}</p>
+              <p className="font-mono text-sm text-ink/70 leading-relaxed mb-4">{t(`about.team.${key}.bio`)}</p>
+              <p className="font-mono text-xs text-ink/50">{t(`about.team.${key}.location`)}</p>
             </Card>
           ))}
         </div>
@@ -70,9 +70,9 @@ export default function AboutClient() {
                   [t('about.labelCapital'), '100.00 €'],
                   [t('about.labelStatus'), <Badge key="s" yellow>{t('about.valueStatus')}</Badge>],
                 ].map(([label, value], i) => (
-                  <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-black/5'}>
-                    <td className="py-2.5 pr-4 sm:pr-8 text-black/60 whitespace-nowrap font-bold text-xs uppercase tracking-wide border-b border-black/10 w-1/3">{label}</td>
-                    <td className="py-2.5 text-black border-b border-black/10">{value}</td>
+                  <tr key={i} className={i % 2 === 0 ? 'bg-paper' : 'bg-ink/5'}>
+                    <td className="py-2.5 pr-4 sm:pr-8 text-ink/60 whitespace-nowrap font-bold text-xs uppercase tracking-wide border-b border-ink/10 w-1/3">{label}</td>
+                    <td className="py-2.5 text-ink border-b border-ink/10">{value}</td>
                   </tr>
                 ))}
               </tbody>
@@ -85,8 +85,8 @@ export default function AboutClient() {
         <SectionHeader title={t('about.sectionActivities')} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {activities.map((a) => (
-            <div key={a.code} className={`border-2 border-black p-3 flex gap-3 items-start ${a.primary ? 'bg-accent' : 'bg-white'}`}>
-              <span className="font-mono font-bold text-xs border border-black px-1.5 py-0.5 shrink-0">{a.code}</span>
+            <div key={a.code} className={`border-2 border-ink p-3 flex gap-3 items-start ${a.primary ? 'bg-accent text-on-accent' : 'bg-paper text-ink'}`}>
+              <span className="font-mono font-bold text-xs border border-current px-1.5 py-0.5 shrink-0">{a.code}</span>
               <div>
                 <p className="font-mono text-xs leading-snug">{a.desc}</p>
                 {a.primary && <p className="font-mono text-xs font-bold uppercase tracking-wide mt-1">{t('about.primaryActivity')}</p>}

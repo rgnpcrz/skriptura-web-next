@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- Light / dark / auto theme switching. The toggle sits beside the language switcher on desktop and inside the mobile menu; "auto" follows the OS and keeps following it live, an explicit choice is remembered in `localStorage` and stays put. The dark palette is a straight inversion of the light one — ink and paper swap, and the hard brutalist card shadow flips from black to near-white so cards keep lifting off the page. Yellow `#FFE600` is unchanged in both.
+- Semantic color tokens (`ink`, `paper`, `canvas`, `accent`, `accent-strong`, `on-accent`, `terminal`) backed by CSS variables in `src/app/globals.css` and mapped in `tailwind.config.js` as `rgb(var(--x) / <alpha-value>)`, so opacity modifiers like `text-ink/70` still work. Switching themes is one variable flip on `<html data-theme>` — the stylesheet carries no duplicated `dark:` utilities, and the browser repaints once.
+- `src/lib/theme.js` — theme resolution, persistence, the cross-tab/OS-change store behind `useSyncExternalStore`, the switch animation, and the pre-paint script, in one place.
+- A blocking inline script (413 bytes) as the first element in `<body>`, so a dark-theme visitor never sees a white flash on load. `globals.css` also honours `prefers-color-scheme` on its own, which covers visitors with JavaScript disabled or a blocked `localStorage`.
+- Theme switches animate: a View Transitions circular wipe out of the button that was pressed, falling back to a short color fade on browsers without the API, and to an instant swap under `prefers-reduced-motion`.
+- Accessibility: a skip-to-content link, `aria-current="page"` on the active nav item, `aria-expanded`/`aria-controls` on the mobile menu button, labelled nav and language/theme groups, `htmlFor`/`id` on the contact form fields, a global `:focus-visible` outline, and a `prefers-reduced-motion` block that stops the marquee animations and smooth scrolling.
+- Translation keys `theme.*` and `a11y.*` (en + sq).
 - `POST /api/contact` — the contact form now sends mail server-side instead of handing off to `mailto:`. One message goes to the visitor as a confirmation from `hello@skriptura.net`, blind-copied to `skriptura.net@gmail.com` and `rgnpcrz@gmail.com`, so the BCC doubles as the inbound-inquiry notification. Recipients of the old `mailto:` flow were whoever had a mail client configured; now nobody has to.
 - `src/lib/mail/mailer.js` — nodemailer transport, `MAIL_TYPE=LOCAL` (Postfix on `127.0.0.1:25`) or `SMTP`, mirroring `skriptura-hotel-api`.
 - `src/lib/mail/contactTemplate.js` — HTML + plain-text confirmation in the visitor's language, quoting their submission so the BCC carries the full inquiry.
@@ -17,8 +24,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- Every component moved off hardcoded `black`/`white` utilities onto the semantic tokens. Anything drawn on the accent yellow now uses `on-accent`, which stays black in both themes rather than inverting into an unreadable white-on-yellow.
+- Scrollbars, `::selection`, and `<meta name="theme-color">` follow the active theme; `color-scheme` is declared so the browser styles form controls and native scrollbars to match.
+- `useTranslation()` returns a `t` with a stable identity per dictionary, so it is safe to list in hook dependency arrays.
+- The mobile menu now closes on navigation, not just on tapping one of its own links.
 - `contact.formNote` no longer says the form opens your email client — it now sets a reply expectation ("We reply within one business day.").
 - `next.config.mjs`: `serverExternalPackages: ['nodemailer']`, so the SMTP client isn't bundled into the route.
+
+### Fixed
+
+- `Card` emitted two conflicting `bg-*` classes on yellow cards and only rendered correctly by CSS source-order luck.
+- The `/secret` typewriter captured its lines on first render and would have replayed stale text if the dictionary changed; the revealed line count is now the only state and the text is derived.
+- `NotFound` had no background of its own and showed the page canvas instead of a card surface.
 
 ## [1.2.0] - 2026-07-27
 

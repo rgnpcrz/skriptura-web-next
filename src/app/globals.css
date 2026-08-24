@@ -3,6 +3,63 @@
 @tailwind utilities;
 
 @layer base {
+  /*
+   * Design tokens. Values are space-separated RGB channels so Tailwind's
+   * `rgb(var(--x) / <alpha-value>)` colors keep supporting opacity modifiers.
+   * Dark is a deliberate inversion of light: ink and paper trade places and the
+   * hard brutalist shadow flips from black to near-white so cards keep lifting
+   * off the page. The accent stays put — yellow reads the same on both — which
+   * is why anything drawn on it uses --on-accent instead of --ink.
+   */
+  :root {
+    color-scheme: light;
+
+    --ink: 0 0 0;
+    --paper: 255 255 255;
+    --canvas: 248 250 252;
+    --shadow: 0 0 0;
+
+    --accent: 255 230 0;
+    --accent-strong: 230 207 0;
+    --on-accent: 0 0 0;
+  }
+
+  /*
+   * Dark is applied two ways, deliberately duplicated because a selector list
+   * cannot straddle a media query:
+   *   - an explicit `data-theme="dark"`, set by the pre-paint script;
+   *   - the OS preference, for visitors whose `data-theme` never arrives
+   *     (JavaScript off, or the inline script blocked) — `:not([data-theme='light'])`
+   *     makes sure an explicit "light" choice still wins there.
+   */
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+
+    --ink: 242 242 242;
+    --paper: 21 24 27;
+    --canvas: 11 13 15;
+    --shadow: 229 229 229;
+
+    --accent: 255 230 0;
+    --accent-strong: 230 207 0;
+    --on-accent: 0 0 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      color-scheme: dark;
+
+      --ink: 242 242 242;
+      --paper: 21 24 27;
+      --canvas: 11 13 15;
+      --shadow: 229 229 229;
+
+      --accent: 255 230 0;
+      --accent-strong: 230 207 0;
+      --on-accent: 0 0 0;
+    }
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -14,8 +71,8 @@
 
   body {
     margin: 0;
-    background-color: #f8fafc;
-    color: #000000;
+    background-color: rgb(var(--canvas));
+    color: rgb(var(--ink));
     font-family: 'Space Mono', 'Courier New', monospace;
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
@@ -24,8 +81,13 @@
   }
 
   ::selection {
-    background-color: #FFE600;
-    color: #000000;
+    background-color: rgb(var(--accent));
+    color: rgb(var(--on-accent));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 2px;
   }
 
   ::-webkit-scrollbar {
@@ -34,20 +96,135 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #ffffff;
-    border-left: 1px solid #000000;
+    background: rgb(var(--paper));
+    border-left: 1px solid rgb(var(--ink));
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #000000;
+    background: rgb(var(--ink));
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #FFE600;
+    background: rgb(var(--accent));
+  }
+
+  /* Firefox has no ::-webkit-scrollbar equivalent. */
+  @supports (scrollbar-color: auto) {
+    html {
+      scrollbar-color: rgb(var(--ink)) rgb(var(--paper));
+      scrollbar-width: thin;
+    }
   }
 
   a {
     color: inherit;
     text-decoration: none;
+  }
+}
+
+@layer components {
+  /*
+   * The active theme option is styled from `data-theme-pref` on <html>, which
+   * the pre-paint script sets. That way the right option is highlighted in the
+   * very first frame instead of waiting for React to hydrate, and the server
+   * and client render identical markup.
+   */
+  [data-theme-pref='light'] [data-theme-option='light'],
+  [data-theme-pref='dark'] [data-theme-option='dark'],
+  [data-theme-pref='system'] [data-theme-option='system'] {
+    background-color: rgb(var(--accent));
+    color: rgb(var(--on-accent));
+  }
+
+  /* Visible only once focused, for keyboard and screen-reader users. */
+  .skip-link {
+    position: absolute;
+    left: 0.5rem;
+    top: -100%;
+    z-index: 100;
+    padding: 0.5rem 1rem;
+    background-color: rgb(var(--accent));
+    color: rgb(var(--on-accent));
+    border: 2px solid rgb(var(--ink));
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .skip-link:focus-visible {
+    top: 0.5rem;
+  }
+}
+
+/*
+ * Theme switch animation, in order of preference. Deliberately outside
+ * Tailwind's layers: view-transition pseudo-elements and @keyframes are not
+ * utilities, and the fallback rule must beat component transitions.
+ *
+ * 1. View Transitions: the browser snapshots the page and clips the new theme
+ *    in from the toggle. One composited layer, no per-element work.
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+  animation: none;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+  animation: theme-reveal 480ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--theme-x, 50%) var(--theme-y, 0%));
+  }
+  to {
+    clip-path: circle(var(--theme-r, 150vmax) at var(--theme-x, 50%) var(--theme-y, 0%));
+  }
+}
+
+/*
+ * 2. Fallback for browsers without View Transitions: a short color fade,
+ *    attached only while the swap runs so it never slows down hover states
+ *    or the initial paint.
+ */
+html[data-theme-animating] *,
+html[data-theme-animating] *::before,
+html[data-theme-animating] *::after {
+  transition:
+    background-color 320ms ease,
+    border-color 320ms ease,
+    color 320ms ease,
+    box-shadow 320ms ease,
+    fill 320ms ease,
+    stroke 320ms ease !important;
+  transition-delay: 0s !important;
+}
+
+/* 3. Reduced motion: swap instantly, and stop the page scrolling smoothly. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

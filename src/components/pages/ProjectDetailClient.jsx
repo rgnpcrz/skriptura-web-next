@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import Link from '@/components/ui/LocaleLink'
 import { useTranslation } from '@/i18n/client'
@@ -24,7 +24,7 @@ export default function ProjectDetailClient({ slug }) {
       </div>
       <Card>
         <p className="font-mono font-bold text-sm sm:text-base mb-3">{project.tagline}</p>
-        <p className="font-mono text-sm sm:text-base text-black/70 leading-relaxed">{project.description}</p>
+        <p className="font-mono text-sm sm:text-base text-ink/70 leading-relaxed">{project.description}</p>
         {project.url && <div className="mt-6"><Button href={project.url} variant="solid">{t('projects.playNow')}</Button></div>}
       </Card>
       {project.plannedTools && (

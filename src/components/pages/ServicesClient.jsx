@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import Link from '@/components/ui/LocaleLink'
 import { useTranslation } from '@/i18n/client'
@@ -16,7 +16,7 @@ export default function ServicesClient() {
           <Link key={service.slug} href={`/services/${service.slug}`} className="block group">
             <Card hover className="h-full flex flex-col">
               <h2 className="font-mono font-bold text-sm sm:text-base mb-2 group-hover:underline underline-offset-2">{service.name}</h2>
-              <p className="font-mono text-xs sm:text-sm text-black/70 flex-1 leading-relaxed mb-4">{service.shortDesc}</p>
+              <p className="font-mono text-xs sm:text-sm text-ink/70 flex-1 leading-relaxed mb-4">{service.shortDesc}</p>
               <p className="font-mono text-xs font-bold">{t('services.viewService')}</p>
             </Card>
           </Link>

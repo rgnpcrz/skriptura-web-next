@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import Link from '@/components/ui/LocaleLink'
 import { useTranslation } from '@/i18n/client'
@@ -33,7 +33,7 @@ export default function ClientDetailClient({ slug }) {
             {client.url.replace('https://', '')} ↗
           </a>
         ) : (
-          <p className="font-mono text-xs text-black/50">{t('clients.noUrl')}</p>
+          <p className="font-mono text-xs text-ink/50">{t('clients.noUrl')}</p>
         )}
       </Card>
       <section>
@@ -43,7 +43,7 @@ export default function ClientDetailClient({ slug }) {
             <Link key={service.slug} href={`/services/${service.slug}`} className="block group">
               <Card hover className="h-full">
                 <h3 className="font-mono font-bold text-sm mb-1 group-hover:underline underline-offset-2">{service.name}</h3>
-                <p className="font-mono text-xs text-black/70 leading-snug">{service.shortDesc}</p>
+                <p className="font-mono text-xs text-ink/70 leading-snug">{service.shortDesc}</p>
               </Card>
             </Link>
           ))}
@@ -59,7 +59,7 @@ export default function ClientDetailClient({ slug }) {
           {client.testimonial ? (
             <blockquote className="font-mono text-sm sm:text-base italic leading-relaxed border-l-4 border-accent pl-4">&ldquo;{client.testimonial}&rdquo;</blockquote>
           ) : (
-            <p className="font-mono text-sm text-black/50">{t('clients.noTestimonial')}</p>
+            <p className="font-mono text-sm text-ink/50">{t('clients.noTestimonial')}</p>
           )}
         </Card>
       </section>

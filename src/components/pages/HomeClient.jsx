@@ -59,7 +59,7 @@ export default function HomeClient() {
               <p className="font-mono font-bold text-base sm:text-lg mb-4 max-w-2xl leading-relaxed">
                 {t('home.tagline')}
               </p>
-              <p className="font-mono text-sm sm:text-base text-black/70 mb-8 max-w-2xl leading-relaxed">
+              <p className="font-mono text-sm sm:text-base text-ink/70 mb-8 max-w-2xl leading-relaxed">
                 {t('home.mission')}
               </p>
               <div className="flex flex-wrap gap-3">
@@ -67,12 +67,12 @@ export default function HomeClient() {
                 <Button to="/contact" variant="outline">{t('home.ctaContact')}</Button>
               </div>
             </div>
-            <div className="border-2 border-black p-4 bg-black text-accent font-mono text-xs lg:min-w-52">
+            <div className="border-2 border-ink p-4 bg-terminal text-accent font-mono text-xs lg:min-w-52">
               <p className="mb-1">{'>'} skriptura.net</p>
               <p className="mb-1">{'>'} est. 2023</p>
               <p className="mb-1">{'>'} prishtinë, xk</p>
               <p className="mb-1">{'>'} 7+ clients</p>
-              <p className="animate-pulse">{'>'} <span className="bg-accent text-black px-0.5">_</span></p>
+              <p className="animate-pulse">{'>'} <span className="bg-accent text-on-accent px-0.5">_</span></p>
             </div>
           </div>
         </Card>
@@ -92,7 +92,7 @@ export default function HomeClient() {
               <p className={`font-mono font-bold mb-1 leading-tight ${stat.small ? 'text-lg sm:text-3xl lg:text-4xl' : 'text-3xl sm:text-4xl'}`}>
                 {stat.value}
               </p>
-              <p className="font-mono text-xs uppercase tracking-widest text-black/70">{stat.label}</p>
+              <p className="font-mono text-xs uppercase tracking-widest text-on-accent/70">{stat.label}</p>
             </Card>
           ))}
         </div>
@@ -111,7 +111,7 @@ export default function HomeClient() {
             <Link key={service.slug} href={`/services/${service.slug}`} className="block group">
               <Card hover className="h-full flex flex-col">
                 <h3 className="font-mono font-bold text-sm sm:text-base mb-2 group-hover:underline underline-offset-2">{service.name}</h3>
-                <p className="font-mono text-xs sm:text-sm text-black/70 flex-1 leading-relaxed">{service.shortDesc}</p>
+                <p className="font-mono text-xs sm:text-sm text-ink/70 flex-1 leading-relaxed">{service.shortDesc}</p>
                 <p className="font-mono text-xs mt-4 font-bold">{t('services.viewService')}</p>
               </Card>
             </Link>
@@ -135,7 +135,7 @@ export default function HomeClient() {
                   <h3 className="font-mono font-bold text-sm sm:text-base group-hover:underline underline-offset-2">{client.name}</h3>
                   <Badge yellow>{client.year}</Badge>
                 </div>
-                <p className="font-mono text-xs sm:text-sm text-black/70 mb-3 leading-relaxed">{client.tagline}</p>
+                <p className="font-mono text-xs sm:text-sm text-ink/70 mb-3 leading-relaxed">{client.tagline}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {client.services.slice(0, 3).map((s) => (
                     <Badge key={s}>{s.replace(/-/g, ' ')}</Badge>
@@ -164,7 +164,7 @@ export default function HomeClient() {
                   {project.status === 'live' ? t('projects.statusLive') : t('projects.statusComingSoon')}
                 </Badge>
               </div>
-              <p className="font-mono text-xs sm:text-sm text-black/70 mb-4 leading-relaxed">{project.tagline}</p>
+              <p className="font-mono text-xs sm:text-sm text-ink/70 mb-4 leading-relaxed">{project.tagline}</p>
               {project.url ? (
                 <a href={project.url} target="_blank" rel="noopener noreferrer" className="font-mono text-xs font-bold hover:underline underline-offset-2">
                   {t('projects.playNow')}
@@ -185,7 +185,7 @@ export default function HomeClient() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Card className="sm:col-span-2">
             <p className="font-mono text-sm sm:text-base mb-1">{t('home.contactLine1')}</p>
-            <p className="font-mono text-sm sm:text-base text-black/70 mb-6">{t('home.contactLine2')}</p>
+            <p className="font-mono text-sm sm:text-base text-ink/70 mb-6">{t('home.contactLine2')}</p>
             <Button to="/contact" variant="solid">{t('home.ctaContact')}</Button>
           </Card>
           <Card yellow>
@@ -193,7 +193,7 @@ export default function HomeClient() {
             <ul className="space-y-2">
               <li><a href="tel:+38344564565" className="font-mono text-sm font-bold hover:underline underline-offset-2">+383 44 564 565</a></li>
               <li><a href="mailto:info@skriptura.net" className="font-mono text-sm hover:underline underline-offset-2">info@skriptura.net</a></li>
-              <li className="font-mono text-sm text-black/70">{t('contact.city')}</li>
+              <li className="font-mono text-sm text-on-accent/70">{t('contact.city')}</li>
             </ul>
           </Card>
         </div>

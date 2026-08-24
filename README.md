@@ -33,7 +33,7 @@ src/
     apple-icon.js     180x180 touch icon, generated with next/og
     robots.js         /robots.txt
     sitemap.js        /sitemap.xml
-    globals.css       Tailwind entry + base styles
+    globals.css       Design tokens (light + dark) and base styles
     api/contact/      POST endpoint behind the contact form
     [lang]/           All routes, one segment per locale
       layout.js       Root layout (fonts, JSON-LD, translation provider)
@@ -41,7 +41,9 @@ src/
       about/ clients/ contact/ projects/ secret/ services/
   components/
     layout/ pages/ ui/
+    theme/            Theme provider, toggle, and the pre-paint script
   data/               Client, project, and service content
+  lib/theme.js        Theme resolution, persistence, and switch animation
   lib/mail/           Nodemailer transport + contact email template
   i18n/
     config.js         Locale list and default
@@ -71,6 +73,35 @@ confirmation is written in whichever language they were browsing in.
 Sending needs a mail transport (Postfix on the server, or an SMTP host in
 development) plus the env vars in [`.env.example`](.env.example) — see
 [DEPLOYMENT.md](DEPLOYMENT.md#contact-form-email-postfix).
+
+## Theming
+
+Three options — **light**, **dark**, **auto**. Auto follows the operating system
+and keeps following it while the page is open; an explicit choice is stored in
+`localStorage` under `skriptura-theme` and also syncs across open tabs.
+
+Colors are semantic tokens, not literal ones. `src/app/globals.css` defines each
+as space-separated RGB channels on `:root`, and `tailwind.config.js` maps them
+to `rgb(var(--token) / <alpha-value>)` so opacity modifiers keep working:
+
+| Token          | Light                | Dark                 | Use                            |
+| -------------- | -------------------- | -------------------- | ------------------------------ |
+| `ink`          | `#000000`            | `#f2f2f2`            | Text, borders, rules           |
+| `paper`        | `#ffffff`            | `#15181b`            | Cards, header, footer          |
+| `canvas`       | `#f8fafc`            | `#0b0d0f`            | The page behind them           |
+| `accent`       | `#FFE600`            | `#FFE600`            | Brand yellow — never inverts   |
+| `on-accent`    | `#000000`            | `#000000`            | Anything drawn on the accent   |
+| `terminal`     | `#000000`            | `#000000`            | Terminal panels, dark by design |
+
+Because the palette lives in variables, switching themes is one attribute flip
+on `<html data-theme>` — there are no duplicated `dark:` utilities in the
+stylesheet and the browser repaints once. **Use the tokens, not `black`/`white`,
+and use `on-accent` for anything sitting on yellow** — `ink` would turn white
+there and disappear.
+
+An inline script in `<body>` applies the stored theme before the first paint, so
+there is no flash. `globals.css` also honours `prefers-color-scheme` on its own,
+which covers JavaScript being unavailable.
 
 ## Branding
 
