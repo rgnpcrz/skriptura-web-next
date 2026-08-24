@@ -25,7 +25,7 @@ export default function AboutClient() {
     <div className="space-y-12 sm:space-y-16">
       <SectionHeader title={t('about.title')} />
 
-      <section>
+      <section data-reveal>
         <SectionHeader title={t('about.sectionStory')} />
         <Card>
           <div className="space-y-4 max-w-3xl">
@@ -36,7 +36,7 @@ export default function AboutClient() {
         </Card>
       </section>
 
-      <section>
+      <section data-reveal>
         <SectionHeader title={t('about.sectionTeam')} />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {['argjenta', 'rigon'].map((key) => (
@@ -52,7 +52,7 @@ export default function AboutClient() {
         </div>
       </section>
 
-      <section>
+      <section data-reveal>
         <SectionHeader title={t('about.sectionBusiness')} />
         <Card>
           <div className="overflow-x-auto">
@@ -81,7 +81,7 @@ export default function AboutClient() {
         </Card>
       </section>
 
-      <section>
+      <section data-reveal>
         <SectionHeader title={t('about.sectionActivities')} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {activities.map((a) => (

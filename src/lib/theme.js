@@ -22,6 +22,16 @@ const META_SELECTOR = 'meta[name="theme-color"]'
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
 const TRANSITION_MS = 320
 
+/** The element the reveal expands out of — the wordmark, marked in the header. */
+const ORIGIN_SELECTOR = '[data-theme-origin]'
+
+/**
+ * The wipe is sized to reach the farthest corner. Overshooting slightly means it
+ * has visibly cleared that corner before the animation ends, rather than the
+ * last pixels popping in at once as the clip is released.
+ */
+const REVEAL_OVERSHOOT = 1.08
+
 const isTheme = (value) => value === THEME_LIGHT || value === THEME_DARK
 
 export function getSystemTheme() {
@@ -151,6 +161,25 @@ export function prefersReducedMotion() {
   return window.matchMedia(REDUCED_MOTION_QUERY).matches
 }
 
+/** Point the circular reveal at the wordmark and size it to cover the viewport. */
+function setRevealGeometry(root) {
+  // Take the larger of the two viewport measures: the snapshot the browser
+  // animates covers the large viewport, which on mobile is taller than
+  // `innerHeight` while the toolbars are showing. Undersizing here is what
+  // leaves the far corners to snap in at the end.
+  const w = Math.max(window.innerWidth, root.clientWidth)
+  const h = Math.max(window.innerHeight, root.clientHeight)
+
+  const anchor = document.querySelector(ORIGIN_SELECTOR)?.getBoundingClientRect()
+  const x = anchor?.width ? anchor.left + anchor.width / 2 : w / 2
+  const y = anchor?.height ? anchor.top + anchor.height / 2 : 0
+  const radius = Math.hypot(Math.max(x, w - x), Math.max(y, h - y)) * REVEAL_OVERSHOOT
+
+  root.style.setProperty('--theme-x', `${x}px`)
+  root.style.setProperty('--theme-y', `${y}px`)
+  root.style.setProperty('--theme-r', `${radius}px`)
+}
+
 /**
  * Run `commit` (which must mutate the DOM synchronously) behind the nicest
  * transition the browser can afford:
@@ -160,19 +189,13 @@ export function prefersReducedMotion() {
  * The fallback rule is attached only for the duration of the swap so it never
  * competes with hover transitions during normal browsing.
  */
-export function runThemeTransition(commit, origin) {
+export function runThemeTransition(commit) {
   const root = document.documentElement
 
   if (prefersReducedMotion()) return commit()
 
   if (typeof document.startViewTransition === 'function') {
-    if (origin) {
-      const { innerWidth: w, innerHeight: h } = window
-      const radius = Math.hypot(Math.max(origin.x, w - origin.x), Math.max(origin.y, h - origin.y))
-      root.style.setProperty('--theme-x', `${origin.x}px`)
-      root.style.setProperty('--theme-y', `${origin.y}px`)
-      root.style.setProperty('--theme-r', `${radius}px`)
-    }
+    setRevealGeometry(root)
     document.startViewTransition(commit)
     return
   }
@@ -200,5 +223,5 @@ export const themeInitScript = [
   `d.dataset.theme=t;d.dataset.themePref=p;`,
   `var m=document.querySelector(${json(META_SELECTOR)});`,
   `if(m)m.setAttribute("content",t===${json(THEME_DARK)}?${json(THEME_COLORS[THEME_DARK])}:${json(THEME_COLORS[THEME_LIGHT])})`,
-  `}catch(e){}})()`,
+  `}catch(e){}})();`,
 ].join('')

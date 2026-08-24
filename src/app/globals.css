@@ -67,6 +67,9 @@
   html {
     font-family: 'Space Mono', 'Courier New', monospace;
     scroll-behavior: smooth;
+    /* Also set on <body> below: the root's copy is what the view-transition
+       snapshot captures, the body's is what the konami invert filter flips. */
+    background-color: rgb(var(--canvas));
   }
 
   body {
@@ -136,6 +139,17 @@
     color: rgb(var(--on-accent));
   }
 
+  /* Same idea for the menu trigger, which carries one icon per option. */
+  [data-theme-icon] {
+    display: none;
+  }
+
+  [data-theme-pref='light'] [data-theme-icon='light'],
+  [data-theme-pref='dark'] [data-theme-icon='dark'],
+  [data-theme-pref='system'] [data-theme-icon='system'] {
+    display: inline-flex;
+  }
+
   /* Visible only once focused, for keyboard and screen-reader users. */
   .skip-link {
     position: absolute;
@@ -177,7 +191,10 @@
 
 ::view-transition-new(root) {
   z-index: 2;
-  animation: theme-reveal 480ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* `both` matters: without a forwards fill the clip-path is released the
+     instant the animation ends, snapping in whatever the circle had not
+     reached yet — which showed up as the far corners popping. */
+  animation: theme-reveal 480ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 @keyframes theme-reveal {
@@ -227,4 +244,37 @@ html[data-theme-animating] *::after {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/*
+ * Entrance motion. Both animations touch only opacity and transform, so they
+ * run on the compositor — no layout, no paint, nothing that can stutter.
+ * Everything is gated behind `data-motion="on"`, which the boot script sets
+ * only when the visitor has not asked for reduced motion; without it the page
+ * renders plainly, which is also what happens with JavaScript unavailable.
+ */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 4px, 0);
+  }
+}
+
+[data-motion='on'] .page-enter {
+  animation: page-enter 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Blocks marked with data-reveal wait just below their resting position until
+   the observer scrolls them into view. */
+[data-motion='on'] [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+}
+
+[data-motion='on'] [data-reveal][data-revealed] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 550ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    transform 550ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
 }

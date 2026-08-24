@@ -15,7 +15,7 @@ export default function ProjectsClient() {
     <div className="space-y-12">
       <SectionHeader title={t('projects.title')} subtitle={t('projects.subtitle')} />
       {live.length > 0 && (
-        <section>
+        <section data-reveal>
           <SectionHeader title={t('projects.sectionLive')} />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {live.map((project) => (
@@ -34,7 +34,7 @@ export default function ProjectsClient() {
         </section>
       )}
       {soon.length > 0 && (
-        <section>
+        <section data-reveal>
           <SectionHeader title={t('projects.sectionComingSoon')} />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {soon.map((project) => (

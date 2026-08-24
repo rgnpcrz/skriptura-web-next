@@ -20,7 +20,7 @@ export default function ServiceDetailClient({ slug }) {
         <SectionHeader title={`// ${service.name.toUpperCase()}`} />
       </div>
       <Card><p className="font-mono text-sm sm:text-base leading-relaxed max-w-3xl">{service.description}</p></Card>
-      <section>
+      <section data-reveal>
         <SectionHeader title={t('services.sectionIncludes')} />
         <Card>
           <ul className="space-y-3">
@@ -33,7 +33,7 @@ export default function ServiceDetailClient({ slug }) {
           </ul>
         </Card>
       </section>
-      <section>
+      <section data-reveal>
         <SectionHeader title={t('services.sectionClients')} />
         {relatedClients.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -163,7 +163,8 @@
     "mainNav": "Main navigation",
     "language": "Language",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "preferences": "Language and theme"
   },
   "seo": {
     "default": {

@@ -40,10 +40,12 @@ src/
       opengraph-image.js
       about/ clients/ contact/ projects/ secret/ services/
   components/
+    BootScript.jsx    Pre-paint theme + motion script, first thing in <body>
     layout/ pages/ ui/
-    theme/            Theme provider, toggle, and the pre-paint script
+    theme/            Theme provider, toggle, and icons
   data/               Client, project, and service content
   lib/theme.js        Theme resolution, persistence, and switch animation
+  lib/motion.js       Scroll-in reveals and the page transition gate
   lib/mail/           Nodemailer transport + contact email template
   i18n/
     config.js         Locale list and default
@@ -76,8 +78,9 @@ development) plus the env vars in [`.env.example`](.env.example) — see
 
 ## Theming
 
-Three options — **light**, **dark**, **auto**. Auto follows the operating system
-and keeps following it while the page is open; an explicit choice is stored in
+Three options — **light**, **dark**, **auto**, in the header's preferences
+dropdown alongside the language switcher. Auto follows the operating system and
+keeps following it while the page is open; an explicit choice is stored in
 `localStorage` under `skriptura-theme` and also syncs across open tabs.
 
 Colors are semantic tokens, not literal ones. `src/app/globals.css` defines each
@@ -102,6 +105,25 @@ there and disappear.
 An inline script in `<body>` applies the stored theme before the first paint, so
 there is no flash. `globals.css` also honours `prefers-color-scheme` on its own,
 which covers JavaScript being unavailable.
+
+Switching themes plays a circular wipe out of the SKRIPTURA wordmark, using the
+View Transitions API where available and a brief color fade where it is not.
+
+## Motion
+
+Two effects, both animating only `opacity` and `transform` so they stay on the
+compositor:
+
+- **Page transition** — content fades and rises on each navigation, from the
+  `.page-enter` wrapper in `ClientShell`, keyed on the pathname.
+- **Section reveal** — blocks marked `data-reveal` arrive as they scroll into
+  view, lightly staggered. One `IntersectionObserver` per route, each target
+  unobserved once shown, no scroll listener. Mark a new block by putting
+  `data-reveal` on it; anything inside `<main>` is picked up automatically.
+
+Both are gated behind `data-motion="on"`, which the boot script sets only when
+`IntersectionObserver` is available and the visitor has not asked for reduced
+motion. Without it every block renders plainly.
 
 ## Branding
 

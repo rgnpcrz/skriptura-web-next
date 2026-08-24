@@ -163,7 +163,8 @@
     "mainNav": "Navigimi kryesor",
     "language": "Gjuha",
     "openMenu": "Hape menynë",
-    "closeMenu": "Mbylle menynë"
+    "closeMenu": "Mbylle menynë",
+    "preferences": "Gjuha dhe tema"
   },
   "seo": {
     "default": {

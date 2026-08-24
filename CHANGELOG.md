@@ -18,6 +18,8 @@ Light/dark/auto theming, and the contact form moved onto server-side mail.
 - A blocking inline script (413 bytes) as the first element in `<body>`, so a dark-theme visitor never sees a white flash on load. `globals.css` also honours `prefers-color-scheme` on its own, which covers visitors with JavaScript disabled or a blocked `localStorage`.
 - Theme switches animate: a View Transitions circular wipe out of the button that was pressed, falling back to a short color fade on browsers without the API, and to an instant swap under `prefers-reduced-motion`.
 - Accessibility: a skip-to-content link, `aria-current="page"` on the active nav item, `aria-expanded`/`aria-controls` on the mobile menu button, labelled nav and language/theme groups, `htmlFor`/`id` on the contact form fields, a global `:focus-visible` outline, and a `prefers-reduced-motion` block that stops the marquee animations and smooth scrolling.
+- One merged preferences control in the header, replacing the separate language and theme switchers. A single trigger shows the active locale and theme and opens a brutalist dropdown holding both; it closes on outside click, Escape, or navigation. Two segmented switchers side by side took most of the header on small screens.
+- Entrance motion: the page content fades and rises on every navigation, and each section arrives as it scrolls into view, lightly staggered. Both animate only `opacity` and `transform`, so they run on the compositor. Gated behind `data-motion` on `<html>`, which the boot script sets only when `IntersectionObserver` exists and reduced motion is off — with a `load` failsafe that drops the hidden state if the bundle never boots, so server-rendered content can never be stranded at `opacity: 0`.
 - Translation keys `theme.*` and `a11y.*` (en + sq).
 - `POST /api/contact` — the contact form now sends mail server-side instead of handing off to `mailto:`. One message goes to the visitor as a confirmation from `hello@skriptura.net`, blind-copied to `skriptura.net@gmail.com` and `rgnpcrz@gmail.com`, so the BCC doubles as the inbound-inquiry notification. Recipients of the old `mailto:` flow were whoever had a mail client configured; now nobody has to.
 - `src/lib/mail/mailer.js` — nodemailer transport, `MAIL_TYPE=LOCAL` (Postfix on `127.0.0.1:25`) or `SMTP`, mirroring `skriptura-hotel-api`.
@@ -32,6 +34,7 @@ Light/dark/auto theming, and the contact form moved onto server-side mail.
 - Scrollbars, `::selection`, and `<meta name="theme-color">` follow the active theme; `color-scheme` is declared so the browser styles form controls and native scrollbars to match.
 - `useTranslation()` returns a `t` with a stable identity per dictionary, so it is safe to list in hook dependency arrays.
 - The mobile menu now closes on navigation, not just on tapping one of its own links.
+- The theme wipe now expands out of the SKRIPTURA wordmark rather than the control that was clicked.
 - `contact.formNote` no longer says the form opens your email client — it now sets a reply expectation ("We reply within one business day.").
 - `next.config.mjs`: `serverExternalPackages: ['nodemailer']`, so the SMTP client isn't bundled into the route.
 
@@ -40,6 +43,9 @@ Light/dark/auto theming, and the contact form moved onto server-side mail.
 - `Card` emitted two conflicting `bg-*` classes on yellow cards and only rendered correctly by CSS source-order luck.
 - The `/secret` typewriter captured its lines on first render and would have replayed stale text if the dictionary changed; the revealed line count is now the only state and the text is derived.
 - `NotFound` had no background of its own and showed the page canvas instead of a card surface.
+- The far corners of the theme wipe popped in at the end instead of being swept. The reveal had no `animation-fill-mode`, so the clip was released the frame the animation ended, and the radius was measured against `innerWidth`/`innerHeight` — which undershoots the area the browser actually animates. The reveal now fills forwards, measures against the larger of the two viewport metrics, and overshoots the farthest corner by 8%.
+- `<html>` now paints the canvas background as well as `<body>`, so the view-transition snapshot owns the page background instead of relying on propagation. `<body>` keeps its copy, which is what the konami invert filter flips.
+- The boot script's two snippets each end in a semicolon. Concatenated bare, `})()` followed by `(function(){` parses as the second IIFE being *called on* the first one's return value, throwing on every page load.
 
 ## [1.2.0] - 2026-07-27
 

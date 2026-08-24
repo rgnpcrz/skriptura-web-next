@@ -40,7 +40,7 @@ export default function HomeClient() {
     <div className="space-y-12 sm:space-y-16">
 
       {/* // WHO WE ARE */}
-      <section>
+      <section data-reveal>
         <SectionHeader title={t('home.sectionWhoWeAre')} />
         <Card className="p-6 sm:p-10">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
@@ -79,7 +79,7 @@ export default function HomeClient() {
       </section>
 
       {/* // BY THE NUMBERS */}
-      <section>
+      <section data-reveal>
         <SectionHeader title={t('home.sectionNumbers')} />
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           {[
@@ -99,7 +99,7 @@ export default function HomeClient() {
       </section>
 
       {/* // WHAT WE DO */}
-      <section>
+      <section data-reveal>
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6 sm:mb-8">
           <SectionHeader title={t('home.sectionWhatWeDo')} subtitle={t('home.sectionWhatWeDoSub')} className="mb-0" />
           <Link href="/services" className="font-mono text-sm font-bold hover:underline underline-offset-2 whitespace-nowrap">
@@ -120,7 +120,7 @@ export default function HomeClient() {
       </section>
 
       {/* // CLIENTS */}
-      <section>
+      <section data-reveal>
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6 sm:mb-8">
           <SectionHeader title={t('home.sectionClients')} subtitle={t('home.sectionClientsSub')} className="mb-0" />
           <Link href="/clients" className="font-mono text-sm font-bold hover:underline underline-offset-2 whitespace-nowrap">
@@ -148,7 +148,7 @@ export default function HomeClient() {
       </section>
 
       {/* // PROJECTS */}
-      <section>
+      <section data-reveal>
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6 sm:mb-8">
           <SectionHeader title={t('home.sectionProjects')} subtitle={t('home.sectionProjectsSub')} className="mb-0" />
           <Link href="/projects" className="font-mono text-sm font-bold hover:underline underline-offset-2 whitespace-nowrap">
@@ -180,7 +180,7 @@ export default function HomeClient() {
       </section>
 
       {/* // GET IN TOUCH */}
-      <section>
+      <section data-reveal>
         <SectionHeader title={t('home.sectionContact')} />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Card className="sm:col-span-2">

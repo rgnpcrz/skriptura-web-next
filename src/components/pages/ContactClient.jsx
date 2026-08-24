@@ -51,7 +51,7 @@ export default function ContactClient() {
   return (
     <div className="space-y-12">
       <SectionHeader title={t('contact.title')} subtitle={t('contact.subtitle')} />
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div data-reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="space-y-4">
           <SectionHeader title={t('contact.sectionInfo')} />
           <Card yellow>

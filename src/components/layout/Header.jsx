@@ -2,32 +2,18 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from '@/components/ui/LocaleLink'
-import { usePathname, useRouter } from 'next/navigation'
-import { useTranslation, useLocale } from '@/i18n/client'
-import ThemeToggle from '@/components/theme/ThemeToggle'
+import { usePathname } from 'next/navigation'
+import { useTranslation } from '@/i18n/client'
+import PreferencesMenu from './PreferencesMenu'
 
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a']
-
-// Remember the visitor's language choice so the proxy honors it on later visits.
-function persistLocale(l) {
-  document.cookie = `NEXT_LOCALE=${l};path=/;max-age=31536000`
-}
 
 export default function Header({ onKonami }) {
   const { t } = useTranslation()
   const pathname = usePathname()
-  const router = useRouter()
-  const locale = useLocale()
   const [menuOpen, setMenuOpen] = useState(false)
   const konamiRef = useRef(0)
   const [konamiProgress, setKonamiProgress] = useState(0)
-
-  const switchLang = (l) => {
-    if (l === locale) return
-    persistLocale(l)
-    const restPath = pathname.replace(/^\/(en|sq)(?=\/|$)/, '')
-    router.push(`/${l}${restPath}`)
-  }
 
   const handleKey = useCallback((e) => {
     const next = konamiRef.current
@@ -77,7 +63,12 @@ export default function Header({ onKonami }) {
   return (
     <header className="border-b-2 border-ink bg-paper sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
-        <Link href="/" className="font-mono font-bold text-lg sm:text-xl tracking-widest uppercase select-none">
+        {/* The theme wipe expands out of the wordmark — see setRevealGeometry. */}
+        <Link
+          href="/"
+          data-theme-origin
+          className="font-mono font-bold text-lg sm:text-xl tracking-widest uppercase select-none"
+        >
           SKRIPTURA
         </Link>
 
@@ -100,24 +91,7 @@ export default function Header({ onKonami }) {
         </nav>
 
         <div className="flex items-center gap-2">
-          <ThemeToggle className="hidden sm:flex" />
-
-          <div role="group" aria-label={t('a11y.language')} className="flex border border-ink">
-            {['en', 'sq'].map((l, i) => (
-              <button
-                key={l}
-                type="button"
-                lang={l}
-                onClick={() => switchLang(l)}
-                aria-pressed={locale === l}
-                className={`font-mono text-xs font-bold px-2 py-1 transition-colors ${i > 0 ? 'border-l border-ink' : ''} ${
-                  locale === l ? 'bg-accent text-on-accent' : 'bg-paper text-ink hover:bg-accent hover:text-on-accent'
-                }`}
-              >
-                {l.toUpperCase()}
-              </button>
-            ))}
-          </div>
+          <PreferencesMenu />
 
           <button
             type="button"
@@ -153,7 +127,6 @@ export default function Header({ onKonami }) {
                 </Link>
               )
             })}
-            <ThemeToggle showLabels className="flex sm:hidden mt-4" />
           </nav>
         </div>
       )}

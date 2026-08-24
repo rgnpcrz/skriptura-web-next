@@ -12,7 +12,7 @@ export default function ClientsClient() {
   return (
     <div className="space-y-8">
       <SectionHeader title={t('clients.title')} subtitle={t('clients.subtitle')} />
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div data-reveal className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {clients.map((client) => (
           <Card key={client.slug} hover className="h-full flex flex-col">
             <div className="flex items-start justify-between gap-2 mb-3 border-b-2 border-ink pb-3">

@@ -36,7 +36,7 @@ export default function ClientDetailClient({ slug }) {
           <p className="font-mono text-xs text-ink/50">{t('clients.noUrl')}</p>
         )}
       </Card>
-      <section>
+      <section data-reveal>
         <SectionHeader title={t('clients.sectionServices')} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {clientServices.map((service) => (
@@ -49,11 +49,11 @@ export default function ClientDetailClient({ slug }) {
           ))}
         </div>
       </section>
-      <section>
+      <section data-reveal>
         <SectionHeader title={t('clients.sectionTech')} />
         <Card><div className="flex flex-wrap gap-2">{client.tech.map((tech) => <Badge key={tech} yellow>{tech}</Badge>)}</div></Card>
       </section>
-      <section>
+      <section data-reveal>
         <SectionHeader title={t('clients.sectionTestimonial')} />
         <Card>
           {client.testimonial ? (

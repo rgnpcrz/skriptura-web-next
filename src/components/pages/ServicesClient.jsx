@@ -11,7 +11,7 @@ export default function ServicesClient() {
   return (
     <div className="space-y-8">
       <SectionHeader title={t('services.title')} subtitle={t('services.subtitle')} />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div data-reveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {services.map((service) => (
           <Link key={service.slug} href={`/services/${service.slug}`} className="block group">
             <Card hover className="h-full flex flex-col">

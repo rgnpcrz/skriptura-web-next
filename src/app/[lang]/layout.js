@@ -7,7 +7,7 @@ import { TranslationProvider } from '@/i18n/client'
 import { rootMetadata } from '@/i18n/seo'
 import { organizationJsonLd } from '@/i18n/jsonld'
 import { THEME_COLORS, THEME_LIGHT } from '@/lib/theme'
-import ThemeScript from '@/components/theme/ThemeScript'
+import BootScript from '@/components/BootScript'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
 import ClientShell from '@/components/layout/ClientShell'
 
@@ -42,11 +42,11 @@ export default async function RootLayout({ children, params }) {
   const dict = getDictionary(lang)
 
   return (
-    // The theme script writes data-theme/data-theme-pref onto <html> before
-    // React hydrates, which React would otherwise flag as a mismatch.
+    // The boot script writes data-theme/data-theme-pref/data-motion onto <html>
+    // before React hydrates, which React would otherwise flag as a mismatch.
     <html lang={lang} className={spaceMono.variable} suppressHydrationWarning>
       <body className="font-mono">
-        <ThemeScript />
+        <BootScript />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd(lang)) }}

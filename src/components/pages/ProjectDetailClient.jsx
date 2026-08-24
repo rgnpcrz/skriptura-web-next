@@ -28,12 +28,12 @@ export default function ProjectDetailClient({ slug }) {
         {project.url && <div className="mt-6"><Button href={project.url} variant="solid">{t('projects.playNow')}</Button></div>}
       </Card>
       {project.plannedTools && (
-        <section>
+        <section data-reveal>
           <SectionHeader title={`// ${t('projects.plannedTools').toUpperCase()}`} />
           <Card><div className="flex flex-wrap gap-2">{project.plannedTools.map((tool) => <Badge key={tool} yellow>{tool}</Badge>)}</div></Card>
         </section>
       )}
-      <section>
+      <section data-reveal>
         <SectionHeader title="// TAGS" />
         <Card><div className="flex flex-wrap gap-2">{project.tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}</div></Card>
       </section>

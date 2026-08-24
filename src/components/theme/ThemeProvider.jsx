@@ -24,12 +24,12 @@ export function ThemeProvider({ children }) {
     getServerThemeSnapshot
   )
 
-  const setTheme = useCallback((next, origin) => {
+  const setTheme = useCallback((next) => {
     runThemeTransition(() => {
       // View Transitions snapshot the DOM as soon as this callback returns, so
       // the toggle has to land in the same frame as the palette.
       flushSync(() => commitTheme(next))
-    }, origin)
+    })
   }, [])
 
   const value = useMemo(() => ({ preference, resolved, setTheme }), [preference, resolved, setTheme])

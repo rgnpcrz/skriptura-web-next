@@ -1,12 +1,15 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import { useTranslation } from '@/i18n/client'
+import { observeReveals } from '@/lib/motion'
 import Header from './Header'
 import Footer from './Footer'
 
 export default function ClientShell({ children }) {
   const { t } = useTranslation()
+  const pathname = usePathname()
   const [konamiActive, setKonamiActive] = useState(false)
 
   const handleKonami = () => {
@@ -18,6 +21,9 @@ export default function ClientShell({ children }) {
     document.body.style.filter = konamiActive ? 'invert(1)' : ''
     return () => { document.body.style.filter = '' }
   }, [konamiActive])
+
+  // Re-run per route: the new page brings its own blocks to reveal.
+  useEffect(() => observeReveals(), [pathname])
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -31,7 +37,10 @@ export default function ClientShell({ children }) {
         </div>
       )}
       <main id="main" className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        {children}
+        {/* Keyed on the route so the enter animation replays on every navigation. */}
+        <div key={pathname} className="page-enter">
+          {children}
+        </div>
       </main>
       <Footer />
     </div>
