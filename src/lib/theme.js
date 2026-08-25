@@ -157,11 +157,12 @@ export function prefersReducedMotion() {
 /**
  * Point the circular reveal at the wordmark.
  *
- * Only the centre comes from JavaScript; the radius is a fixed `150vmax` in the
- * stylesheet. A measured radius can come out short — the box the browser
- * animates is the snapshot containing block, which is not always what
- * `innerWidth`/`innerHeight` report — and a short radius leaves a wedge of the
- * old theme to swap in one jump at the end.
+ * Only the centre comes from JavaScript. The radius is a percentage in the
+ * stylesheet, which resolves against the clipped box itself — deliberately,
+ * because nothing here can measure that box. It is not the viewport: on a long
+ * page the browser clips the whole document, so anything derived from
+ * `innerWidth`/`innerHeight` sizes the circle against the wrong thing and
+ * leaves a wedge of the old theme to swap in one jump.
  */
 function setRevealGeometry(root) {
   const w = window.innerWidth

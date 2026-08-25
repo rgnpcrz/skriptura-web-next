@@ -203,10 +203,16 @@
  *    all: mask-image takes an <image>, and gradients are not smoothly
  *    interpolable, so the keyframes just step.
  *
- *    The radius is a fixed 150vmax rather than anything measured. The farthest
- *    a corner can sit from a point inside the viewport is the diagonal, at most
- *    ~142vmax, so this always clears the whole snapshot — whatever the browser
- *    decided its size was, and whether or not innerWidth/innerHeight agree.
+ *    The radius is a percentage, and that is the whole trick. A percentage on
+ *    circle() resolves against its own reference box — sqrt(w² + h²) / sqrt(2)
+ *    — so it tracks whatever box the browser decided to clip, with nothing
+ *    measured in JavaScript. Covering that box from any point inside it needs
+ *    at most its full diagonal, which is 141.4%; 150% clears it with margin.
+ *
+ *    Viewport units were wrong here. The snapshot is not viewport-sized: on a
+ *    2953px-tall document in an 840px viewport it is the whole document, so
+ *    150vmax sized the circle against a box roughly a third of the real one and
+ *    left the remainder to swap in one jump. That was the wedge.
  */
 ::view-transition-old(root),
 ::view-transition-new(root) {
@@ -226,11 +232,12 @@
 }
 
 @keyframes theme-reveal {
+  /* Both radii are percentages so the two keyframes interpolate cleanly. */
   from {
-    clip-path: circle(0 at var(--theme-x, 50%) var(--theme-y, 0%));
+    clip-path: circle(0% at var(--theme-x, 50%) var(--theme-y, 0%));
   }
   to {
-    clip-path: circle(150vmax at var(--theme-x, 50%) var(--theme-y, 0%));
+    clip-path: circle(150% at var(--theme-x, 50%) var(--theme-y, 0%));
   }
 }
 
