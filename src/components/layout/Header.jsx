@@ -72,7 +72,7 @@ export default function Header({ onKonami }) {
           SKRIPTURA
         </Link>
 
-        <nav aria-label={t('a11y.mainNav')} className="hidden md:flex items-center gap-4 lg:gap-6">
+        <nav aria-label={t('a11y.mainNav')} className="hidden lg:flex items-center gap-4 xl:gap-6">
           {navLinks.map((link) => {
             const active = isActive(link.href, link.exact)
             return (
@@ -95,7 +95,7 @@ export default function Header({ onKonami }) {
 
           <button
             type="button"
-            className="md:hidden border-2 border-ink p-1.5 bg-paper hover:bg-ink hover:text-paper transition-colors"
+            className="lg:hidden border-2 border-ink p-1.5 bg-paper hover:bg-ink hover:text-paper transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
@@ -109,7 +109,7 @@ export default function Header({ onKonami }) {
       </div>
 
       {menuOpen && (
-        <div id="mobile-menu" className="md:hidden border-t-2 border-ink bg-paper">
+        <div id="mobile-menu" className="lg:hidden border-t-2 border-ink bg-paper">
           <nav aria-label={t('a11y.mainNav')} className="max-w-6xl mx-auto px-4 py-4 flex flex-col">
             {navLinks.map((link) => {
               const active = isActive(link.href, link.exact)

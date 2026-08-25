@@ -81,7 +81,7 @@ export default function HomeClient() {
       {/* // BY THE NUMBERS */}
       <section data-reveal>
         <SectionHeader title={t('home.sectionNumbers')} />
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {[
             { label: t('home.statFounded'), value: t('home.statFoundedValue') },
             { label: t('home.statClients'), value: t('home.statClientsValue') },
@@ -89,7 +89,7 @@ export default function HomeClient() {
             { label: t('home.statCity'), value: t('home.statCityValue'), small: true },
           ].map((stat) => (
             <Card key={stat.label} yellow className="text-center py-6">
-              <p className={`font-mono font-bold mb-1 leading-tight ${stat.small ? 'text-lg sm:text-3xl lg:text-4xl' : 'text-3xl sm:text-4xl'}`}>
+              <p className={`font-mono font-bold mb-1 leading-tight ${stat.small ? 'text-lg sm:text-3xl' : 'text-3xl sm:text-4xl'}`}>
                 {stat.value}
               </p>
               <p className="font-mono text-xs uppercase tracking-widest text-on-accent/70">{stat.label}</p>
