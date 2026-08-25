@@ -25,9 +25,6 @@ const TRANSITION_MS = 320
 /** The element the reveal expands out of — the wordmark, marked in the header. */
 const ORIGIN_SELECTOR = '[data-theme-origin]'
 
-/** Overshoot on the on-screen radius, so the sweep reads as finished. */
-const REACH_MARGIN = 1.02
-
 const isTheme = (value) => value === THEME_LIGHT || value === THEME_DARK
 
 export function getSystemTheme() {
@@ -158,37 +155,26 @@ export function prefersReducedMotion() {
 }
 
 /**
- * Point the circular reveal at the wordmark.
+ * Point the circular reveal at the wordmark and size it to cover everything.
  *
- * Sets the centre, and the radius the circle needs to cross the screen.
- *
- * Only the screen matters for timing: the wipe is over, to the eye, the moment
- * it clears the furthest visible corner, and everything past that is the
- * viewport's business, not the page's. The clipped box, though, is the whole
- * document on a long page — so the stylesheet keeps sweeping past this radius
- * to a box-relative 150% before releasing the clip, which is what stops a wedge
- * of the old theme swapping in at the end. Two radii, two jobs: this one is the
- * one you see, and it depends on nothing but the viewport.
+ * The box the browser clips is the whole document, not the viewport — on a
+ * 2953px page in an 840px window it is all 2953px. The diagonal of that box is
+ * the furthest apart any two points in it can be, so a circle of that radius
+ * covers it from wherever the centre happens to sit. One number, no cases.
  */
 function setRevealGeometry(root) {
   const w = window.innerWidth
   const h = window.innerHeight
   const anchor = document.querySelector(ORIGIN_SELECTOR)?.getBoundingClientRect()
 
-  // Clamped into the viewport: the reach below assumes an origin inside it.
-  const x = anchor?.width ? clamp(anchor.left + anchor.width / 2, 0, w) : w / 2
-  const y = anchor?.height ? clamp(anchor.top + anchor.height / 2, 0, h) : 0
-
-  // Distance to the furthest visible corner, plus a hair so the sweep is
-  // finished rather than exactly arriving as the last corner fills.
-  const reach = Math.hypot(Math.max(x, w - x), Math.max(y, h - y)) * REACH_MARGIN
+  const x = anchor?.width ? anchor.left + anchor.width / 2 : w / 2
+  const y = anchor?.height ? anchor.top + anchor.height / 2 : 0
+  const radius = Math.hypot(Math.max(w, root.scrollWidth), Math.max(h, root.scrollHeight))
 
   root.style.setProperty('--theme-x', `${x}px`)
   root.style.setProperty('--theme-y', `${y}px`)
-  root.style.setProperty('--theme-r', `${reach}px`)
+  root.style.setProperty('--theme-r', `${radius}px`)
 }
-
-const clamp = (value, min, max) => Math.min(Math.max(value, min), max)
 
 /**
  * Run `commit` (which must mutate the DOM synchronously) behind the nicest
