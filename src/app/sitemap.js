@@ -4,14 +4,18 @@ import { projects } from '@/data/projects'
 
 const BASE = 'https://skriptura.net'
 
+// Bump when page content actually changes. A build-time `new Date()` would move
+// on every deploy whether anything changed or not, and a lastmod that is always
+// "today" is one search engines learn to discount.
+const LAST_CONTENT_UPDATE = new Date('2026-08-25')
+
 // One sitemap entry per page, listing the English URL as canonical and the
 // Albanian URL as an hreflang alternate (plus x-default → English).
-function entry(path, priority) {
+// `changefreq` and `priority` are omitted deliberately: Google ignores both.
+function entry(path) {
   return {
     url: `${BASE}/en${path}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority,
+    lastModified: LAST_CONTENT_UPDATE,
     alternates: {
       languages: {
         en: `${BASE}/en${path}`,
@@ -23,20 +27,17 @@ function entry(path, priority) {
 }
 
 export default function sitemap() {
-  const staticRoutes = [
-    ['', 1],
-    ['/about', 0.8],
-    ['/services', 0.8],
-    ['/clients', 0.8],
-    ['/projects', 0.8],
-    ['/contact', 0.8],
+  const paths = [
+    '',
+    '/about',
+    '/services',
+    '/clients',
+    '/projects',
+    '/contact',
+    ...services.map((s) => `/services/${s.slug}`),
+    ...clients.map((c) => `/clients/${c.slug}`),
+    ...projects.map((p) => `/projects/${p.slug}`),
   ]
 
-  const dynamicRoutes = [
-    ...clients.map((c) => [`/clients/${c.slug}`, 0.7]),
-    ...services.map((s) => [`/services/${s.slug}`, 0.7]),
-    ...projects.map((p) => [`/projects/${p.slug}`, 0.6]),
-  ]
-
-  return [...staticRoutes, ...dynamicRoutes].map(([path, priority]) => entry(path, priority))
+  return paths.map(entry)
 }
