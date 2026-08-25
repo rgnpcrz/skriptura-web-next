@@ -160,9 +160,8 @@ export function prefersReducedMotion() {
  * Only the centre comes from JavaScript; the radius is a fixed `150vmax` in the
  * stylesheet. A measured radius can come out short — the box the browser
  * animates is the snapshot containing block, which is not always what
- * `innerWidth`/`innerHeight` report — and the stylesheet is arranged so that
- * even a short wipe cannot leave a seam: the finished theme is painted
- * underneath, and it is the old one that gets masked away.
+ * `innerWidth`/`innerHeight` report — and a short radius leaves a wedge of the
+ * old theme to swap in one jump at the end.
  */
 function setRevealGeometry(root) {
   const w = window.innerWidth

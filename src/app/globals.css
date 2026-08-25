@@ -181,13 +181,16 @@
  *
  * 1. View Transitions: a circular wipe out of the wordmark.
  *
- *    The NEW snapshot sits underneath, complete and unclipped, and the OLD one
- *    is masked away from the wordmark outwards. That ordering is the whole
- *    point: whenever the transition ends — on time, early, or interrupted —
- *    what is already on screen is the finished state, so the remainder can
- *    never swap in one frame. Clipping the new snapshot on top instead, as this
- *    did before, means any radius that comes up short leaves a wedge of the old
- *    theme sitting there until the clip is released, and then it jumps.
+ *    This has to be `clip-path`. A `<basic-shape>` has defined interpolation,
+ *    so circle() animates its radius smoothly. Masking the old snapshot with a
+ *    radial-gradient instead looks equivalent on paper but does not animate at
+ *    all: mask-image takes an <image>, and gradients are not smoothly
+ *    interpolable, so the keyframes just step.
+ *
+ *    The radius is a fixed 150vmax rather than anything measured. The farthest
+ *    a corner can sit from a point inside the viewport is the diagonal, at most
+ *    ~142vmax, so this always clears the whole snapshot — whatever the browser
+ *    decided its size was, and whether or not innerWidth/innerHeight agree.
  */
 ::view-transition-old(root),
 ::view-transition-new(root) {
@@ -195,36 +198,23 @@
   animation: none;
 }
 
-/* One animation drives the transition's lifetime, and it is the wipe. */
-::view-transition-group(root) {
-  animation: none;
-}
-
-::view-transition-new(root) {
+::view-transition-old(root) {
   z-index: 1;
 }
 
-::view-transition-old(root) {
+::view-transition-new(root) {
   z-index: 2;
-  animation: theme-wipe 520ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  /* `both` matters: without a forwards fill the clip-path is released the frame
+     the animation ends, swapping in whatever the circle had not reached yet. */
+  animation: theme-reveal 520ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
-@keyframes theme-wipe {
+@keyframes theme-reveal {
   from {
-    mask-image: radial-gradient(
-      circle 0.01vmax at var(--theme-x, 50%) var(--theme-y, 0%),
-      #0000 98%,
-      #000 100%
-    );
+    clip-path: circle(0 at var(--theme-x, 50%) var(--theme-y, 0%));
   }
   to {
-    /* 150vmax always clears the viewport: the farthest a corner can sit from a
-       point inside it is the diagonal, at most ~142vmax. */
-    mask-image: radial-gradient(
-      circle 150vmax at var(--theme-x, 50%) var(--theme-y, 0%),
-      #0000 98%,
-      #000 100%
-    );
+    clip-path: circle(150vmax at var(--theme-x, 50%) var(--theme-y, 0%));
   }
 }
 
