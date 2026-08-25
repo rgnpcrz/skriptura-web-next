@@ -157,13 +157,12 @@ export function prefersReducedMotion() {
 /**
  * Point the circular reveal at the wordmark.
  *
- * Only the centre comes from JavaScript. The radius is a fixed `150vmax` in the
- * stylesheet, because any measured value can come out short — the box the
- * browser animates is the snapshot containing block, which is not always what
- * `innerWidth`/`innerHeight` report — and a short radius is what leaves the
- * uncovered remainder to swap in one jump when the clip is released. The
- * furthest a corner can ever sit from a point inside the viewport is the
- * diagonal, at most ~1.42vmax, so 150vmax always covers it.
+ * Only the centre comes from JavaScript; the radius is a fixed `150vmax` in the
+ * stylesheet. A measured radius can come out short — the box the browser
+ * animates is the snapshot containing block, which is not always what
+ * `innerWidth`/`innerHeight` report — and the stylesheet is arranged so that
+ * even a short wipe cannot leave a seam: the finished theme is painted
+ * underneath, and it is the old one that gets masked away.
  */
 function setRevealGeometry(root) {
   const w = window.innerWidth

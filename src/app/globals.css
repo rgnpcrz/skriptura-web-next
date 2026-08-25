@@ -17,7 +17,7 @@
     --ink: 0 0 0;
     --paper: 255 255 255;
     --canvas: 248 250 252;
-    --shadow: 0 0 0;
+    --shadow: 64 64 64;
 
     --accent: 255 230 0;
     --accent-strong: 230 207 0;
@@ -38,7 +38,7 @@
     --ink: 242 242 242;
     --paper: 21 24 27;
     --canvas: 11 13 15;
-    --shadow: 229 229 229;
+    --shadow: 163 163 163;
 
     --accent: 255 230 0;
     --accent-strong: 230 207 0;
@@ -52,7 +52,7 @@
       --ink: 242 242 242;
       --paper: 21 24 27;
       --canvas: 11 13 15;
-      --shadow: 229 229 229;
+      --shadow: 163 163 163;
 
       --accent: 255 230 0;
       --accent-strong: 230 207 0;
@@ -175,12 +175,19 @@
 }
 
 /*
- * Theme switch animation, in order of preference. Deliberately outside
- * Tailwind's layers: view-transition pseudo-elements and @keyframes are not
- * utilities, and the fallback rule must beat component transitions.
+ * Theme switch animation. Deliberately outside Tailwind's layers: the
+ * view-transition pseudo-elements and @keyframes are not utilities, and the
+ * fallback rule below has to beat component transitions.
  *
- * 1. View Transitions: the browser snapshots the page and clips the new theme
- *    in from the toggle. One composited layer, no per-element work.
+ * 1. View Transitions: a circular wipe out of the wordmark.
+ *
+ *    The NEW snapshot sits underneath, complete and unclipped, and the OLD one
+ *    is masked away from the wordmark outwards. That ordering is the whole
+ *    point: whenever the transition ends — on time, early, or interrupted —
+ *    what is already on screen is the finished state, so the remainder can
+ *    never swap in one frame. Clipping the new snapshot on top instead, as this
+ *    did before, means any radius that comes up short leaves a wedge of the old
+ *    theme sitting there until the clip is released, and then it jumps.
  */
 ::view-transition-old(root),
 ::view-transition-new(root) {
@@ -188,32 +195,36 @@
   animation: none;
 }
 
-/* Nothing else may animate: a shorter UA animation on the group would decide
-   when the transition ends, cutting the wipe off partway. */
+/* One animation drives the transition's lifetime, and it is the wipe. */
 ::view-transition-group(root) {
   animation: none;
 }
 
-::view-transition-old(root) {
+::view-transition-new(root) {
   z-index: 1;
 }
 
-::view-transition-new(root) {
+::view-transition-old(root) {
   z-index: 2;
-  /* `both` matters: without a forwards fill the clip-path is released the frame
-     the animation ends, swapping in whatever the circle had not reached yet. */
-  animation: theme-reveal 520ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: theme-wipe 520ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
-@keyframes theme-reveal {
+@keyframes theme-wipe {
   from {
-    clip-path: circle(0 at var(--theme-x, 50%) var(--theme-y, 0%));
+    mask-image: radial-gradient(
+      circle 0.01vmax at var(--theme-x, 50%) var(--theme-y, 0%),
+      #0000 98%,
+      #000 100%
+    );
   }
   to {
-    /* Fixed, not measured. The farthest a corner can sit from a point inside
-       the viewport is the diagonal — at most ~1.42vmax — so this always covers
-       the whole snapshot, whatever the browser decided its size was. */
-    clip-path: circle(150vmax at var(--theme-x, 50%) var(--theme-y, 0%));
+    /* 150vmax always clears the viewport: the farthest a corner can sit from a
+       point inside it is the diagonal, at most ~142vmax. */
+    mask-image: radial-gradient(
+      circle 150vmax at var(--theme-x, 50%) var(--theme-y, 0%),
+      #0000 98%,
+      #000 100%
+    );
   }
 }
 
