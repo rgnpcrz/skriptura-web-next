@@ -25,13 +25,6 @@ const TRANSITION_MS = 320
 /** The element the reveal expands out of — the wordmark, marked in the header. */
 const ORIGIN_SELECTOR = '[data-theme-origin]'
 
-/**
- * The wipe is sized to reach the farthest corner. Overshooting slightly means it
- * has visibly cleared that corner before the animation ends, rather than the
- * last pixels popping in at once as the clip is released.
- */
-const REVEAL_OVERSHOOT = 1.08
-
 const isTheme = (value) => value === THEME_LIGHT || value === THEME_DARK
 
 export function getSystemTheme() {
@@ -161,24 +154,31 @@ export function prefersReducedMotion() {
   return window.matchMedia(REDUCED_MOTION_QUERY).matches
 }
 
-/** Point the circular reveal at the wordmark and size it to cover the viewport. */
+/**
+ * Point the circular reveal at the wordmark.
+ *
+ * Only the centre comes from JavaScript. The radius is a fixed `150vmax` in the
+ * stylesheet, because any measured value can come out short — the box the
+ * browser animates is the snapshot containing block, which is not always what
+ * `innerWidth`/`innerHeight` report — and a short radius is what leaves the
+ * uncovered remainder to swap in one jump when the clip is released. The
+ * furthest a corner can ever sit from a point inside the viewport is the
+ * diagonal, at most ~1.42vmax, so 150vmax always covers it.
+ */
 function setRevealGeometry(root) {
-  // Take the larger of the two viewport measures: the snapshot the browser
-  // animates covers the large viewport, which on mobile is taller than
-  // `innerHeight` while the toolbars are showing. Undersizing here is what
-  // leaves the far corners to snap in at the end.
-  const w = Math.max(window.innerWidth, root.clientWidth)
-  const h = Math.max(window.innerHeight, root.clientHeight)
-
+  const w = window.innerWidth
+  const h = window.innerHeight
   const anchor = document.querySelector(ORIGIN_SELECTOR)?.getBoundingClientRect()
-  const x = anchor?.width ? anchor.left + anchor.width / 2 : w / 2
-  const y = anchor?.height ? anchor.top + anchor.height / 2 : 0
-  const radius = Math.hypot(Math.max(x, w - x), Math.max(y, h - y)) * REVEAL_OVERSHOOT
+
+  // Clamped: an origin outside the viewport would need more than 150vmax.
+  const x = anchor?.width ? clamp(anchor.left + anchor.width / 2, 0, w) : w / 2
+  const y = anchor?.height ? clamp(anchor.top + anchor.height / 2, 0, h) : 0
 
   root.style.setProperty('--theme-x', `${x}px`)
   root.style.setProperty('--theme-y', `${y}px`)
-  root.style.setProperty('--theme-r', `${radius}px`)
 }
+
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max)
 
 /**
  * Run `commit` (which must mutate the DOM synchronously) behind the nicest

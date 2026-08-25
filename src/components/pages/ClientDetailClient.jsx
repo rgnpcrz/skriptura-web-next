@@ -19,8 +19,8 @@ export default function ClientDetailClient({ slug }) {
       <div>
         <Link href="/clients" className="font-mono text-xs font-bold hover:underline underline-offset-2 mb-4 block">{t('common.backToClients')}</Link>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <SectionHeader title={`// ${client.name.toUpperCase()}`} className="mb-0" />
-          <div className="flex flex-wrap gap-2">
+          <SectionHeader title={`// ${client.name.toUpperCase()}`} className="mb-0 min-w-0" />
+          <div className="flex flex-wrap gap-2 shrink-0">
             <Badge yellow>{client.year}</Badge>
             {client.active && <Badge>Active</Badge>}
           </div>

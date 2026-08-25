@@ -16,8 +16,8 @@ export default function ClientsClient() {
         {clients.map((client) => (
           <Card key={client.slug} hover className="h-full flex flex-col">
             <div className="flex items-start justify-between gap-2 mb-3 border-b-2 border-ink pb-3">
-              <h2 className="font-mono font-bold text-sm sm:text-base">{client.name}</h2>
-              <Badge yellow>{client.year}</Badge>
+              <h2 className="font-mono font-bold text-sm sm:text-base min-w-0">{client.name}</h2>
+              <Badge yellow className="shrink-0">{client.year}</Badge>
             </div>
             <p className="font-mono text-xs sm:text-sm text-ink/70 mb-4 leading-relaxed flex-1">{client.tagline}</p>
             <div className="flex flex-wrap gap-1.5 mb-4">

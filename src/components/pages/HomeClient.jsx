@@ -44,10 +44,10 @@ export default function HomeClient() {
         <SectionHeader title={t('home.sectionWhoWeAre')} />
         <Card className="p-6 sm:p-10">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <button
                 onClick={handleWordmarkClick}
-                className="font-mono font-bold text-4xl sm:text-6xl lg:text-7xl tracking-widest mb-6 block text-left select-none cursor-default"
+                className="font-mono font-bold text-[clamp(1.75rem,9vw,4.5rem)] leading-none tracking-widest mb-6 block text-left select-none cursor-default"
                 aria-label="Skriptura"
               >
                 {secretMsg ? (
@@ -101,7 +101,7 @@ export default function HomeClient() {
       {/* // WHAT WE DO */}
       <section data-reveal>
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6 sm:mb-8">
-          <SectionHeader title={t('home.sectionWhatWeDo')} subtitle={t('home.sectionWhatWeDoSub')} className="mb-0" />
+          <SectionHeader title={t('home.sectionWhatWeDo')} subtitle={t('home.sectionWhatWeDoSub')} className="mb-0 min-w-0" />
           <Link href="/services" className="font-mono text-sm font-bold hover:underline underline-offset-2 whitespace-nowrap">
             {t('home.viewAllServices')}
           </Link>
@@ -122,7 +122,7 @@ export default function HomeClient() {
       {/* // CLIENTS */}
       <section data-reveal>
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6 sm:mb-8">
-          <SectionHeader title={t('home.sectionClients')} subtitle={t('home.sectionClientsSub')} className="mb-0" />
+          <SectionHeader title={t('home.sectionClients')} subtitle={t('home.sectionClientsSub')} className="mb-0 min-w-0" />
           <Link href="/clients" className="font-mono text-sm font-bold hover:underline underline-offset-2 whitespace-nowrap">
             {t('home.viewAllClients')}
           </Link>
@@ -133,7 +133,7 @@ export default function HomeClient() {
               <Card hover className="h-full">
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <h3 className="font-mono font-bold text-sm sm:text-base group-hover:underline underline-offset-2">{client.name}</h3>
-                  <Badge yellow>{client.year}</Badge>
+                  <Badge yellow className="shrink-0">{client.year}</Badge>
                 </div>
                 <p className="font-mono text-xs sm:text-sm text-ink/70 mb-3 leading-relaxed">{client.tagline}</p>
                 <div className="flex flex-wrap gap-1.5">
@@ -150,7 +150,7 @@ export default function HomeClient() {
       {/* // PROJECTS */}
       <section data-reveal>
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6 sm:mb-8">
-          <SectionHeader title={t('home.sectionProjects')} subtitle={t('home.sectionProjectsSub')} className="mb-0" />
+          <SectionHeader title={t('home.sectionProjects')} subtitle={t('home.sectionProjectsSub')} className="mb-0 min-w-0" />
           <Link href="/projects" className="font-mono text-sm font-bold hover:underline underline-offset-2 whitespace-nowrap">
             {t('home.viewAllProjects')}
           </Link>
@@ -160,7 +160,7 @@ export default function HomeClient() {
             <Card key={project.slug} hover className="h-full">
               <div className="flex items-start justify-between gap-2 mb-2">
                 <h3 className="font-mono font-bold text-sm sm:text-base">{project.name}</h3>
-                <Badge yellow={project.status === 'live'}>
+                <Badge yellow={project.status === 'live'} className="shrink-0">
                   {project.status === 'live' ? t('projects.statusLive') : t('projects.statusComingSoon')}
                 </Badge>
               </div>

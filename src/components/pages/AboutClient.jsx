@@ -71,7 +71,7 @@ export default function AboutClient() {
                   [t('about.labelStatus'), <Badge key="s" yellow>{t('about.valueStatus')}</Badge>],
                 ].map(([label, value], i) => (
                   <tr key={i} className={i % 2 === 0 ? 'bg-paper' : 'bg-ink/5'}>
-                    <td className="py-2.5 pr-4 sm:pr-8 text-ink/60 whitespace-nowrap font-bold text-xs uppercase tracking-wide border-b border-ink/10 w-1/3">{label}</td>
+                    <td className="py-2.5 pr-4 sm:pr-8 text-ink/60 sm:whitespace-nowrap font-bold text-xs uppercase tracking-wide border-b border-ink/10 w-1/3">{label}</td>
                     <td className="py-2.5 text-ink border-b border-ink/10">{value}</td>
                   </tr>
                 ))}

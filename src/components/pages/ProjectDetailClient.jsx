@@ -18,8 +18,8 @@ export default function ProjectDetailClient({ slug }) {
       <div>
         <Link href="/projects" className="font-mono text-xs font-bold hover:underline underline-offset-2 mb-4 block">{t('common.backToProjects')}</Link>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <SectionHeader title={`// ${project.name.toUpperCase()}`} className="mb-0" />
-          <Badge yellow={project.status === 'live'}>{project.status === 'live' ? t('projects.statusLive') : t('projects.statusComingSoon')}</Badge>
+          <SectionHeader title={`// ${project.name.toUpperCase()}`} className="mb-0 min-w-0" />
+          <Badge yellow={project.status === 'live'} className="shrink-0">{project.status === 'live' ? t('projects.statusLive') : t('projects.statusComingSoon')}</Badge>
         </div>
       </div>
       <Card>

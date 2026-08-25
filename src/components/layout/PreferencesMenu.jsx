@@ -117,7 +117,7 @@ export default function PreferencesMenu() {
             <p className="font-mono text-[0.625rem] font-bold uppercase tracking-widest text-ink/60 mb-1.5">
               {t('theme.label')}
             </p>
-            <ThemeToggle showLabels />
+            <ThemeToggle />
           </div>
         </div>
       )}

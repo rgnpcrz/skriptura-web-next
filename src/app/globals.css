@@ -78,6 +78,9 @@
     color: rgb(var(--ink));
     font-family: 'Space Mono', 'Courier New', monospace;
     -webkit-font-smoothing: antialiased;
+    /* Last-resort guard: a token with no break opportunity (a long URL, an
+       email, a compound Albanian word) breaks rather than widening the page. */
+    overflow-wrap: break-word;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -185,16 +188,21 @@
   animation: none;
 }
 
+/* Nothing else may animate: a shorter UA animation on the group would decide
+   when the transition ends, cutting the wipe off partway. */
+::view-transition-group(root) {
+  animation: none;
+}
+
 ::view-transition-old(root) {
   z-index: 1;
 }
 
 ::view-transition-new(root) {
   z-index: 2;
-  /* `both` matters: without a forwards fill the clip-path is released the
-     instant the animation ends, snapping in whatever the circle had not
-     reached yet — which showed up as the far corners popping. */
-  animation: theme-reveal 480ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  /* `both` matters: without a forwards fill the clip-path is released the frame
+     the animation ends, swapping in whatever the circle had not reached yet. */
+  animation: theme-reveal 520ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 @keyframes theme-reveal {
@@ -202,7 +210,10 @@
     clip-path: circle(0 at var(--theme-x, 50%) var(--theme-y, 0%));
   }
   to {
-    clip-path: circle(var(--theme-r, 150vmax) at var(--theme-x, 50%) var(--theme-y, 0%));
+    /* Fixed, not measured. The farthest a corner can sit from a point inside
+       the viewport is the diagonal — at most ~1.42vmax — so this always covers
+       the whole snapshot, whatever the browser decided its size was. */
+    clip-path: circle(150vmax at var(--theme-x, 50%) var(--theme-y, 0%));
   }
 }
 

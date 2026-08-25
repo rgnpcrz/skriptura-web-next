@@ -21,8 +21,8 @@ export default function ProjectsClient() {
             {live.map((project) => (
               <Card key={project.slug} hover className="h-full flex flex-col">
                 <div className="flex items-start justify-between gap-2 mb-3 border-b-2 border-ink pb-3">
-                  <h2 className="font-mono font-bold text-sm sm:text-base">{project.name}</h2>
-                  <Badge yellow>{t('projects.statusLive')}</Badge>
+                  <h2 className="font-mono font-bold text-sm sm:text-base min-w-0">{project.name}</h2>
+                  <Badge yellow className="shrink-0">{t('projects.statusLive')}</Badge>
                 </div>
                 <p className="font-mono text-xs font-bold text-ink/70 mb-2">{project.tagline}</p>
                 <p className="font-mono text-xs sm:text-sm text-ink/60 mb-4 leading-relaxed flex-1">{project.description}</p>
@@ -40,8 +40,8 @@ export default function ProjectsClient() {
             {soon.map((project) => (
               <Card key={project.slug} className="h-full flex flex-col">
                 <div className="flex items-start justify-between gap-2 mb-3 border-b-2 border-ink pb-3">
-                  <h2 className="font-mono font-bold text-sm sm:text-base">{project.name}</h2>
-                  <Badge>{t('projects.statusComingSoon')}</Badge>
+                  <h2 className="font-mono font-bold text-sm sm:text-base min-w-0">{project.name}</h2>
+                  <Badge className="shrink-0">{t('projects.statusComingSoon')}</Badge>
                 </div>
                 <p className="font-mono text-xs font-bold text-ink/70 mb-2">{project.tagline}</p>
                 <p className="font-mono text-xs sm:text-sm text-ink/60 mb-4 leading-relaxed">{project.description}</p>

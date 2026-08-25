@@ -30,6 +30,7 @@ Light/dark/auto theming, and the contact form moved onto server-side mail.
 
 ### Changed
 
+- Responsiveness pass. `overflow-wrap: break-word` as a global last-resort guard; the home wordmark is fluid (`clamp(1.75rem, 9vw, 4.5rem)`) instead of stepping 36/60/72px, which was ~227px wide inside ~240px of room at 320px; `min-w-0` on the flex children that sit next to a `whitespace-nowrap` link or a badge, since flex items default to `min-width: auto` and refuse to shrink below their content; `shrink-0` on year and status badges; the registration table's label column wraps below `sm` instead of forcing a horizontal scroll.
 - Every component moved off hardcoded `black`/`white` utilities onto the semantic tokens. Anything drawn on the accent yellow now uses `on-accent`, which stays black in both themes rather than inverting into an unreadable white-on-yellow.
 - Scrollbars, `::selection`, and `<meta name="theme-color">` follow the active theme; `color-scheme` is declared so the browser styles form controls and native scrollbars to match.
 - `useTranslation()` returns a `t` with a stable identity per dictionary, so it is safe to list in hook dependency arrays.
@@ -45,6 +46,8 @@ Light/dark/auto theming, and the contact form moved onto server-side mail.
 - `NotFound` had no background of its own and showed the page canvas instead of a card surface.
 - The far corners of the theme wipe popped in at the end instead of being swept. The reveal had no `animation-fill-mode`, so the clip was released the frame the animation ended, and the radius was measured against `innerWidth`/`innerHeight` — which undershoots the area the browser actually animates. The reveal now fills forwards, measures against the larger of the two viewport metrics, and overshoots the farthest corner by 8%.
 - `<html>` now paints the canvas background as well as `<body>`, so the view-transition snapshot owns the page background instead of relying on propagation. `<body>` keeps its copy, which is what the konami invert filter flips.
+- The theme options overflowed the preferences menu. Three labelled options across a 224px panel left roughly 30px per label, which "Auto" and every Albanian label ran past; they are a stacked list now, each with the full width.
+- The theme wipe still swapped the remainder in one jump. The radius is no longer measured in JavaScript at all — the box the browser animates is the snapshot containing block, which is not reliably what `innerWidth`/`innerHeight` report, and any short measurement leaves a remainder to snap. It is now a fixed `150vmax`, which always covers the diagonal from any point inside the viewport. The UA animation on `::view-transition-group(root)` is also disabled, so a shorter animation there can no longer decide when the transition ends and cut the wipe off partway.
 - The boot script's two snippets each end in a semicolon. Concatenated bare, `})()` followed by `(function(){` parses as the second IIFE being *called on* the first one's return value, throwing on every page load.
 
 ## [1.2.0] - 2026-07-27
