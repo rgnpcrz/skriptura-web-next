@@ -26,7 +26,13 @@ export function proxy(request) {
   const locale = getLocale(request)
   const url = request.nextUrl.clone()
   url.pathname = `/${locale}${pathname === '/' ? '' : pathname}`
-  return NextResponse.redirect(url)
+
+  const response = NextResponse.redirect(url)
+  // Where this redirect lands depends on the request, so any cache in front of
+  // the app has to key on the same inputs. Without this, nginx or a CDN can
+  // store one visitor's /en redirect and hand it to everyone who follows.
+  response.headers.set('Vary', 'Accept-Language, Cookie')
+  return response
 }
 
 export const config = {
