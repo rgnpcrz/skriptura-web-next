@@ -3,6 +3,9 @@ import ServiceDetailClient from '@/components/pages/ServiceDetailClient'
 import { notFound } from 'next/navigation'
 import { isLocale, defaultLocale } from '@/i18n/config'
 import { pageMetadata } from '@/i18n/seo'
+import { getDictionary } from '@/i18n/dictionaries'
+import { breadcrumbJsonLd } from '@/i18n/jsonld'
+import JsonLd from '@/components/JsonLd'
 
 export async function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }))
@@ -22,8 +25,21 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const { slug } = await params
+  const { lang, slug } = await params
+  const locale = isLocale(lang) ? lang : defaultLocale
+  const { nav } = getDictionary(locale)
   const service = services.find((s) => s.slug === slug)
   if (!service) notFound()
-  return <ServiceDetailClient slug={slug} />
+  const trail = [
+    { name: nav.home, path: '' },
+    { name: nav.services, path: '/services' },
+    { name: service.name, path: `/services/${slug}` },
+  ]
+
+  return (
+    <>
+      <JsonLd data={breadcrumbJsonLd(locale, trail)} />
+      <ServiceDetailClient slug={slug} />
+    </>
+  )
 }

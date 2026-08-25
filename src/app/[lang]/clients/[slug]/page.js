@@ -3,6 +3,9 @@ import ClientDetailClient from '@/components/pages/ClientDetailClient'
 import { notFound } from 'next/navigation'
 import { isLocale, defaultLocale } from '@/i18n/config'
 import { pageMetadata } from '@/i18n/seo'
+import { getDictionary } from '@/i18n/dictionaries'
+import { breadcrumbJsonLd } from '@/i18n/jsonld'
+import JsonLd from '@/components/JsonLd'
 
 export async function generateStaticParams() {
   return clients.map((c) => ({ slug: c.slug }))
@@ -22,8 +25,21 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const { slug } = await params
+  const { lang, slug } = await params
+  const locale = isLocale(lang) ? lang : defaultLocale
+  const { nav } = getDictionary(locale)
   const client = clients.find((c) => c.slug === slug)
   if (!client) notFound()
-  return <ClientDetailClient slug={slug} />
+  const trail = [
+    { name: nav.home, path: '' },
+    { name: nav.clients, path: '/clients' },
+    { name: client.name, path: `/clients/${slug}` },
+  ]
+
+  return (
+    <>
+      <JsonLd data={breadcrumbJsonLd(locale, trail)} />
+      <ClientDetailClient slug={slug} />
+    </>
+  )
 }

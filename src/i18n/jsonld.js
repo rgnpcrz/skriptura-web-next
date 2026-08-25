@@ -21,7 +21,12 @@ export function organizationJsonLd(locale) {
         foundingDate: '2023-12',
         description,
         image: `${BASE}/${locale}/opengraph-image`,
-        logo: `${BASE}/${locale}/opengraph-image`,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${BASE}/apple-icon`,
+          width: 180,
+          height: 180,
+        },
         address: {
           '@type': 'PostalAddress',
           streetAddress: 'Rruga Dr. Shpëtim Robaj, B. C, Nr. 12',
@@ -48,5 +53,28 @@ export function organizationJsonLd(locale) {
         inLanguage: locale === 'sq' ? 'sq' : 'en',
       },
     ],
+  }
+}
+
+/**
+ * Breadcrumb trail for a page, as schema.org BreadcrumbList.
+ *
+ * Google's sitelinks guidance asks for "a logical site structure that is easy
+ * for users to navigate" — this is that structure stated in machine-readable
+ * form, so the hierarchy does not have to be inferred from link graphs alone.
+ * It is also what puts a breadcrumb line under the result instead of a raw URL.
+ *
+ * `trail` is ordered root-first; each `path` is locale-less ('' for home).
+ */
+export function breadcrumbJsonLd(locale, trail) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map((crumb, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: crumb.name,
+      item: `${BASE}/${locale}${crumb.path}`,
+    })),
   }
 }
