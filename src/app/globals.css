@@ -203,24 +203,15 @@
  *    all: mask-image takes an <image>, and gradients are not smoothly
  *    interpolable, so the keyframes just step.
  *
- *    Two radii, because the box you see and the box being clipped are not the
- *    same thing. The snapshot is not viewport-sized: on a 2953px document in an
- *    840px viewport the browser clips the whole document.
+ *    --theme-r is the radius, set per switch: the diagonal of the box being
+ *    clipped. That box is the whole document, not the viewport — on a 2953px
+ *    page in an 840px window it is all 2953px — and its diagonal is the
+ *    furthest apart any two points in it can be, so a circle that size covers
+ *    it from wherever the centre sits. Anything short of that leaves a wedge of
+ *    the old theme to swap in one jump when the clip is released.
  *
- *    --theme-r is the on-screen one, set per switch from the viewport alone:
- *    the distance to the furthest visible corner. The sweep runs on that, so it
- *    takes the same time on every page. Sizing the whole animation against the
- *    clipped box instead made the effect a hostage to page length — the same
- *    wipe finished in 409ms on a short page and 147ms on a long one, because a
- *    taller document meant a larger radius crossed in the same 520ms.
- *
- *    The last slice then carries on to 150%, which is box-relative: a
- *    percentage on circle() resolves against its own reference box,
- *    sqrt(w² + h²) / sqrt(2), so it covers whatever the browser actually
- *    clipped without measuring it. Covering a box from any point inside needs
- *    at most its diagonal, 141.4%, so 150% clears it. Nothing of this last part
- *    is visible — the screen is already covered by then — it exists so that
- *    releasing the clip has nothing left to reveal. That was the wedge.
+ *    Both keyframes are lengths. Mixing a length with a percentage here is what
+ *    makes the shape step instead of interpolate.
  */
 ::view-transition-old(root),
 ::view-transition-new(root) {
@@ -243,13 +234,8 @@
   from {
     clip-path: circle(0px at var(--theme-x, 50%) var(--theme-y, 0%));
   }
-  /* The sweep you actually watch: 0 to the far edge of the screen. */
-  88% {
-    clip-path: circle(var(--theme-r, 100vmax) at var(--theme-x, 50%) var(--theme-y, 0%));
-  }
-  /* Off-screen overshoot to cover the rest of the clipped box. */
   to {
-    clip-path: circle(150% at var(--theme-x, 50%) var(--theme-y, 0%));
+    clip-path: circle(var(--theme-r, 200vmax) at var(--theme-x, 50%) var(--theme-y, 0%));
   }
 }
 
