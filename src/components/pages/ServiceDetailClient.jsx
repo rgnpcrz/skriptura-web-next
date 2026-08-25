@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import Link from '@/components/ui/LocaleLink'
 import { useTranslation } from '@/i18n/client'
@@ -20,20 +20,20 @@ export default function ServiceDetailClient({ slug }) {
         <SectionHeader title={`// ${service.name.toUpperCase()}`} />
       </div>
       <Card><p className="font-mono text-sm sm:text-base leading-relaxed max-w-3xl">{service.description}</p></Card>
-      <section>
+      <section data-reveal>
         <SectionHeader title={t('services.sectionIncludes')} />
         <Card>
           <ul className="space-y-3">
             {service.includes.map((item, i) => (
               <li key={i} className="flex items-start gap-3 font-mono text-sm">
-                <span className="font-bold text-accent bg-black px-1 shrink-0 mt-0.5">›</span>
+                <span className="font-bold text-accent bg-terminal px-1 shrink-0 mt-0.5">›</span>
                 <span>{item}</span>
               </li>
             ))}
           </ul>
         </Card>
       </section>
-      <section>
+      <section data-reveal>
         <SectionHeader title={t('services.sectionClients')} />
         {relatedClients.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -41,13 +41,13 @@ export default function ServiceDetailClient({ slug }) {
               <Link key={client.slug} href={`/clients/${client.slug}`} className="block group">
                 <Card hover className="h-full">
                   <h3 className="font-mono font-bold text-sm mb-1 group-hover:underline underline-offset-2">{client.name}</h3>
-                  <p className="font-mono text-xs text-black/70">{client.tagline}</p>
+                  <p className="font-mono text-xs text-ink/70">{client.tagline}</p>
                 </Card>
               </Link>
             ))}
           </div>
         ) : (
-          <Card><p className="font-mono text-sm text-black/60">{t('services.noClients')}</p></Card>
+          <Card><p className="font-mono text-sm text-ink/60">{t('services.noClients')}</p></Card>
         )}
       </section>
     </div>

@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useState } from 'react'
 import { useTranslation, useLocale } from '@/i18n/client'
@@ -51,7 +51,7 @@ export default function ContactClient() {
   return (
     <div className="space-y-12">
       <SectionHeader title={t('contact.title')} subtitle={t('contact.subtitle')} />
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div data-reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="space-y-4">
           <SectionHeader title={t('contact.sectionInfo')} />
           <Card yellow>
@@ -62,13 +62,13 @@ export default function ContactClient() {
                 { label: t('contact.labelBizEmail'), content: <a href="mailto:skriptura.co@gmail.com" className="text-sm sm:text-base hover:underline underline-offset-2">skriptura.co@gmail.com</a> },
               ].map(({ label, content }) => (
                 <div key={label}>
-                  <p className="text-xs uppercase tracking-widest font-bold text-black/60 mb-1">{label}</p>
+                  <p className="text-xs uppercase tracking-widest font-bold text-on-accent/60 mb-1">{label}</p>
                   {content}
                 </div>
               ))}
-              <div className="border-t-2 border-black pt-3">
+              <div className="border-t-2 border-on-accent pt-3">
                 <p className="text-sm">{t('contact.address')}</p>
-                <p className="text-sm text-black/70">{t('contact.city')}</p>
+                <p className="text-sm text-on-accent/70">{t('contact.city')}</p>
               </div>
             </div>
           </Card>
@@ -76,12 +76,12 @@ export default function ContactClient() {
             <SectionHeader title={t('contact.sectionRegistration')} />
             <Card>
               <div className="font-mono text-sm space-y-2">
-                <div className="flex justify-between border-b border-black/10 pb-2">
-                  <span className="text-black/60 text-xs uppercase tracking-wide font-bold">{t('contact.nuiLabel')}</span>
+                <div className="flex justify-between border-b border-ink/10 pb-2">
+                  <span className="text-ink/60 text-xs uppercase tracking-wide font-bold">{t('contact.nuiLabel')}</span>
                   <span title="yes, we're legit" className="cursor-help underline decoration-dotted underline-offset-2">812112431</span>
                 </div>
                 <div className="flex justify-between items-center pt-1">
-                  <span className="text-black/60 text-xs uppercase tracking-wide font-bold">{t('contact.arbkLabel')}</span>
+                  <span className="text-ink/60 text-xs uppercase tracking-wide font-bold">{t('contact.arbkLabel')}</span>
                   <Badge yellow>{t('contact.arbkValue')}</Badge>
                 </div>
               </div>
@@ -97,27 +97,29 @@ export default function ContactClient() {
                 { key: 'email', label: t('contact.formEmail'), type: 'email', autoComplete: 'email' },
               ].map(({ key, label, type, autoComplete }) => (
                 <div key={key}>
-                  <label className="font-mono text-xs uppercase tracking-wide font-bold block mb-1">{label}</label>
+                  <label htmlFor={`contact-${key}`} className="font-mono text-xs uppercase tracking-wide font-bold block mb-1">{label}</label>
                   <input
+                    id={`contact-${key}`}
                     type={type}
                     required
                     autoComplete={autoComplete}
                     disabled={status === 'sending'}
                     value={form[key]}
                     onChange={(e) => setForm({ ...form, [key]: e.target.value })}
-                    className="w-full border-2 border-black px-3 py-2 font-mono text-sm focus:outline-none focus:border-accent transition-colors bg-white disabled:opacity-50"
+                    className="w-full border-2 border-ink px-3 py-2 font-mono text-sm focus:outline-none focus:border-accent transition-colors bg-paper disabled:opacity-50"
                   />
                 </div>
               ))}
               <div>
-                <label className="font-mono text-xs uppercase tracking-wide font-bold block mb-1">{t('contact.formMessage')}</label>
+                <label htmlFor="contact-message" className="font-mono text-xs uppercase tracking-wide font-bold block mb-1">{t('contact.formMessage')}</label>
                 <textarea
+                  id="contact-message"
                   required
                   rows={5}
                   disabled={status === 'sending'}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full border-2 border-black px-3 py-2 font-mono text-sm focus:outline-none focus:border-accent transition-colors resize-none bg-white disabled:opacity-50"
+                  className="w-full border-2 border-ink px-3 py-2 font-mono text-sm focus:outline-none focus:border-accent transition-colors resize-none bg-paper disabled:opacity-50"
                 />
               </div>
               {/* Honeypot: hidden from people, irresistible to bots. */}
@@ -145,16 +147,16 @@ export default function ContactClient() {
                 >
                   {status === 'sending' ? t('contact.formSending') : t('contact.formSubmit')}
                 </Button>
-                <p className="font-mono text-xs text-black/50">{t('contact.formNote')}</p>
+                <p className="font-mono text-xs text-ink/50">{t('contact.formNote')}</p>
               </div>
               <div aria-live="polite">
                 {status === 'sent' && (
-                  <p className="font-mono text-sm border-2 border-black bg-accent px-3 py-2">
+                  <p className="font-mono text-sm border-2 border-ink bg-accent text-on-accent px-3 py-2">
                     {t('contact.formSuccess')}
                   </p>
                 )}
                 {status === 'error' && (
-                  <p className="font-mono text-sm border-2 border-black bg-white px-3 py-2">
+                  <p className="font-mono text-sm border-2 border-ink bg-paper px-3 py-2">
                     {t(errorKey)}{' '}
                     <a href="mailto:info@skriptura.net" className="font-bold underline underline-offset-2">
                       info@skriptura.net

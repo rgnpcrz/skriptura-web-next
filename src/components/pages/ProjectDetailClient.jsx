@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import Link from '@/components/ui/LocaleLink'
 import { useTranslation } from '@/i18n/client'
@@ -18,22 +18,22 @@ export default function ProjectDetailClient({ slug }) {
       <div>
         <Link href="/projects" className="font-mono text-xs font-bold hover:underline underline-offset-2 mb-4 block">{t('common.backToProjects')}</Link>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <SectionHeader title={`// ${project.name.toUpperCase()}`} className="mb-0" />
-          <Badge yellow={project.status === 'live'}>{project.status === 'live' ? t('projects.statusLive') : t('projects.statusComingSoon')}</Badge>
+          <SectionHeader title={`// ${project.name.toUpperCase()}`} className="mb-0 min-w-0" />
+          <Badge yellow={project.status === 'live'} className="shrink-0">{project.status === 'live' ? t('projects.statusLive') : t('projects.statusComingSoon')}</Badge>
         </div>
       </div>
       <Card>
         <p className="font-mono font-bold text-sm sm:text-base mb-3">{project.tagline}</p>
-        <p className="font-mono text-sm sm:text-base text-black/70 leading-relaxed">{project.description}</p>
+        <p className="font-mono text-sm sm:text-base text-ink/70 leading-relaxed">{project.description}</p>
         {project.url && <div className="mt-6"><Button href={project.url} variant="solid">{t('projects.playNow')}</Button></div>}
       </Card>
       {project.plannedTools && (
-        <section>
+        <section data-reveal>
           <SectionHeader title={`// ${t('projects.plannedTools').toUpperCase()}`} />
           <Card><div className="flex flex-wrap gap-2">{project.plannedTools.map((tool) => <Badge key={tool} yellow>{tool}</Badge>)}</div></Card>
         </section>
       )}
-      <section>
+      <section data-reveal>
         <SectionHeader title="// TAGS" />
         <Card><div className="flex flex-wrap gap-2">{project.tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}</div></Card>
       </section>

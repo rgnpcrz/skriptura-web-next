@@ -152,6 +152,20 @@
     "quickLinks": "Quick links",
     "rights": "All rights reserved."
   },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "Auto"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "mainNav": "Main navigation",
+    "language": "Language",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "preferences": "Language and theme"
+  },
   "seo": {
     "default": {
       "title": "Skriptura — Custom Software & Web Development",

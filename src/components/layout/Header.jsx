@@ -2,31 +2,18 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from '@/components/ui/LocaleLink'
-import { usePathname, useRouter } from 'next/navigation'
-import { useTranslation, useLocale } from '@/i18n/client'
+import { usePathname } from 'next/navigation'
+import { useTranslation } from '@/i18n/client'
+import PreferencesMenu from './PreferencesMenu'
 
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a']
-
-// Remember the visitor's language choice so the proxy honors it on later visits.
-function persistLocale(l) {
-  document.cookie = `NEXT_LOCALE=${l};path=/;max-age=31536000`
-}
 
 export default function Header({ onKonami }) {
   const { t } = useTranslation()
   const pathname = usePathname()
-  const router = useRouter()
-  const locale = useLocale()
   const [menuOpen, setMenuOpen] = useState(false)
   const konamiRef = useRef(0)
   const [konamiProgress, setKonamiProgress] = useState(0)
-
-  const switchLang = (l) => {
-    if (l === locale) return
-    persistLocale(l)
-    const restPath = pathname.replace(/^\/(en|sq)(?=\/|$)/, '')
-    router.push(`/${l}${restPath}`)
-  }
 
   const handleKey = useCallback((e) => {
     const next = konamiRef.current
@@ -50,6 +37,15 @@ export default function Header({ onKonami }) {
     return () => window.removeEventListener('keydown', handleKey)
   }, [handleKey])
 
+  // The header survives navigation, so the drawer has to be closed explicitly.
+  // Adjusting during render (rather than in an effect) avoids painting the open
+  // drawer over the new page for a frame.
+  const [drawerPath, setDrawerPath] = useState(pathname)
+  if (drawerPath !== pathname) {
+    setDrawerPath(pathname)
+    setMenuOpen(false)
+  }
+
   // Compare against the locale-stripped path so active state survives the /en, /sq prefix.
   const basePath = pathname.replace(/^\/(en|sq)(?=\/|$)/, '') || '/'
   const isActive = (href, exact = false) =>
@@ -65,45 +61,45 @@ export default function Header({ onKonami }) {
   ]
 
   return (
-    <header className="border-b-2 border-black bg-white sticky top-0 z-50">
+    <header className="border-b-2 border-ink bg-paper sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
-        <Link href="/" className="font-mono font-bold text-lg sm:text-xl tracking-widest uppercase select-none hover:text-black">
+        {/* The theme wipe expands out of the wordmark — see setRevealGeometry. */}
+        <Link
+          href="/"
+          data-theme-origin
+          className="font-mono font-bold text-lg sm:text-xl tracking-widest uppercase select-none"
+        >
           SKRIPTURA
         </Link>
 
-        <nav className="hidden md:flex items-center gap-4 lg:gap-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`font-mono font-bold text-sm uppercase tracking-wide px-1 py-0.5 border-b-2 transition-colors ${
-                isActive(link.href, link.exact) ? 'border-accent text-black' : 'border-transparent text-black hover:border-accent'
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+        <nav aria-label={t('a11y.mainNav')} className="hidden md:flex items-center gap-4 lg:gap-6">
+          {navLinks.map((link) => {
+            const active = isActive(link.href, link.exact)
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? 'page' : undefined}
+                className={`font-mono font-bold text-sm uppercase tracking-wide px-1 py-0.5 border-b-2 transition-colors ${
+                  active ? 'border-accent' : 'border-transparent hover:border-accent'
+                }`}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
         </nav>
 
         <div className="flex items-center gap-2">
-          <div className="flex border border-black">
-            {['en', 'sq'].map((l, i) => (
-              <button
-                key={l}
-                onClick={() => switchLang(l)}
-                className={`font-mono text-xs font-bold px-2 py-1 transition-colors ${i > 0 ? 'border-l border-black' : ''} ${
-                  locale === l ? 'bg-accent text-black' : 'bg-white text-black hover:bg-accent'
-                }`}
-              >
-                {l.toUpperCase()}
-              </button>
-            ))}
-          </div>
+          <PreferencesMenu />
 
           <button
-            className="md:hidden border-2 border-black p-1.5 bg-white hover:bg-black hover:text-white transition-colors"
+            type="button"
+            className="md:hidden border-2 border-ink p-1.5 bg-paper hover:bg-ink hover:text-paper transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            aria-label={menuOpen ? t('a11y.closeMenu') : t('a11y.openMenu')}
           >
             <span className="block w-5 h-0.5 bg-current mb-1" />
             <span className="block w-5 h-0.5 bg-current mb-1" />
@@ -113,20 +109,24 @@ export default function Header({ onKonami }) {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden border-t-2 border-black bg-white">
-          <nav className="max-w-6xl mx-auto px-4 py-4 flex flex-col">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className={`font-mono font-bold text-sm uppercase tracking-wide py-3 border-b border-black block transition-all ${
-                  isActive(link.href, link.exact) ? 'pl-2 border-l-4 border-l-accent' : 'hover:pl-2'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+        <div id="mobile-menu" className="md:hidden border-t-2 border-ink bg-paper">
+          <nav aria-label={t('a11y.mainNav')} className="max-w-6xl mx-auto px-4 py-4 flex flex-col">
+            {navLinks.map((link) => {
+              const active = isActive(link.href, link.exact)
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  aria-current={active ? 'page' : undefined}
+                  className={`font-mono font-bold text-sm uppercase tracking-wide py-3 border-b border-ink block transition-all ${
+                    active ? 'pl-2 border-l-4 border-l-accent' : 'hover:pl-2'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
           </nav>
         </div>
       )}

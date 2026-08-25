@@ -1,6 +1,16 @@
 /** @type {import('tailwindcss').Config} */
+
+// Every themeable color is a CSS variable holding space-separated RGB channels,
+// so `<alpha-value>` keeps Tailwind's opacity modifiers (text-ink/70) working.
+// Swapping themes is therefore a single variable flip on <html data-theme> —
+// no duplicated `dark:` utilities in the stylesheet, one repaint at runtime.
+const themed = (variable) => `rgb(var(${variable}) / <alpha-value>)`
+
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  // Escape hatch for the rare rule that needs a genuinely different treatment
+  // per theme rather than an inverted token.
+  darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     borderRadius: {
       DEFAULT: '0',
@@ -19,13 +29,24 @@ module.exports = {
         sans: ['"Space Mono"', '"Courier New"', 'monospace'],
       },
       colors: {
-        accent: '#FFE600',
-        'accent-dark': '#E6CF00',
+        // Text, borders and rules. Black in light, near-white in dark.
+        ink: themed('--ink'),
+        // Raised surfaces: cards, header, footer. White in light, charcoal in dark.
+        paper: themed('--paper'),
+        // The page behind those surfaces.
+        canvas: themed('--canvas'),
+        // Brand yellow — identical in both themes, so anything sitting on it
+        // must use `on-accent` rather than `ink` to stay legible.
+        accent: themed('--accent'),
+        'accent-strong': themed('--accent-strong'),
+        'on-accent': themed('--on-accent'),
+        // Terminal panels stay dark in both themes by design.
+        terminal: '#000000',
       },
       boxShadow: {
-        card: '4px 4px 0 #000000',
-        'card-hover': '6px 6px 0 #000000',
-        'card-sm': '2px 2px 0 #000000',
+        card: '4px 4px 0 rgb(var(--shadow))',
+        'card-hover': '6px 6px 0 rgb(var(--shadow))',
+        'card-sm': '2px 2px 0 rgb(var(--shadow))',
       },
       keyframes: {
         glitch: {

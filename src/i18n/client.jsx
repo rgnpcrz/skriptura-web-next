@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useMemo } from 'react'
+import { createContext, useCallback, useContext, useMemo } from 'react'
 import { defaultLocale } from './config'
 
 const TranslationContext = createContext({ dict: {}, locale: defaultLocale })
@@ -18,11 +18,13 @@ function resolvePath(obj, path) {
 // The dictionary has no interpolation/pluralization, so a dot-path lookup suffices.
 export function useTranslation() {
   const { dict } = useContext(TranslationContext)
-  const t = (key) => {
+  // Stable per dictionary, so `t` can be listed in hook dependency arrays
+  // without re-running the hook on every render.
+  const t = useCallback((key) => {
     const value = resolvePath(dict, key)
     return typeof value === 'string' ? value : key
-  }
-  return { t }
+  }, [dict])
+  return useMemo(() => ({ t }), [t])
 }
 
 export function useLocale() {
