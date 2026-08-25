@@ -23,6 +23,7 @@ Open [http://localhost:3000](http://localhost:3000). You'll be redirected to `/e
 | `npm run build` | Production build           |
 | `npm start`     | Serve the production build |
 | `npm run lint`  | ESLint                     |
+| `npm run check:fit` | Text-fit check (see below) |
 
 ## Structure
 
@@ -56,6 +57,25 @@ src/
     jsonld.js         Organization + WebSite structured data
   proxy.js            Locale detection and redirect
 ```
+
+## Text fit
+
+`npm run check:fit` checks that headline text still fits its box at 22 viewport
+widths, in both languages. Everything here is set in Space Mono, and a monospace
+face makes rendered width arithmetic — characters x (advance + letter-spacing) x
+size — so overflow can be checked without a browser.
+
+It exists because the failure it catches is invisible in one language and one
+window size: Albanian labels run about 30% longer than English, and a `sm:`
+prefix can shrink a box and enlarge its text at the same breakpoint. The stat
+grid did both at 640px, dropping its cards to 84px while the numbers grew to
+36px.
+
+The model in [`scripts/fit-check.mjs`](scripts/fit-check.mjs) mirrors the
+components' real classes and asserts they are still there, so changing a
+component fails the check until the model is updated to match. A pass means the
+arithmetic is sound, not that the page looks right — it knows nothing about line
+height or non-monospace text.
 
 ## Localization
 
