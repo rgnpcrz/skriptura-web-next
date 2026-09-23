@@ -44,7 +44,7 @@ export default async function RootLayout({ children, params }) {
   return (
     // The boot script writes data-theme/data-theme-pref/data-motion onto <html>
     // before React hydrates, which React would otherwise flag as a mismatch.
-    <html lang={lang} className={spaceMono.variable} suppressHydrationWarning>
+    <html lang={lang} className={`${spaceMono.variable} overflow-y-scroll`} suppressHydrationWarning>
       <body className="font-mono">
         <BootScript />
         <script
