@@ -29,6 +29,9 @@
     "sectionClients": "// KLIENTËT",
     "sectionClientsSub": "Biznese të ndryshme, secili me problemin e vet. Ne e ndërtuam zgjidhjen.",
     "viewAllClients": "Shiko të gjithë klientët →",
+    "sectionProducts": "// PRODUKTET",
+    "sectionProductsSub": "Sisteme që i ndërtojmë dhe i mirëmbajmë për biznese, në dispozicion për çdo klient.",
+    "viewAllProducts": "Shiko të gjitha produktet →",
     "sectionProjects": "// PROJEKTET",
     "sectionProjectsSub": "Projekte anësore e eksperimente — gjëra që i ndërtojmë për qejf dhe për komunitetin.",
     "viewAllProjects": "Shiko të gjitha projektet →",
@@ -86,6 +89,13 @@
     "statusComingSoon": "SË SHPEJTI",
     "ctaOpen": "Hap veglat →",
     "toolsHeading": "Veglat"
+  },
+  "products": {
+    "title": "// PRODUKTET",
+    "subtitle": "Sisteme që i ndërtojmë dhe i mirëmbajmë për biznese, në dispozicion për çdo klient.",
+    "statusAvailable": "NË DISPOZICION",
+    "inUseAt": "Në përdorim te",
+    "ctaDemo": "Kërko një demo →"
   },
   "contact": {
     "title": "// KONTAKTO",
@@ -171,7 +181,7 @@
     },
     "projects": {
       "title": "Projektet",
-      "description": "Skriptura Tools dhe Spyfall — lojë multiplayer — softuer i ndërtuar nga Skriptura për komunitetin dhe për argëtim."
+      "description": "Sisteme për klinika, POS, SEF, hotele dhe rent-a-car për çdo klient, si dhe Skriptura Tools dhe loja Spyfall, nga Skriptura."
     },
     "contact": {
       "title": "Kontakt",

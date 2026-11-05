@@ -9,7 +9,9 @@ import Badge from '@/components/ui/Badge'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { clients } from '@/data/clients'
 import { services } from '@/data/services'
+import ProductCard from '@/components/ui/ProductCard'
 import { projects, pick } from '@/data/projects'
+import { products } from '@/data/products'
 
 const WORDMARK_CLICK_THRESHOLD = 5
 const WORDMARK_WINDOW_MS = 2000
@@ -145,6 +147,19 @@ export default function HomeClient() {
               </Card>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* // PRODUCTS */}
+      <section data-reveal>
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6 sm:mb-8">
+          <SectionHeader title={t('home.sectionProducts')} subtitle={t('home.sectionProductsSub')} className="mb-0 min-w-0" />
+          <Link href="/projects#products" className="font-mono text-sm font-bold hover:underline underline-offset-2 whitespace-nowrap">
+            {t('home.viewAllProducts')}
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {products.map((product) => <ProductCard key={product.slug} product={product} compact />)}
         </div>
       </section>
 

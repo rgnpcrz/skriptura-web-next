@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+
+- "// PRODUCTS": clinic management, POS, SEF (electronic fiscalization), hotel management and car rental systems, shown as available to every client. On `/projects` they sit above the fun projects (anchor `#products`) with their feature list; the home page shows a compact row before "// PROJECTS". Each card names the clients already running it (linking to their `/clients` page) and has an "Ask for a demo →" link to `/contact`. Data in `src/data/products.js` (`{ en, sq }` copy), card in `src/components/ui/ProductCard.jsx`. The `/projects` meta description now leads with the products.
+
 ### Changed
 
 - Skriptura Tools is live: it is now the first project on the home page and `/projects`, links to `https://tools.skriptura.net` with an "Open tools →" button, and its detail page lists the 18 shipped tools instead of the old planned list. Project taglines and descriptions now have Albanian copy (`{ en, sq }` fields in `src/data/projects.js`, read through `pick()`).

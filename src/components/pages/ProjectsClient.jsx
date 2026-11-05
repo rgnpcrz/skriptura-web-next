@@ -5,7 +5,9 @@ import { useTranslation, useLocale } from '@/i18n/client'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import SectionHeader from '@/components/ui/SectionHeader'
+import ProductCard from '@/components/ui/ProductCard'
 import { projects, pick } from '@/data/projects'
+import { products } from '@/data/products'
 
 export default function ProjectsClient() {
   const { t } = useTranslation()
@@ -15,6 +17,13 @@ export default function ProjectsClient() {
   return (
     <div className="space-y-12">
       <SectionHeader title={t('projects.title')} subtitle={t('projects.subtitle')} />
+      {/* scroll-mt clears the sticky header when the home page links to #products. */}
+      <section id="products" data-reveal className="scroll-mt-20">
+        <SectionHeader title={t('products.title')} subtitle={t('products.subtitle')} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {products.map((product) => <ProductCard key={product.slug} product={product} />)}
+        </div>
+      </section>
       {live.length > 0 && (
         <section data-reveal>
           <SectionHeader title={t('projects.sectionLive')} />

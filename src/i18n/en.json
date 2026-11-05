@@ -29,6 +29,9 @@
     "sectionClients": "// CLIENTS",
     "sectionClientsSub": "Businesses we've built software for.",
     "viewAllClients": "View all clients →",
+    "sectionProducts": "// PRODUCTS",
+    "sectionProductsSub": "Systems we build and maintain for businesses, available to every client.",
+    "viewAllProducts": "View all products →",
     "sectionProjects": "// PROJECTS",
     "sectionProjectsSub": "Side projects and experiments we ship for fun.",
     "viewAllProjects": "View all projects →",
@@ -86,6 +89,13 @@
     "statusComingSoon": "COMING SOON",
     "ctaOpen": "Open tools →",
     "toolsHeading": "Tools"
+  },
+  "products": {
+    "title": "// PRODUCTS",
+    "subtitle": "Systems we build and maintain for businesses, available to every client.",
+    "statusAvailable": "AVAILABLE",
+    "inUseAt": "In use at",
+    "ctaDemo": "Ask for a demo →"
   },
   "contact": {
     "title": "// CONTACT",
@@ -171,7 +181,7 @@
     },
     "projects": {
       "title": "Projects",
-      "description": "Skriptura Tools and the Spyfall multiplayer game — software built by Skriptura for the community and for fun."
+      "description": "Clinic, POS, SEF, hotel and car rental systems available to every client, plus Skriptura Tools and the Spyfall game, built by Skriptura."
     },
     "contact": {
       "title": "Contact",
