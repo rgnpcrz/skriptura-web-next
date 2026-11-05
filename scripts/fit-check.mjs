@@ -91,7 +91,7 @@ const cases = [
     ['en', EN.home],
     ['sq', SQ.home],
   ].flatMap(([lang, home]) =>
-    [home.statFounded, home.statClients, home.statOwners, home.statCity].map((label) => ({
+    [home.statFounded, home.statClients, home.statTools, home.statCity].map((label) => ({
       name: `stat label ${lang} "${label}"`,
       box: statCard,
       text: label,

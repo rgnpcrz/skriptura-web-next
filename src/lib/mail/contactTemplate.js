@@ -14,7 +14,7 @@ const COPY = {
     fieldMessage: 'Message',
     urgent: 'If it\'s urgent, call us on <a href="tel:+38344564565" style="color:#000;">+383 44 564 565</a>.',
     signoff: '— The Skriptura team',
-    footer: 'Skriptura SH.P.K. · Rruga Dr. Shpëtim Robaj, B. C, Nr. 12 · Prishtinë, Kosovo',
+    footer: 'Skriptura SH.P.K. · Prishtinë, Kosovo',
   },
   sq: {
     subject: (name) => `E morëm mesazhin tënd, ${name} — Skriptura`,
@@ -27,7 +27,7 @@ const COPY = {
     fieldMessage: 'Mesazhi',
     urgent: 'Nëse është urgjente, na merr në <a href="tel:+38344564565" style="color:#000;">+383 44 564 565</a>.',
     signoff: '— Ekipi i Skripturës',
-    footer: 'Skriptura SH.P.K. · Rruga Dr. Shpëtim Robaj, B. C, Nr. 12 · Prishtinë, Kosovë',
+    footer: 'Skriptura SH.P.K. · Prishtinë, Kosovë',
   },
 }
 

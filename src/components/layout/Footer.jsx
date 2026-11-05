@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <p className="font-mono font-bold text-xl tracking-widest mb-2">SKRIPTURA</p>
             <p className="font-mono text-xs text-ink/60 mb-4 max-w-xs">{t('home.mission')}</p>
-            <p className="font-mono text-xs text-ink/50">Skriptura SH.P.K. · NUI: 812112431</p>
+            <p className="font-mono text-xs text-ink/50">Skriptura SH.P.K.</p>
           </div>
           <div>
             <p className="font-mono font-bold text-xs uppercase tracking-widest mb-3 border-b border-ink pb-2">

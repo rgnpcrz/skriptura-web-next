@@ -1,16 +1,17 @@
 'use client'
 
 import Link from '@/components/ui/LocaleLink'
-import { useTranslation } from '@/i18n/client'
+import { useTranslation, useLocale } from '@/i18n/client'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import Button from '@/components/ui/Button'
 import SectionHeader from '@/components/ui/SectionHeader'
 import NotFound from '@/components/ui/NotFound'
-import { projects } from '@/data/projects'
+import { projects, pick } from '@/data/projects'
 
 export default function ProjectDetailClient({ slug }) {
   const { t } = useTranslation()
+  const locale = useLocale()
   const project = projects.find((p) => p.slug === slug)
   if (!project) return <NotFound />
   return (
@@ -23,10 +24,16 @@ export default function ProjectDetailClient({ slug }) {
         </div>
       </div>
       <Card>
-        <p className="font-mono font-bold text-sm sm:text-base mb-3">{project.tagline}</p>
-        <p className="font-mono text-sm sm:text-base text-ink/70 leading-relaxed">{project.description}</p>
-        {project.url && <div className="mt-6"><Button href={project.url} variant="solid">{t('projects.playNow')}</Button></div>}
+        <p className="font-mono font-bold text-sm sm:text-base mb-3">{pick(project.tagline, locale)}</p>
+        <p className="font-mono text-sm sm:text-base text-ink/70 leading-relaxed">{pick(project.description, locale)}</p>
+        {project.url && <div className="mt-6"><Button href={project.url} variant="solid">{t(project.cta === 'open' ? 'projects.ctaOpen' : 'projects.playNow')}</Button></div>}
       </Card>
+      {project.tools && (
+        <section data-reveal>
+          <SectionHeader title={`// ${t('projects.toolsHeading').toUpperCase()} (${pick(project.tools, locale).length})`} />
+          <Card><div className="flex flex-wrap gap-2">{pick(project.tools, locale).map((tool) => <Badge key={tool} yellow>{tool}</Badge>)}</div></Card>
+        </section>
+      )}
       {project.plannedTools && (
         <section data-reveal>
           <SectionHeader title={`// ${t('projects.plannedTools').toUpperCase()}`} />

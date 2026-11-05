@@ -19,8 +19,8 @@
     "statFoundedValue": "2023",
     "statClients": "Klientë",
     "statClientsValue": "7+",
-    "statOwners": "Pronarë",
-    "statOwnersValue": "2",
+    "statTools": "Vegla falas",
+    "statToolsValue": "18",
     "statCity": "Selia",
     "statCityValue": "Prishtinë",
     "sectionWhatWeDo": "// ÇKA BËJMË",
@@ -39,33 +39,15 @@
   "about": {
     "title": "// RRETH NESH",
     "sectionStory": "// HISTORIA JONË",
-    "story1": "Skriptura SH.P.K. u themelua në dhjetor 2023 prej Rigon Paçarizit dhe Argjenta Gashit. Ideja lindi prej një vëzhgimi të thjeshtë: shumica e bizneseve në rajon ende punojnë me procese manuale që harxhojnë kohë, sjellin gabime dhe i largojnë njerëzit prej punës së vërtetë. Teknologjia ekziston — veç ende nuk po përdoret qysh duhet.",
+    "story1": "Skriptura SH.P.K. u themelua në dhjetor 2023 prej njerëzve që besojnë se shumica e bizneseve ende punojnë me procese që teknologjia mund t'i kishte zgjidhur prej vitesh. Ideja lindi prej një vëzhgimi të thjeshtë: shumica e bizneseve në rajon ende punojnë me procese manuale që harxhojnë kohë, sjellin gabime dhe i largojnë njerëzit prej punës së vërtetë. Teknologjia ekziston — veç ende nuk po përdoret qysh duhet.",
     "story2": "Filozofia jonë nuk ka të bëjë me teknologjinë në vetvete. Ka të bëjë me rezultatin: një biznes që punon më mirë, me më pak stres e me më pak gabime. Çdo softuer që ndërtojmë fillon me të kuptuarit e procesit tënd — e pastaj e dixhitalizojmë, pa e ndërlikuar.",
     "story3": "Jemi të regjistruar në Kosovë dhe punojmë kryesisht me klientë vendorë e rajonalë, edhe pse puna jonë ka arritur deri në SHBA. I mbulojmë të gjitha fazat: dizajn, zhvillim, hosting dhe mbështetje të vazhdueshme — me njerëz të vërtetë, jo me tiketa automatike.",
-    "sectionTeam": "// EKIPI",
-    "team": {
-      "rigon": {
-        "name": "Rigon Paçarizi",
-        "role": "Përfaqësues i Autorizuar",
-        "bio": "Zhvillues full-stack dhe bashkëthemelues. Merret me arkitekturën teknike, zhvillimin e softuerit dhe dorëzimin e projekteve te klienti. Ka zakon me shkru kod deri vonë natën.",
-        "location": "Prizren, Kosovë"
-      },
-      "argjenta": {
-        "name": "Argjenta Gashi",
-        "role": "Drejtoreshë Menaxhuese",
-        "bio": "Bashkëthemeluese dhe Drejtoreshë Menaxhuese. Kujdeset që projektet të ecin sipas planit, klientët të jenë të kënaqur dhe kompania të jetë gjithmonë në vendin e duhur në kohën e duhur.",
-        "location": "Prishtinë, Kosovë"
-      }
-    },
     "sectionBusiness": "// TË DHËNAT E BIZNESIT",
     "labelName": "Emri i Biznesit",
     "labelTradeName": "Emri Tregtar",
     "labelType": "Lloji i Biznesit",
-    "labelNUI": "Numri Unik Identifikues",
-    "labelEmployees": "Numri i Punëtorëve",
     "labelRegistered": "Data e Regjistrimit",
     "labelMunicipality": "Komuna",
-    "labelAddress": "Adresa",
     "labelStatus": "Statusi në ARBK",
     "labelCapital": "Kapitali",
     "valueType": "Shoqëri me Përgjegjësi të Kufizuar (SH.P.K.)",
@@ -101,13 +83,14 @@
     "playNow": "Luaj tani →",
     "plannedTools": "Mjete të planifikuara",
     "statusLive": "AKTIV",
-    "statusComingSoon": "SË SHPEJTI"
+    "statusComingSoon": "SË SHPEJTI",
+    "ctaOpen": "Hap veglat →",
+    "toolsHeading": "Veglat"
   },
   "contact": {
     "title": "// KONTAKTO",
     "subtitle": "Ke një projekt në mendje? Na shkruaj — e shqyrtojmë kërkesën dhe kthehemi me një përgjigje konkrete.",
     "sectionInfo": "// TË DHËNAT E KONTAKTIT",
-    "address": "Rruga Dr. Shpëtim Robaj, B. C, Nr. 12",
     "city": "Prishtinë, Kosovë",
     "labelPhone": "Telefon",
     "labelEmail": "Email",
@@ -124,7 +107,6 @@
     "formErrorInvalid": "Kontrollo emrin, email-in dhe mesazhin, e provo prapë — ose na shkruaj direkt te",
     "formErrorRate": "I dërgove disa mesazhe brenda pak kohe. Prit dhjetë minuta, ose na shkruaj direkt te",
     "sectionRegistration": "// REGJISTRIM",
-    "nuiLabel": "NUI",
     "arbkLabel": "Statusi ARBK",
     "arbkValue": "Aktiv"
   },
@@ -177,7 +159,7 @@
     },
     "about": {
       "title": "Rreth nesh",
-      "description": "Skriptura SH.P.K. — e themeluar në 2023 nga Rigon Paçarizi dhe Argjenta Gashi. Softuer i personalizuar dhe zhvillim web nga Prishtina, Kosovë."
+      "description": "Skriptura SH.P.K. — ekip softueri i themeluar në 2023. Softuer i personalizuar dhe zhvillim web nga Prishtina, Kosovë."
     },
     "services": {
       "title": "Shërbimet",
@@ -189,7 +171,7 @@
     },
     "projects": {
       "title": "Projektet",
-      "description": "Spyfall — lojë multiplayer dhe Skriptura Tools — softuer i ndërtuar nga Skriptura për argëtim dhe komunitet."
+      "description": "Skriptura Tools dhe Spyfall — lojë multiplayer — softuer i ndërtuar nga Skriptura për komunitetin dhe për argëtim."
     },
     "contact": {
       "title": "Kontakt",

@@ -29,20 +29,10 @@ export function organizationJsonLd(locale) {
         },
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Rruga Dr. Shpëtim Robaj, B. C, Nr. 12',
           addressLocality: 'Prishtinë',
           addressCountry: 'XK',
         },
         areaServed: ['XK', 'Kosovo'],
-        founder: [
-          { '@type': 'Person', name: 'Rigon Paçarizi' },
-          { '@type': 'Person', name: 'Argjenta Gashi' },
-        ],
-        identifier: {
-          '@type': 'PropertyValue',
-          propertyID: 'NUI',
-          value: '812112431',
-        },
       },
       {
         '@type': 'WebSite',

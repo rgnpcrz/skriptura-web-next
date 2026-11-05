@@ -1,14 +1,15 @@
 'use client'
 
 import Link from '@/components/ui/LocaleLink'
-import { useTranslation } from '@/i18n/client'
+import { useTranslation, useLocale } from '@/i18n/client'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import SectionHeader from '@/components/ui/SectionHeader'
-import { projects } from '@/data/projects'
+import { projects, pick } from '@/data/projects'
 
 export default function ProjectsClient() {
   const { t } = useTranslation()
+  const locale = useLocale()
   const live = projects.filter((p) => p.status === 'live')
   const soon = projects.filter((p) => p.status === 'coming-soon')
   return (
@@ -24,10 +25,10 @@ export default function ProjectsClient() {
                   <h2 className="font-mono font-bold text-sm sm:text-base min-w-0">{project.name}</h2>
                   <Badge yellow className="shrink-0">{t('projects.statusLive')}</Badge>
                 </div>
-                <p className="font-mono text-xs font-bold text-ink/70 mb-2">{project.tagline}</p>
-                <p className="font-mono text-xs sm:text-sm text-ink/60 mb-4 leading-relaxed flex-1">{project.description}</p>
+                <p className="font-mono text-xs font-bold text-ink/70 mb-2">{pick(project.tagline, locale)}</p>
+                <p className="font-mono text-xs sm:text-sm text-ink/60 mb-4 leading-relaxed flex-1">{pick(project.description, locale)}</p>
                 <div className="flex flex-wrap gap-1.5 mb-4">{project.tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}</div>
-                {project.url && <a href={project.url} target="_blank" rel="noopener noreferrer" className="font-mono text-xs font-bold hover:underline underline-offset-2 mt-auto">{t('projects.playNow')}</a>}
+                {project.url && <a href={project.url} target="_blank" rel="noopener noreferrer" className="font-mono text-xs font-bold hover:underline underline-offset-2 mt-auto">{t(project.cta === 'open' ? 'projects.ctaOpen' : 'projects.playNow')}</a>}
               </Card>
             ))}
           </div>
@@ -43,8 +44,8 @@ export default function ProjectsClient() {
                   <h2 className="font-mono font-bold text-sm sm:text-base min-w-0">{project.name}</h2>
                   <Badge className="shrink-0">{t('projects.statusComingSoon')}</Badge>
                 </div>
-                <p className="font-mono text-xs font-bold text-ink/70 mb-2">{project.tagline}</p>
-                <p className="font-mono text-xs sm:text-sm text-ink/60 mb-4 leading-relaxed">{project.description}</p>
+                <p className="font-mono text-xs font-bold text-ink/70 mb-2">{pick(project.tagline, locale)}</p>
+                <p className="font-mono text-xs sm:text-sm text-ink/60 mb-4 leading-relaxed">{pick(project.description, locale)}</p>
                 {project.plannedTools && (
                   <div className="border-t-2 border-ink pt-4 mt-2">
                     <p className="font-mono text-xs font-bold uppercase tracking-widest mb-3">{t('projects.plannedTools')}</p>

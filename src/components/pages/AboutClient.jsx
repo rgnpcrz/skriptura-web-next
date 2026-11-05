@@ -37,22 +37,6 @@ export default function AboutClient() {
       </section>
 
       <section data-reveal>
-        <SectionHeader title={t('about.sectionTeam')} />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {['argjenta', 'rigon'].map((key) => (
-            <Card key={key}>
-              <div className="border-b-2 border-ink pb-3 mb-4">
-                <h3 className="font-mono font-bold text-base sm:text-lg">{t(`about.team.${key}.name`)}</h3>
-                <Badge yellow className="mt-1">{t(`about.team.${key}.role`)}</Badge>
-              </div>
-              <p className="font-mono text-sm text-ink/70 leading-relaxed mb-4">{t(`about.team.${key}.bio`)}</p>
-              <p className="font-mono text-xs text-ink/50">{t(`about.team.${key}.location`)}</p>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      <section data-reveal>
         <SectionHeader title={t('about.sectionBusiness')} />
         <Card>
           <div className="overflow-x-auto">
@@ -62,11 +46,8 @@ export default function AboutClient() {
                   [t('about.labelName'), 'Skriptura SH.P.K.'],
                   [t('about.labelTradeName'), 'Skriptura'],
                   [t('about.labelType'), t('about.valueType')],
-                  [t('about.labelNUI'), <span key="nui" title="yes, we're legit" className="cursor-help underline decoration-dotted underline-offset-2">812112431</span>],
-                  [t('about.labelEmployees'), '2'],
                   [t('about.labelRegistered'), '26/12/2023'],
                   [t('about.labelMunicipality'), 'Prishtinë'],
-                  [t('about.labelAddress'), 'Rruga Dr. Shpëtim Robaj, B. C, Nr. 12'],
                   [t('about.labelCapital'), '100.00 €'],
                   [t('about.labelStatus'), <Badge key="s" yellow>{t('about.valueStatus')}</Badge>],
                 ].map(([label, value], i) => (

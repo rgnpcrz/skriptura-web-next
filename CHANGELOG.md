@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Skriptura Tools is live: it is now the first project on the home page and `/projects`, links to `https://tools.skriptura.net` with an "Open tools →" button, and its detail page lists the 18 shipped tools instead of the old planned list. Project taglines and descriptions now have Albanian copy (`{ en, sq }` fields in `src/data/projects.js`, read through `pick()`).
+- By the numbers: "Owners: 2" is replaced by "Free tools: 18".
+- Contact → Business Email is `skriptura.net@gmail.com` (was `skriptura.co@gmail.com`).
+
+### Removed
+
+- Personal details: the founders' names (About story, About SEO description, `founder` in the Organization JSON-LD), the "// THE TEAM" section, and the owner and employee counts. The company is presented as a team.
+- The NUI (footer, About registration table, Contact registration block, JSON-LD `identifier`) and the street address (About, Contact, JSON-LD, the confirmation email footer); the location is shown as "Prishtinë, Kosovo" only.
+
 ## [1.3.0] - 2026-08-25
 
 Light/dark/auto theming, and the contact form moved onto server-side mail.

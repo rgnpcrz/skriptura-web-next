@@ -19,8 +19,8 @@
     "statFoundedValue": "2023",
     "statClients": "Clients",
     "statClientsValue": "7+",
-    "statOwners": "Owners",
-    "statOwnersValue": "2",
+    "statTools": "Free tools",
+    "statToolsValue": "18",
     "statCity": "Based in",
     "statCityValue": "Prishtinë",
     "sectionWhatWeDo": "// WHAT WE DO",
@@ -39,33 +39,15 @@
   "about": {
     "title": "// ABOUT",
     "sectionStory": "// OUR STORY",
-    "story1": "Skriptura SH.P.K. was founded in December 2023 by Rigon Paçarizi and Argjenta Gashi — two people who believe that most businesses are still running on processes that technology could have solved years ago.",
+    "story1": "Skriptura SH.P.K. was founded in December 2023 by people who believe that most businesses are still running on processes that technology could have solved years ago.",
     "story2": "Our philosophy is simple: digitalize your current processes, minimize human errors, and make your work life easier. We don't build software for the sake of building software. We build it because the problem is real and the solution should be solid.",
     "story3": "We are registered in Kosovo and primarily serve local and regional clients, though our work has reached clients in the US and beyond. We cover the full stack — design, development, hosting, and ongoing support.",
-    "sectionTeam": "// THE TEAM",
-    "team": {
-      "rigon": {
-        "name": "Rigon Paçarizi",
-        "role": "Authorized Representative",
-        "bio": "Full-stack developer and co-founder. Leads technical architecture, software development, and client delivery.",
-        "location": "Prizren, Kosovo"
-      },
-      "argjenta": {
-        "name": "Argjenta Gashi",
-        "role": "Managing Director",
-        "bio": "Co-founder and Managing Director. Leads business operations, client relationships, and project management.",
-        "location": "Prishtinë, Kosovo"
-      }
-    },
     "sectionBusiness": "// BUSINESS REGISTRATION",
     "labelName": "Business Name",
     "labelTradeName": "Trade Name",
     "labelType": "Business Type",
-    "labelNUI": "Unique ID (NUI)",
-    "labelEmployees": "Employees",
     "labelRegistered": "Registered",
     "labelMunicipality": "Municipality",
-    "labelAddress": "Address",
     "labelStatus": "ARBK Status",
     "labelCapital": "Capital",
     "valueType": "Limited Liability Company (LLC)",
@@ -101,13 +83,14 @@
     "playNow": "Play now →",
     "plannedTools": "Planned tools",
     "statusLive": "LIVE",
-    "statusComingSoon": "COMING SOON"
+    "statusComingSoon": "COMING SOON",
+    "ctaOpen": "Open tools →",
+    "toolsHeading": "Tools"
   },
   "contact": {
     "title": "// CONTACT",
     "subtitle": "Have a project in mind? We'd love to hear about it.",
     "sectionInfo": "// CONTACT INFO",
-    "address": "Rruga Dr. Shpëtim Robaj, B. C, Nr. 12",
     "city": "Prishtinë, Kosovo",
     "labelPhone": "Phone",
     "labelEmail": "Email",
@@ -124,7 +107,6 @@
     "formErrorInvalid": "Please check your name, email and message, then try again — or email us directly at",
     "formErrorRate": "That's a few messages in a short time. Give it ten minutes, or email us directly at",
     "sectionRegistration": "// REGISTRATION",
-    "nuiLabel": "NUI",
     "arbkLabel": "ARBK Status",
     "arbkValue": "Registered"
   },
@@ -177,7 +159,7 @@
     },
     "about": {
       "title": "About",
-      "description": "Skriptura SH.P.K. — founded 2023 by Rigon Paçarizi and Argjenta Gashi. Custom software and web development from Prishtinë, Kosovo."
+      "description": "Skriptura SH.P.K. — a software team founded in 2023. Custom software and web development from Prishtinë, Kosovo."
     },
     "services": {
       "title": "Services",
@@ -189,7 +171,7 @@
     },
     "projects": {
       "title": "Projects",
-      "description": "Spyfall multiplayer game and Skriptura Tools — software built by Skriptura for fun and the community."
+      "description": "Skriptura Tools and the Spyfall multiplayer game — software built by Skriptura for the community and for fun."
     },
     "contact": {
       "title": "Contact",

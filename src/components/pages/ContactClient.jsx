@@ -59,7 +59,7 @@ export default function ContactClient() {
               {[
                 { label: t('contact.labelPhone'), content: <a href="tel:+38344564565" className="text-sm sm:text-base font-bold hover:underline underline-offset-2">+383 44 564 565</a> },
                 { label: t('contact.labelEmail'), content: <a href="mailto:info@skriptura.net" className="text-sm sm:text-base hover:underline underline-offset-2">info@skriptura.net</a> },
-                { label: t('contact.labelBizEmail'), content: <a href="mailto:skriptura.co@gmail.com" className="text-sm sm:text-base hover:underline underline-offset-2">skriptura.co@gmail.com</a> },
+                { label: t('contact.labelBizEmail'), content: <a href="mailto:skriptura.net@gmail.com" className="text-sm sm:text-base hover:underline underline-offset-2">skriptura.net@gmail.com</a> },
               ].map(({ label, content }) => (
                 <div key={label}>
                   <p className="text-xs uppercase tracking-widest font-bold text-on-accent/60 mb-1">{label}</p>
@@ -67,8 +67,7 @@ export default function ContactClient() {
                 </div>
               ))}
               <div className="border-t-2 border-on-accent pt-3">
-                <p className="text-sm">{t('contact.address')}</p>
-                <p className="text-sm text-on-accent/70">{t('contact.city')}</p>
+                <p className="text-sm">{t('contact.city')}</p>
               </div>
             </div>
           </Card>
@@ -76,11 +75,7 @@ export default function ContactClient() {
             <SectionHeader title={t('contact.sectionRegistration')} />
             <Card>
               <div className="font-mono text-sm space-y-2">
-                <div className="flex justify-between border-b border-ink/10 pb-2">
-                  <span className="text-ink/60 text-xs uppercase tracking-wide font-bold">{t('contact.nuiLabel')}</span>
-                  <span title="yes, we're legit" className="cursor-help underline decoration-dotted underline-offset-2">812112431</span>
-                </div>
-                <div className="flex justify-between items-center pt-1">
+                <div className="flex justify-between items-center">
                   <span className="text-ink/60 text-xs uppercase tracking-wide font-bold">{t('contact.arbkLabel')}</span>
                   <Badge yellow>{t('contact.arbkValue')}</Badge>
                 </div>

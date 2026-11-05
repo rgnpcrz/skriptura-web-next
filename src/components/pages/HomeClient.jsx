@@ -2,20 +2,21 @@
 
 import { useState, useRef } from 'react'
 import Link from '@/components/ui/LocaleLink'
-import { useTranslation } from '@/i18n/client'
+import { useTranslation, useLocale } from '@/i18n/client'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import Badge from '@/components/ui/Badge'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { clients } from '@/data/clients'
 import { services } from '@/data/services'
-import { projects } from '@/data/projects'
+import { projects, pick } from '@/data/projects'
 
 const WORDMARK_CLICK_THRESHOLD = 5
 const WORDMARK_WINDOW_MS = 2000
 
 export default function HomeClient() {
   const { t } = useTranslation()
+  const locale = useLocale()
   const [secretMsg, setSecretMsg] = useState(false)
   const clickCount = useRef(0)
   const clickTimer = useRef(null)
@@ -85,7 +86,7 @@ export default function HomeClient() {
           {[
             { label: t('home.statFounded'), value: t('home.statFoundedValue') },
             { label: t('home.statClients'), value: t('home.statClientsValue') },
-            { label: t('home.statOwners'), value: t('home.statOwnersValue') },
+            { label: t('home.statTools'), value: t('home.statToolsValue') },
             { label: t('home.statCity'), value: t('home.statCityValue'), small: true },
           ].map((stat) => (
             <Card key={stat.label} yellow className="text-center py-6">
@@ -164,10 +165,10 @@ export default function HomeClient() {
                   {project.status === 'live' ? t('projects.statusLive') : t('projects.statusComingSoon')}
                 </Badge>
               </div>
-              <p className="font-mono text-xs sm:text-sm text-ink/70 mb-4 leading-relaxed">{project.tagline}</p>
+              <p className="font-mono text-xs sm:text-sm text-ink/70 mb-4 leading-relaxed">{pick(project.tagline, locale)}</p>
               {project.url ? (
                 <a href={project.url} target="_blank" rel="noopener noreferrer" className="font-mono text-xs font-bold hover:underline underline-offset-2">
-                  {t('projects.playNow')}
+                  {t(project.cta === 'open' ? 'projects.ctaOpen' : 'projects.playNow')}
                 </a>
               ) : (
                 <Link href={`/projects/${project.slug}`} className="font-mono text-xs font-bold hover:underline underline-offset-2">

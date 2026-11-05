@@ -1,4 +1,4 @@
-import { projects } from '@/data/projects'
+import { projects, pick } from '@/data/projects'
 import ProjectDetailClient from '@/components/pages/ProjectDetailClient'
 import { notFound } from 'next/navigation'
 import { isLocale, defaultLocale } from '@/i18n/config'
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
     locale,
     path: `/projects/${slug}`,
     title: project.name,
-    description: `${project.tagline} — ${project.description.slice(0, 120)}`,
+    description: `${pick(project.tagline, locale)} — ${pick(project.description, locale).slice(0, 120)}`,
   })
 }
 
