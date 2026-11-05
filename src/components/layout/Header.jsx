@@ -38,8 +38,8 @@ export default function Header({ onKonami }) {
   }, [handleKey])
 
   // The header survives navigation, so the drawer has to be closed explicitly.
-  // Adjusting during render (rather than in an effect) avoids painting the open
-  // drawer over the new page for a frame.
+  // Adjusting during render (rather than in an effect) starts the close on the
+  // same frame the new page paints, instead of one frame later.
   const [drawerPath, setDrawerPath] = useState(pathname)
   if (drawerPath !== pathname) {
     setDrawerPath(pathname)
@@ -108,28 +108,34 @@ export default function Header({ onKonami }) {
         </div>
       </div>
 
-      {menuOpen && (
-        <div id="mobile-menu" className="lg:hidden border-t-2 border-ink bg-paper">
-          <nav aria-label={t('a11y.mainNav')} className="max-w-6xl mx-auto px-4 py-4 flex flex-col">
-            {navLinks.map((link) => {
-              const active = isActive(link.href, link.exact)
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  aria-current={active ? 'page' : undefined}
-                  className={`font-mono font-bold text-sm uppercase tracking-wide py-3 border-b border-ink block transition-all ${
-                    active ? 'pl-2 border-l-4 border-l-accent' : 'hover:pl-2'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              )
-            })}
-          </nav>
+      {/* Always mounted so it can animate shut as well as open (see .mobile-menu
+          in globals.css); `inert` keeps the closed drawer out of tab order and
+          the accessibility tree. */}
+      <div id="mobile-menu" className="mobile-menu grid lg:hidden" data-open={menuOpen ? '' : undefined} inert={!menuOpen}>
+        <div className="mobile-menu-clip">
+          <div className="border-t-2 border-ink bg-paper">
+            <nav aria-label={t('a11y.mainNav')} className="max-w-6xl mx-auto px-4 py-4 flex flex-col">
+              {navLinks.map((link, i) => {
+                const active = isActive(link.href, link.exact)
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    style={{ '--i': i }}
+                    aria-current={active ? 'page' : undefined}
+                    className={`font-mono font-bold text-sm uppercase tracking-wide py-3 border-b border-ink block transition-all ${
+                      active ? 'pl-2 border-l-4 border-l-accent' : 'hover:pl-2'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              })}
+            </nav>
+          </div>
         </div>
-      )}
+      </div>
 
       {konamiProgress > 0 && (
         <div

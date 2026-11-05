@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Skriptura Tools is live: it is now the first project on the home page and `/projects`, links to `https://tools.skriptura.net` with an "Open tools →" button, and its detail page lists the 18 shipped tools instead of the old planned list. Project taglines and descriptions now have Albanian copy (`{ en, sq }` fields in `src/data/projects.js`, read through `pick()`).
 - By the numbers: "Owners: 2" is replaced by "Free tools: 18".
 - Contact → Business Email is `skriptura.net@gmail.com` (was `skriptura.co@gmail.com`).
+- The mobile menu animates open and shut instead of popping: the drawer's height eases (so the page below glides instead of jumping), the links fade down 30ms apart on open and fade out together on close. Gated by `data-motion`, so reduced motion stays instant. The drawer is now always mounted and `inert` while closed.
 
 ### Removed
 

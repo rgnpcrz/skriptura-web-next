@@ -297,6 +297,69 @@ html[data-theme-animating] *::after {
   animation: page-enter 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/*
+ * Mobile menu. The drawer sits in the header's flow and pushes the page down,
+ * so its height has to animate too, or the page would jump by the drawer's
+ * height at the start of opening and at the end of closing. A 0fr → 1fr grid
+ * row is the one way to transition to an intrinsic height; it is a layout
+ * animation, but of a single short element, only while the menu moves.
+ *
+ * Opening: the row grows and the links fade down after it, 30ms apart (--i is
+ * the link's index). Closing: the links fade out together while the row
+ * shrinks; visibility flips only once it is shut, so the drawer leaves the
+ * accessibility tree after the motion, not before.
+ *
+ * The open/closed states hold everywhere; only the transitions are gated
+ * behind data-motion, so reduced motion opens and closes instantly.
+ */
+/* display: grid comes from the `grid` utility on the element, so `lg:hidden`
+   still wins on desktop. */
+.mobile-menu {
+  grid-template-rows: 0fr;
+  visibility: hidden;
+}
+
+.mobile-menu[data-open] {
+  grid-template-rows: 1fr;
+  visibility: visible;
+}
+
+.mobile-menu-clip {
+  min-height: 0;
+  overflow: hidden;
+}
+
+[data-motion='on'] .mobile-menu {
+  transition:
+    grid-template-rows 240ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear 240ms;
+}
+
+[data-motion='on'] .mobile-menu[data-open] {
+  transition:
+    grid-template-rows 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+
+/* padding-left keeps the links' own hover nudge (Tailwind's transition-all). */
+[data-motion='on'] .mobile-menu nav > * {
+  opacity: 0;
+  transform: translate3d(0, -6px, 0);
+  transition:
+    opacity 160ms ease-in,
+    transform 160ms ease-in,
+    padding-left 150ms ease;
+}
+
+[data-motion='on'] .mobile-menu[data-open] nav > * {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 260ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--i, 0) * 30ms + 60ms),
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--i, 0) * 30ms + 60ms),
+    padding-left 150ms ease;
+}
+
 /* Blocks marked with data-reveal wait just below their resting position until
    the observer scrolls them into view. */
 [data-motion='on'] [data-reveal] {
