@@ -16,7 +16,7 @@
     "ctaContact": "Na kontakto",
     "sectionNumbers": "// ME NUMRA",
     "statFounded": "Themeluar",
-    "statFoundedValue": "2023",
+    "statFoundedValue": "2021",
     "statClients": "Klientë",
     "statClientsValue": "7+",
     "statTools": "Vegla falas",
@@ -42,7 +42,7 @@
   "about": {
     "title": "// RRETH NESH",
     "sectionStory": "// HISTORIA JONË",
-    "story1": "Skriptura SH.P.K. u themelua në dhjetor 2023 prej njerëzve që besojnë se shumica e bizneseve ende punojnë me procese që teknologjia mund t'i kishte zgjidhur prej vitesh. Ideja lindi prej një vëzhgimi të thjeshtë: shumica e bizneseve në rajon ende punojnë me procese manuale që harxhojnë kohë, sjellin gabime dhe i largojnë njerëzit prej punës së vërtetë. Teknologjia ekziston — veç ende nuk po përdoret qysh duhet.",
+    "story1": "Skriptura nisi punën në vitin 2021, prej njerëzve që besojnë se shumica e bizneseve ende punojnë me procese që teknologjia mund t'i kishte zgjidhur prej vitesh. U regjistrua si Skriptura SH.P.K. në dhjetor 2023. Ideja lindi prej një vëzhgimi të thjeshtë: shumica e bizneseve në rajon ende punojnë me procese manuale që harxhojnë kohë, sjellin gabime dhe i largojnë njerëzit prej punës së vërtetë. Teknologjia ekziston — veç ende nuk po përdoret qysh duhet.",
     "story2": "Filozofia jonë nuk ka të bëjë me teknologjinë në vetvete. Ka të bëjë me rezultatin: një biznes që punon më mirë, me më pak stres e me më pak gabime. Çdo softuer që ndërtojmë fillon me të kuptuarit e procesit tënd — e pastaj e dixhitalizojmë, pa e ndërlikuar.",
     "story3": "Jemi të regjistruar në Kosovë dhe punojmë kryesisht me klientë vendorë e rajonalë, edhe pse puna jonë ka arritur deri në SHBA. I mbulojmë të gjitha fazat: dizajn, zhvillim, hosting dhe mbështetje të vazhdueshme — me njerëz të vërtetë, jo me tiketa automatike.",
     "sectionBusiness": "// TË DHËNAT E BIZNESIT",
@@ -136,7 +136,6 @@
     "back": "← Tërhiqu"
   },
   "common": {
-    "year": "Viti",
     "learnMore": "Mëso më shumë →",
     "backToClients": "← Kthehu te Klientët",
     "backToServices": "← Kthehu te Shërbimet",
@@ -169,7 +168,7 @@
     },
     "about": {
       "title": "Rreth nesh",
-      "description": "Skriptura SH.P.K. — ekip softueri i themeluar në 2023. Softuer i personalizuar dhe zhvillim web nga Prishtina, Kosovë."
+      "description": "Skriptura SH.P.K. — ekip softueri që punon që nga viti 2021. Softuer i personalizuar dhe zhvillim web nga Prishtina, Kosovë."
     },
     "services": {
       "title": "Shërbimet",

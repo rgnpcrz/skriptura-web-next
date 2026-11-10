@@ -72,7 +72,7 @@ export default function HomeClient() {
             </div>
             <div className="border-2 border-ink p-4 bg-terminal text-accent font-mono text-xs lg:min-w-52">
               <p className="mb-1">{'>'} skriptura.net</p>
-              <p className="mb-1">{'>'} est. 2023</p>
+              <p className="mb-1">{'>'} est. 2021</p>
               <p className="mb-1">{'>'} prishtinë, xk</p>
               <p className="mb-1">{'>'} 7+ clients</p>
               <p className="animate-pulse">{'>'} <span className="bg-accent text-on-accent px-0.5">_</span></p>
@@ -136,7 +136,6 @@ export default function HomeClient() {
               <Card hover className="h-full">
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <h3 className="font-mono font-bold text-sm sm:text-base group-hover:underline underline-offset-2">{client.name}</h3>
-                  <Badge yellow className="shrink-0">{client.year}</Badge>
                 </div>
                 <p className="font-mono text-xs sm:text-sm text-ink/70 mb-3 leading-relaxed">{client.tagline}</p>
                 <div className="flex flex-wrap gap-1.5">

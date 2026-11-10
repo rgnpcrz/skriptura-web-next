@@ -75,7 +75,7 @@ const statValueSize = (vw, small) =>
   small ? (vw < 640 ? 18 : 30) : vw < 640 ? 30 : 36
 
 const cases = [
-  ...['2023', '7+', '2'].map((value) => ({
+  ...['2021', '7+', '2'].map((value) => ({
     name: `stat value "${value}"`,
     box: statCard,
     text: value,

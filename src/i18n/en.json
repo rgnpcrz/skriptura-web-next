@@ -16,7 +16,7 @@
     "ctaContact": "Get in Touch",
     "sectionNumbers": "// BY THE NUMBERS",
     "statFounded": "Founded",
-    "statFoundedValue": "2023",
+    "statFoundedValue": "2021",
     "statClients": "Clients",
     "statClientsValue": "7+",
     "statTools": "Free tools",
@@ -42,7 +42,7 @@
   "about": {
     "title": "// ABOUT",
     "sectionStory": "// OUR STORY",
-    "story1": "Skriptura SH.P.K. was founded in December 2023 by people who believe that most businesses are still running on processes that technology could have solved years ago.",
+    "story1": "Skriptura started in 2021, built by people who believe that most businesses are still running on processes that technology could have solved years ago. It was registered as Skriptura SH.P.K. in December 2023.",
     "story2": "Our philosophy is simple: digitalize your current processes, minimize human errors, and make your work life easier. We don't build software for the sake of building software. We build it because the problem is real and the solution should be solid.",
     "story3": "We are registered in Kosovo and primarily serve local and regional clients, though our work has reached clients in the US and beyond. We cover the full stack — design, development, hosting, and ongoing support.",
     "sectionBusiness": "// BUSINESS REGISTRATION",
@@ -136,7 +136,6 @@
     "back": "← Retreat"
   },
   "common": {
-    "year": "Year",
     "learnMore": "Learn more →",
     "backToClients": "← Back to Clients",
     "backToServices": "← Back to Services",
@@ -169,7 +168,7 @@
     },
     "about": {
       "title": "About",
-      "description": "Skriptura SH.P.K. — a software team founded in 2023. Custom software and web development from Prishtinë, Kosovo."
+      "description": "Skriptura SH.P.K. — a software team working since 2021. Custom software and web development from Prishtinë, Kosovo."
     },
     "services": {
       "title": "Services",

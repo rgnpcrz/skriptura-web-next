@@ -18,7 +18,7 @@ export function organizationJsonLd(locale) {
         url: BASE,
         email: 'info@skriptura.net',
         telephone: '+383 44 564 565',
-        foundingDate: '2023-12',
+        foundingDate: '2021',
         description,
         image: `${BASE}/${locale}/opengraph-image`,
         logo: {

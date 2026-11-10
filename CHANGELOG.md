@@ -16,9 +16,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - By the numbers: "Owners: 2" is replaced by "Free tools: 18".
 - Contact → Business Email is `skriptura.net@gmail.com` (was `skriptura.co@gmail.com`).
 - The mobile menu animates open and shut instead of popping: the drawer's height eases (so the page below glides instead of jumping), the links fade down 30ms apart on open and fade out together on close. Gated by `data-motion`, so reduced motion stays instant. The drawer is now always mounted and `inert` while closed.
+- Skriptura is dated from 2021, when the work started: "Founded" on the home page, the home terminal (`est. 2021`), the About story and About meta description, and the Organization JSON-LD `foundingDate`. The About story adds that the company was registered as Skriptura SH.P.K. in December 2023, and the ARBK registration date (26/12/2023) stays in the About registration table.
 
 ### Removed
 
+- Client years: the year badge on the home page, `/clients` and the client detail pages, and the `year` field in `src/data/clients.js` (plus the unused `common.year` label). Client work is presented as projects without dates.
 - Personal details: the founders' names (About story, About SEO description, `founder` in the Organization JSON-LD), the "// THE TEAM" section, and the owner and employee counts. The company is presented as a team.
 - The NUI (footer, About registration table, Contact registration block, JSON-LD `identifier`) and the street address (About, Contact, JSON-LD, the confirmation email footer); the location is shown as "Prishtinë, Kosovo" only.
 
